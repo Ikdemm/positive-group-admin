@@ -31,5 +31,22 @@ export const navItems: INavData[] = [
       }
     ]
   },
+  {
+    name: 'Cours',
+    url: '/courses',
+    icon: 'icon-film',
+    children: [
+      {
+        name: 'Liste des Cours',
+        url: '/courses/list',
+        icon: 'icon-list'
+      },
+      {
+        name: 'Nouvelle Catégorie',
+        url: '/courses/new',
+        icon: 'icon-plus'
+      }
+    ]
+  },
 ];
 
