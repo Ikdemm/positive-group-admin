@@ -20,9 +20,9 @@ export const navItems: INavData[] = [
     icon: 'icon-puzzle',
     children: [
       {
-        name: 'Cards',
+        name: 'Nouvelle Catégorie',
         url: '/categories/new',
-        icon: 'icon-add'
+        icon: 'icon-plus'
       }
     ]
   },
