@@ -42,7 +42,7 @@ export const navItems: INavData[] = [
         icon: 'icon-list'
       },
       {
-        name: 'Nouvelle Catégorie',
+        name: 'Nouveau Cours',
         url: '/courses/new',
         icon: 'icon-plus'
       }
