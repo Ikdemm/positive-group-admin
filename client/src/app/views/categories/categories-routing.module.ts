@@ -22,7 +22,7 @@ const routes: Routes = [
                 path: 'new',
                 component: AddCategoryComponent,
                 data: {
-                    title: 'Nouvelle Catégories'
+                    title: 'Nouvelle Catégorie'
                 }
             }
         ]
