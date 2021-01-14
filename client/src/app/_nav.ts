@@ -23,6 +23,11 @@ export const navItems: INavData[] = [
         name: 'Nouvelle Catégorie',
         url: '/categories/new',
         icon: 'icon-plus'
+      },
+      {
+        name: 'Liste des Catégories',
+        url: '/categories/new',
+        icon: 'icon-list'
       }
     ]
   },
