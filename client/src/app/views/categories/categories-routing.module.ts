@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AddCategoryComponent } from './add-category/add-category.component';
+import { CategoriesListComponent } from './categories-list/categories-list.component';
 
 const routes: Routes = [
     {
@@ -11,14 +12,17 @@ const routes: Routes = [
         },
         children: [
             {
-                path: '',
-                redirectTo: 'categories'
+                path: 'list',
+                component: CategoriesListComponent,
+                data: {
+                    title: ''
+                }
             },
             {
                 path: 'new',
                 component: AddCategoryComponent,
                 data: {
-                    title: 'new'
+                    title: 'Nouvelle Catégories'
                 }
             }
         ]
