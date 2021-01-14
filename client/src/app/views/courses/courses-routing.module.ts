@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-// import { AddCategoryComponent } from './add-category/add-category.component';
-// import { CategoriesListComponent } from './categories-list/categories-list.component';
+import { AddCourseComponent } from './add-course/add-course.component';
+import { CoursesListComponent } from './courses-list/courses-list.component';
 
 const routes: Routes = [
     {
@@ -13,14 +13,14 @@ const routes: Routes = [
         children: [
             {
                 path: 'list',
-                // component: CategoriesListComponent,
+                component: CoursesListComponent,
                 data: {
                     title: ''
                 }
             },
             {
                 path: 'new',
-                // component: AddCategoryComponent,
+                component: AddCourseComponent,
                 data: {
                     title: 'Nouveau cours'
                 }
