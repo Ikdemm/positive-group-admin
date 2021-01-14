@@ -4,9 +4,11 @@ import { AddCategoryComponent } from './add-category/add-category.component';
 
 // Components Routing
 import { CategoriesRoutingModule } from './categories-routing.module';
+import { CategoriesListComponent } from './categories-list/categories-list.component';
+import { CategoryComponent } from './categories-list/category/category.component';
 
 @NgModule({
-  declarations: [AddCategoryComponent],
+  declarations: [AddCategoryComponent, CategoriesListComponent, CategoryComponent],
   imports: [
     CommonModule,
     CategoriesRoutingModule
