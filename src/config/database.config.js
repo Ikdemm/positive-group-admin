@@ -1,3 +1,3 @@
 module.exports = {
-    url: 'mongodb://localhost:27017/mean_stack'
+    url: 'mongodb+srv://positive:+group1+@positive-group-v1.4nq5l.mongodb.net/positive-group-v1?retryWrites=true&w=majority'
 }

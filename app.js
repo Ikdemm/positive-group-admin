@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-// const mongoose = require('mongoose');
-// const { mongoUrl } = require('./database.config');
+const mongoose = require('mongoose');
+const { mongoUrl } = require('./database.config');
 const bodyParser = require('body-parser');
 
 //routes 
