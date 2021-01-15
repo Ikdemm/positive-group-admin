@@ -1,0 +1,22 @@
+{
+  "name": "positive-group-admin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ikdemm/positive-group-admin.git"
+  },
+  "author": "Ikdemm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ikdemm/positive-group-admin/issues"
+  },
+  "homepage": "https://github.com/Ikdemm/positive-group-admin#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
