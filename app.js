@@ -2,11 +2,6 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const path = require('path')
-const db = require("./src/db")
-//routes 
-// const authorsRoutes = require('./api/routes/authors');
-
-
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -23,8 +18,6 @@ app.use((req, res, next) => {
     }
     next();
 });
-
-// app.use('/authors', authorsRoutes);
 
 // Use express.static for frontend
 app.use('/', express.static(path.join(__dirname, 'client/dist')))
