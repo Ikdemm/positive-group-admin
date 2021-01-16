@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose.Schema;
-const course = require("./course");
+// const course = require("./course");
 
 const categorySchema = new Schema({
     name: String,
     description: String,
-    courses: Array[course]
+    courses: Array
 })
 
 const category = mongoose.model('Category', categorySchema)
