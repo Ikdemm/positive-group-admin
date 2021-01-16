@@ -1,15 +1,12 @@
 const express = require('express');
 const app = express();
-const mongoose = require('mongoose');
-const db = require('./src/config/database.config.js');
 const bodyParser = require('body-parser');
 const path = require('path')
-
+const db = require("./src/db")
 //routes 
 // const authorsRoutes = require('./api/routes/authors');
 
-mongoose.connect(db.mongoUrl, { useNewUrlParser: true }, () => {console.log("Successfuly connected to the Database")})
-mongoose.Promise = global.Promise;
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
