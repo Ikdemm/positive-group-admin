@@ -2,6 +2,14 @@ const http = require('http');
 const app = require('./app');
 // const { port } = require('./src/server.config');
 
+// Importing Routes
+const coursesRoutes = require('./src/routes/courses.route');
+
+
+// Using Routes
+app.use('/courses', coursesRoutes)
+
+
 const port = process.env.PORT || '8000';
 app.set('port', port);
 
