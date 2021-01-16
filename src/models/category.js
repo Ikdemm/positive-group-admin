@@ -8,6 +8,6 @@ const categorySchema = new Schema({
     courses: Array
 })
 
-const category = mongoose.model('Category', categorySchema)
+const Category = mongoose.model('Category', categorySchema)
 
-module.exports = category;
+module.exports = Category;
