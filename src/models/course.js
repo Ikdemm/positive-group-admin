@@ -9,6 +9,6 @@ const courseSchema = new Schema({
     createdOn: Date
 })
 
-const course = mongoose.model('Course', courseSchema)
+const Course = mongoose.model('Course', courseSchema)
 
-module.exports = course;
+module.exports = Course;
