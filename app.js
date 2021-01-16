@@ -8,9 +8,9 @@ const path = require('path')
 //routes 
 // const authorsRoutes = require('./api/routes/authors');
 
-// mongoose.connect(mongoUrl)
-// .then(console.log("Successfuly connected to the Database"));
-// mongoose.Promise = global.Promise;
+mongoose.connect(mongoUrl)
+.then(console.log("Successfuly connected to the Database"));
+mongoose.Promise = global.Promise;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
