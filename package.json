@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js",
-    "build": "cd ./client && ng build --prod --aot --buildOptimizer --commonChunk --vendorChunk --optimization --progress",
+    "build-dev": "cd ./client && ng build --prod --aot --buildOptimizer --commonChunk --vendorChunk --optimization --progress",
     "start-dev": "npm run build && npm run dev",
     "start": "node server.js"
   },
