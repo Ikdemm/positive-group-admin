@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const { Schema } = mongoose.Schema;
+const Schema = mongoose.Schema;
 // const course = require("./course");
 
 const categorySchema = new Schema({

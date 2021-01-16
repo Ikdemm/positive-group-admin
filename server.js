@@ -4,11 +4,12 @@ const app = require('./app');
 
 // Importing Routes
 const coursesRoutes = require('./src/routes/courses.route');
+const categoriesRoutes = require('./src/routes/categories.route');
 
 
 // Using Routes
 app.use('/courses', coursesRoutes)
-
+app.use('/categories', categoriesRoutes)
 
 const port = process.env.PORT || '8000';
 app.set('port', port);
