@@ -6,7 +6,7 @@ mongoose.Promise = global.Promise;
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => console.log("Connected"));
+db.once('open', () => console.log("Successfuly connected to the databse"));
 
 module.exports = db;
 
