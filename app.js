@@ -34,8 +34,8 @@ app.use((req, res, next) => {
 app.use('/', express.static(path.join(__dirname, 'client/dist')))
 
 // Send back the 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/src/index.html'));
+app.get('/', (req, res) => {
+  express.static(path.join(__dirname, 'client/dist'));
 })
 
 module.exports = app;
