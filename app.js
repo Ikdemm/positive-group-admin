@@ -29,8 +29,8 @@ app.use((req, res, next) => {
 // Use express.static for frontend
 app.use('/', express.static(path.join(__dirname, 'client/dist')))
 
-// Send back the 
-app.get('*', (req, res) => {
+// Send back the server side
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/dist/index.html'));
 })
 

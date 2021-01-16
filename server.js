@@ -6,7 +6,6 @@ const app = require('./app');
 const coursesRoutes = require('./src/routes/courses.route');
 const categoriesRoutes = require('./src/routes/categories.route');
 
-
 // Using Routes
 app.use('/courses', coursesRoutes)
 app.use('/categories', categoriesRoutes)
