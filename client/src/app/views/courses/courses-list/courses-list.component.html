@@ -25,7 +25,7 @@
                                 <td>{{course.duration}}</td>
                                 <td>{{course.date}}</td>
                                 <td class="actions-container">
-                                    <button type="button" class="btn btn-danger action-button">
+                                    <button (click)="deleteCourse(course._id)" type="button" class="btn btn-danger action-button">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                     <button type="button" class="btn btn-primary action-button">

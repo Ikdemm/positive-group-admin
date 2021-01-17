@@ -34,13 +34,13 @@ router.delete('/:id', (req, res) => {
               message: 'Deleted!'
             });
           }
-        ).catch(
-          (error) => {
-            res.status(400).json({
-              error: error
-            });
-          }
-        );
+    ).catch(
+        (error) => {
+        res.status(400).json({
+            error: error
+        });
+        }
+    );
     
 })
 
