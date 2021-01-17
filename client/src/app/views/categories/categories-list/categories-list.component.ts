@@ -9,12 +9,14 @@ import { Category } from '../../../models/category.model';
 })
 export class CategoriesListComponent implements OnInit {
 
-  constructor(private categories: CategoriesService) { }
+  categories: Array<Category> ;
+
+  constructor(private categoriesService: CategoriesService) { }
 
   ngOnInit(): void {
     console.log("yo")
-    this.categories.getCategories().subscribe((data: Array<Category>) => {
-      console.log(data)
+    this.categoriesService.getCategories().subscribe((data: Array<Category>) => {
+      this. categories = data
     })
   }
 
