@@ -21,7 +21,7 @@
                                 <td>{{category.description}}</td>
                                 <td>{{category.courses.length}}</td>
                                 <td class="actions-container">
-                                    <button type="button" class="btn btn-danger action-button">
+                                    <button (click)="deleteCategory(category._id)" type="button" class="btn btn-danger action-button">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                     <button type="button" class="btn btn-primary action-button">

@@ -24,4 +24,8 @@ export class CategoriesService {
     return this.http.post("/api/categories", category);
   }
 
+  deleteCategory(id) {
+    return this.http.delete("/api/categories/" + id)
+  }
+
 }
