@@ -14,7 +14,7 @@ export class CoursesService {
     return this.http.get("/api/courses")
   }
 
-  createCourse(course: Course) {
-
+  createCourse(course: Course): Observable<any> {
+    return this.http.post("/api/courses", course);
   }
 }

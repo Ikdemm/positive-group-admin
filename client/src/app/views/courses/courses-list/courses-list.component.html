@@ -18,72 +18,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Python</td>
-                                <td>Programmation</td>
-                                <td>Ceci est une description complète de ce cours</td>
-                                <td>26 heures</td>
-                                <td>21/01/2021</td>
-                                <td class="actions-container">
-                                    <button type="button" class="btn btn-danger action-button">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-primary action-button">
-                                        <i class="fa fa-edit"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Python</td>
-                                <td>Programmation</td>
-                                <td>Ceci est une description complète de ce cours</td>
-                                <td>26 heures</td>
-                                <td>21/01/2021</td>
-                                <td class="actions-container">
-                                    <button type="button" class="btn btn-danger action-button">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-primary action-button">
-                                        <i class="fa fa-edit"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Python</td>
-                                <td>Programmation</td>
-                                <td>Ceci est une description complète de ce cours</td>
-                                <td>26 heures</td>
-                                <td>21/01/2021</td>
-                                <td class="actions-container">
-                                    <button type="button" class="btn btn-danger action-button">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-primary action-button">
-                                        <i class="fa fa-edit"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Python</td>
-                                <td>Programmation</td>
-                                <td>Ceci est une description complète de ce cours</td>
-                                <td>26 heures</td>
-                                <td>21/01/2021</td>
-                                <td class="actions-container">
-                                    <button type="button" class="btn btn-danger action-button">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-primary action-button">
-                                        <i class="fa fa-edit"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Python</td>
-                                <td>Programmation</td>
-                                <td>Ceci est une description complète de ce cours</td>
-                                <td>26 heures</td>
-                                <td>21/01/2021</td>
+                            <tr *ngFor="let course of courses">
+                                <td>{{course.name}}</td>
+                                <td>{{course.category}}</td>
+                                <td>{{course.description}}</td>
+                                <td>{{course.duration}}</td>
+                                <td>{{course.date}}</td>
                                 <td class="actions-container">
                                     <button type="button" class="btn btn-danger action-button">
                                         <i class="fa fa-trash"></i>
