@@ -8,9 +8,10 @@ import { CategoriesListComponent } from './categories-list/categories-list.compo
 import { CategoryComponent } from './categories-list/category/category.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
 
 @NgModule({
-  declarations: [AddCategoryComponent, CategoriesListComponent, CategoryComponent],
+  declarations: [AddCategoryComponent, CategoriesListComponent, CategoryComponent, EditCategoryComponent],
   imports: [
     CommonModule,
     CategoriesRoutingModule,
