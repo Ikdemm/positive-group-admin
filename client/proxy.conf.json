@@ -1,0 +1,10 @@
+{
+    "/api/categories": {
+      "target": "localhost",
+      "secure": true,
+      "pathRewrite": {
+      "^/": ""
+    },
+      "changeOrigin": true
+    }
+  }

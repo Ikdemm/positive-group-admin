@@ -6,12 +6,14 @@ import { AddCategoryComponent } from './add-category/add-category.component';
 import { CategoriesRoutingModule } from './categories-routing.module';
 import { CategoriesListComponent } from './categories-list/categories-list.component';
 import { CategoryComponent } from './categories-list/category/category.component';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [AddCategoryComponent, CategoriesListComponent, CategoryComponent],
   imports: [
     CommonModule,
-    CategoriesRoutingModule
+    CategoriesRoutingModule,
+    HttpClientModule
   ]
 })
 export class CategoriesModule { }

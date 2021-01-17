@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Category } from '../models/category.model'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Category } from '../models/category.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriesService {
 
+  requestOptions = {
+    headers: new HttpHeaders({ 
+      'Access-Control-Allow-Origin':'*'
+    })
+  };
+
   constructor(private http: HttpClient) { }
 
-  getCategories() {
-    return this.http.get("/api/categories").subscribe((categories) => {
-      console.log(categories)
-    })
+  getCategories(): Observable<any> {
+    return this.http.get("/api/categories", this.requestOptions)
   }
 
 }
