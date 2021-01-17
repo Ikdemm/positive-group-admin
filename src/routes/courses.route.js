@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const Course = require('../models/course');
 
-// Retrieving existing Categories
+
+// Retrieving existing Courses
+
 router.get('/', (req, res) => {
     Course.find({}, (err, courses) => {
         if (err) return handleError(err);
@@ -12,6 +14,7 @@ router.get('/', (req, res) => {
 })
 
 // Creating new courses
+
 router.post('/', (req, res) => {
     const courseData = {
         name: req.body.name,

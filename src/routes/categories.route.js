@@ -3,6 +3,7 @@ const router = express.Router();
 const Category = require('../models/category');
 
 // Retrieving existing Categories
+
 router.get('/', (req, res) => {
     console.log("hey")
     Category.find({}, (err, categories) => {
@@ -13,6 +14,7 @@ router.get('/', (req, res) => {
 })
 
 // Creating new categories
+
 router.post('/', (req, res) => {
     const categoryData = {
         name: req.body.name,
