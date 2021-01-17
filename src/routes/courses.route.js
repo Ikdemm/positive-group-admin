@@ -16,14 +16,10 @@ router.get('/', (req, res) => {
 // Creating new courses
 
 router.post('/', (req, res) => {
-    const courseData = {
-        name: req.body.name,
-        category: req.body.category,
-        description: req.body.description,
-        duration: req.body.duration,
-        date: new Date()
-    }
+    const courseData = req.body;
+    courseData.date = new Date();
     const newCourse = new Course(courseData);
+    
     newCourse.save((err, newCourse) => {
         if (err) return handleError(err);
         res.send(newCourse)
