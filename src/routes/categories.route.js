@@ -7,7 +7,6 @@ const Category = require('../models/category');
 router.get('/', (req, res) => {
     Category.find({}, (err, categories) => {
         if (err) return handleError(err);
-        console.log(categories);
         res.send(categories)
     })
 })
