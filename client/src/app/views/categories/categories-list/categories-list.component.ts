@@ -19,7 +19,7 @@ export class CategoriesListComponent implements OnInit {
 
   getCategories() {
     this.categoriesService.getCategories().subscribe((data: Array<Category>) => {
-      this. categories = data
+      this.categories = data
     })
   }
 
