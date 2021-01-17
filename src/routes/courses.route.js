@@ -25,4 +25,23 @@ router.post('/', (req, res) => {
     })
 })
 
+// Deleting an existing course
+
+router.delete('/:id', (req, res) => {
+    Course.deleteOne({_id: req.params.id}).then(
+        () => {
+            res.status(200).json({
+              message: 'Deleted!'
+            });
+          }
+        ).catch(
+          (error) => {
+            res.status(400).json({
+              error: error
+            });
+          }
+        );
+    
+})
+
 module.exports = router;
