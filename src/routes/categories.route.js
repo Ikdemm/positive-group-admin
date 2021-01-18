@@ -37,4 +37,19 @@ router.delete("/:id", (req, res) => {
     });
 });
 
+router.put("/:id", (req, res) => {
+  let updatedCategory = req.body;
+  Category.updateOne({_id: req.params.id}, updatedCategory)
+  .then(() => {
+    res.status(200).json({
+      message: "Updated!",
+    });
+  })
+  .catch((error) => {
+    res.status(400).json({
+      error: error,
+    });
+  });
+})
+
 module.exports = router;
