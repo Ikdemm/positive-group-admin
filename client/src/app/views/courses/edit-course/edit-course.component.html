@@ -6,24 +6,23 @@
         <div class="card-body">
             <div class="form-group">
                 <label class="col-form-label" for="text-input">Titre du cours</label>
-                <input [value]="course.name" type="text" id="text-input" name="text-input" class="form-control" placeholder="Titre" #name />
+                <input [(value)]="course.name" type="text" id="text-input" name="text-input" class="form-control"/>
             </div>
             <div class="form-group">
                 <label class="col-form-label" for="select1">Catégorie du cours</label>
-                <select [value]="course.category" id="select1" name="select1" class="form-control" #category>
-                    <option [value]="course.category">{{course.category}}</option>
+                <select [(value)]="course.category" id="select1" name="select1" class="form-control">
+                    <option [(value)]="course.category">{{course.category}}</option>
                     <option *ngFor="let category of categories" (value) = "category.name" >{{category.name}}</option>
                 </select>
             </div>
             <div class="form-group">
                 <label class="col-form-label" for="textarea-input">Description</label>
-                <textarea [value] = "course.description" formControlName="description" id="textarea-input" name="textarea-input" rows="9" class="form-control"
-                    placeholder="Ajouter une déscription pour le cours ..">
+                <textarea [value] = "course.description" id="textarea-input" name="textarea-input" rows="9" class="form-control">
                 </textarea>
             </div>
             <div class="form-group">
                 <label class="col-form-label" for="text-input">Durée du cours</label>
-                <input [value] = "course.duration" formControlName="duration" type="text" id="text-input" name="text-input" class="form-control" placeholder="Durée">
+                <input [value] = "course.duration" type="text" id="text-input" name="text-input" class="form-control"/>
             </div>
             <div class="form-group">
                 <label class="col-form-label" for="file-input">Icone du cours</label>

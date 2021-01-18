@@ -4,6 +4,7 @@ import { Course } from '../../../models/course.model';
 import { CategoriesService } from '../../../services/categories.service';
 import { Category } from '../../../models/category.model';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { CoursesService } from '../../../services/courses.service';
 
 @Component({
   selector: 'app-edit-course',
@@ -24,7 +25,12 @@ export class EditCourseComponent implements OnInit {
   //   duration: new FormControl(0)
   // })
 
-  constructor(private dialogRef: MatDialogRef<EditCourseComponent>, private categoriesService: CategoriesService, private formBuilder: FormBuilder) { }
+  constructor(
+     private dialogRef: MatDialogRef<EditCourseComponent>, 
+     private categoriesService: CategoriesService,
+     private formBuilder: FormBuilder,
+     private coursesService: CoursesService
+    ) { }
 
   ngOnInit(): void {
     console.log(this.course);
@@ -41,6 +47,13 @@ export class EditCourseComponent implements OnInit {
 
   closeModal(): void {
     this.dialogRef.close();
+  }
+
+  onSubmit() {
+    this.coursesService.updateCourse(this.course).subscribe(res => {
+      console.log(res);
+      this.closeModal();
+    })
   }
 
 }

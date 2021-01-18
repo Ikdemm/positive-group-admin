@@ -1,4 +1,5 @@
 export class Course {
+    _id: String;
     name: String;
     category: String;
     description: String;
