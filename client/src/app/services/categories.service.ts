@@ -1,20 +1,19 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Category } from '../models/category.model';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { Category } from "../models/category.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class CategoriesService {
-
   requestOptions = {
-    headers: new HttpHeaders({ 
-      'Access-Control-Allow-Origin':'*'
-    })
+    headers: new HttpHeaders({
+      "Access-Control-Allow-Origin": "*",
+    }),
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getCategories(): Observable<any> {
     return this.http.get("/api/categories", this.requestOptions);
@@ -25,7 +24,6 @@ export class CategoriesService {
   }
 
   deleteCategory(id) {
-    return this.http.delete("/api/categories/" + id)
+    return this.http.delete("/api/categories/" + id);
   }
-
 }
