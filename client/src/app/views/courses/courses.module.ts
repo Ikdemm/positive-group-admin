@@ -17,6 +17,7 @@ import { EditCourseComponent } from './edit-course/edit-course.component';
     CoursesRoutingModule,
     HttpClientModule,
     ReactiveFormsModule
-  ]
+  ],
+  entryComponents: [EditCourseComponent]
 })
 export class CoursesModule { }

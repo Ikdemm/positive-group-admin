@@ -31,4 +31,8 @@ export class CoursesListComponent implements OnInit {
     })
   }
 
+  openEditCourse(course: Course) {
+    
+  }
+
 }
