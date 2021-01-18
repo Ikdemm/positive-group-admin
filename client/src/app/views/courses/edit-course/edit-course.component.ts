@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from "@angular/material/dialog";
+import { Course } from '../../../models/course.model';
 
 @Component({
   selector: 'app-edit-course',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditCourseComponent implements OnInit {
 
-  constructor() { }
+  course: Course;
+
+  constructor(private dialogRef: MatDialogRef<EditCourseComponent>) { }
 
   ngOnInit(): void {
+    console.log(this.course)
   }
 
 }

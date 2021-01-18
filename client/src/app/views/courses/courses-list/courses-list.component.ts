@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Course } from '../../../models/course.model';
 import { CoursesService } from '../../../services/courses.service';
 
+import { MatDialog } from "@angular/material/dialog";
+import { EditCourseComponent } from '../edit-course/edit-course.component';
+
 @Component({
   selector: 'app-courses-list',
   templateUrl: './courses-list.component.html',
@@ -11,7 +14,7 @@ export class CoursesListComponent implements OnInit {
 
   courses: Array<Course>
 
-  constructor(private coursesService: CoursesService) { }
+  constructor(private coursesService: CoursesService, private dialogRef: MatDialog) { }
 
   ngOnInit(): void {
     this.getCourses()
@@ -31,8 +34,12 @@ export class CoursesListComponent implements OnInit {
     })
   }
 
-  openEditCourse(course: Course) {
-    
-  }
+  openEditCourse(course: Course): void {
+    const dialogRef = this.dialogRef.open(EditCourseComponent, { width: "300px" });
+    dialogRef.componentInstance.course = course;
+    dialogRef.afterClosed().subscribe(res => {
+      this.getCourses();
+    })
+  } 
 
 }
