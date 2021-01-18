@@ -35,7 +35,7 @@ export class CoursesListComponent implements OnInit {
   }
 
   openEditCourse(course: Course): void {
-    const dialogRef = this.dialogRef.open(EditCourseComponent, { width: "300px" });
+    const dialogRef = this.dialogRef.open(EditCourseComponent, { width: "600px" });
     dialogRef.componentInstance.course = course;
     dialogRef.afterClosed().subscribe(res => {
       this.getCourses();
