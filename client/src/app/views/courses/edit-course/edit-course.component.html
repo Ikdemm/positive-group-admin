@@ -1,1 +1,38 @@
-<p>edit-course works!</p>
+<div class="card">
+    <div class="card-header">
+        <strong>Modifier</strong> Cours
+    </div>
+    <form enctype="multipart/form-data" class="form-horizontal">
+        <div class="card-body">
+            <div class="form-group">
+                <label class="col-form-label" for="text-input">Titre du cours</label>
+                <input formControlName="name" type="text" id="text-input" name="text-input" class="form-control" placeholder="Titre">
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="select1">Catégorie du cours</label>
+                <select formControlName="category" id="select1" name="select1" class="form-control">
+                    <option value="0">Sélectionner une catégorie</option>
+                    <option *ngFor="let category of categories" (value) = "category.name" >{{category.name}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="textarea-input">Description</label>
+                <textarea formControlName="description" id="textarea-input" name="textarea-input" rows="9" class="form-control"
+                    placeholder="Ajouter une déscription pour le cours ..">
+                </textarea>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="text-input">Durée du cours</label>
+                <input formControlName="duration" type="text" id="text-input" name="text-input" class="form-control" placeholder="Durée">
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="file-input">Icone du cours</label>
+                <input type="file" id="file-input" name="file-input">
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Confirmer</button>
+            <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Annuler</button>
+        </div>
+    </form>
+</div>
