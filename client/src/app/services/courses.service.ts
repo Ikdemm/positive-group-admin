@@ -22,4 +22,8 @@ export class CoursesService {
     return this.http.delete("/api/courses/" + id)
   }
 
+  updateCategory(course: Course) {
+    
+  }
+
 }

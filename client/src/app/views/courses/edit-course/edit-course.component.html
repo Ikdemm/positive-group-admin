@@ -2,7 +2,7 @@
     <div class="card-header">
         <strong>Modifier</strong> Cours
     </div>
-    <form [formGroup]="editCourseForm" enctype="multipart/form-data" class="form-horizontal">
+    <form (submit)="onSubmit()" [formGroup]="editCourseForm" enctype="multipart/form-data" class="form-horizontal">
         <div class="card-body">
             <div class="form-group">
                 <label class="col-form-label" for="text-input">Titre du cours</label>
