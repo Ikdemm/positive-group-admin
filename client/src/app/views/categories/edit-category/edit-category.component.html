@@ -1,1 +1,22 @@
-<p>edit-category works!</p>
+<div class="card">
+    <div class="card-header">
+        <strong>Modifier</strong> Catégorie
+    </div>
+    <form (submit)="onSubmit(name.value, description.value)" [formGroup]="editCategoryForm" enctype="multipart/form-data" class="form-horizontal">
+        <div class="card-body">
+            <div class="form-group">
+                <label class="col-form-label" for="text-input">Titre de la catégorie</label>
+                <input [(value)]="category.name" type="text" id="text-input" name="text-input" class="form-control" #name/>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="textarea-input">Description</label>
+                <textarea [(value)]="category.description" id="textarea-input" name="textarea-input" rows="9" class="form-control" #description>
+                </textarea>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Confirmer</button>
+            <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Annuler</button>
+        </div>
+    </form>
+</div>

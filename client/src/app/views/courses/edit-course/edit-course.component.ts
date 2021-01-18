@@ -3,7 +3,7 @@ import { MatDialogRef } from "@angular/material/dialog";
 import { Course } from '../../../models/course.model';
 import { CategoriesService } from '../../../services/categories.service';
 import { Category } from '../../../models/category.model';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { CoursesService } from '../../../services/courses.service';
 
 @Component({
@@ -17,13 +17,6 @@ export class EditCourseComponent implements OnInit {
   categories: Array<Category>;
 
   editCourseForm: FormGroup;
-
-  // courseForm = new FormGroup({
-  //   name: new FormControl(this.course.name),
-  //   category: new FormControl(''),
-  //   description: new FormControl(''),
-  //   duration: new FormControl(0)
-  // })
 
   constructor(
      private dialogRef: MatDialogRef<EditCourseComponent>, 
@@ -49,7 +42,12 @@ export class EditCourseComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onSubmit() {
+  onSubmit(name, category, description, duration) {
+    this.course.name = name;
+    this.course.category = category;
+    this.course.description = description;
+    this.course.duration = duration;
+    console.log(this.course)
     this.coursesService.updateCourse(this.course).subscribe(res => {
       console.log(res);
       this.closeModal();

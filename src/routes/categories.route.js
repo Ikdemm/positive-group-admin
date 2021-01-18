@@ -38,6 +38,7 @@ router.delete("/:id", (req, res) => {
 });
 
 router.put("/:id", (req, res) => {
+  console.log(req.body)
   let updatedCategory = req.body;
   Category.updateOne({_id: req.params.id}, updatedCategory)
   .then(() => {
