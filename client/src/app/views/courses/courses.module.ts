@@ -8,9 +8,10 @@ import { CourseComponent } from './courses-list/course/course.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditCourseComponent } from './edit-course/edit-course.component';
 
 @NgModule({
-  declarations: [AddCourseComponent, CoursesListComponent, CourseComponent],
+  declarations: [AddCourseComponent, CoursesListComponent, CourseComponent, EditCourseComponent],
   imports: [
     CommonModule,
     CoursesRoutingModule,
