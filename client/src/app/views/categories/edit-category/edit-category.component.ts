@@ -32,13 +32,18 @@ export class EditCategoryComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onSubmit(name, description) {
+  onSubmit(name, description): void {
     this.category.name = name;
     this.category.description = description;
     this.categoriesService.updateCategory(this.category).subscribe(res => {
       console.log(res);
       this.closeModal();
     })
+  }
+
+  cancel(event): void {
+    event.preventDefault();
+    this.closeModal();
   }
 
 }
