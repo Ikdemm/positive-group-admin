@@ -14,9 +14,9 @@ router.get("/", (req, res) => {
 // Creating new courses
 
 router.post("/", (req, res) => {
-  const courseData = req.body;
+  let courseData = req.body;
   courseData.date = new Date();
-  const newCourse = new Course(courseData);
+  let newCourse = new Course(courseData);
 
   newCourse
     .save((err, newCourse))
@@ -45,5 +45,22 @@ router.delete("/:id", (req, res) => {
       });
     });
 });
+
+router.put("/:id", (req, res) => {
+  let updatedCourse = req.body;
+  Course.updateOne({_id: req.params.id}, updatedCourse)
+  .then(() => {
+    console.log("success")
+    res.status(200).json({
+      message: "Updated!",
+    });
+  })
+  .catch((error) => {
+    console.log("error")
+    res.status(400).json({
+      error: error,
+    });
+  });
+})
 
 module.exports = router;

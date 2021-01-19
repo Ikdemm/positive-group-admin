@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from '../../../services/categories.service';
 import { Category } from '../../../models/category.model';
+import { MatDialog } from "@angular/material/dialog";
+import { EditCategoryComponent } from '../edit-category/edit-category.component';
 
 @Component({
   selector: 'app-categories-list',
@@ -11,7 +13,7 @@ export class CategoriesListComponent implements OnInit {
 
   categories: Array<Category> ;
 
-  constructor(private categoriesService: CategoriesService) { }
+  constructor(private categoriesService: CategoriesService, private dialogRef: MatDialog) { }
 
   ngOnInit(): void {
     this.getCategories();
@@ -29,5 +31,13 @@ export class CategoriesListComponent implements OnInit {
       this.getCategories()
     })
   }
+
+  openEditCategory(category: Category): void {
+    const dialogRef = this.dialogRef.open(EditCategoryComponent, { width: "600px" });
+    dialogRef.componentInstance.category = category;
+    dialogRef.afterClosed().subscribe(() => {
+      this.getCategories();
+    })
+  } 
 
 }
