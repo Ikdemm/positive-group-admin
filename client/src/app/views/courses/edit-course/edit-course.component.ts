@@ -54,4 +54,9 @@ export class EditCourseComponent implements OnInit {
     })
   }
 
+  cancel(event): void {
+    event.preventDefault();
+    this.closeModal();
+  }
+
 }
