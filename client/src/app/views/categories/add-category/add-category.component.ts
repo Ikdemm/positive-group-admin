@@ -17,7 +17,6 @@ export class AddCategoryComponent implements OnInit {
   constructor(private categoriesService: CategoriesService) { }
 
   onSubmit() {
-    console.log(this.categoryForm.value)
     this.categoriesService.createCategory(this.categoryForm.value).subscribe((res) => {
       console.log(res)
     })

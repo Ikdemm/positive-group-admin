@@ -8,7 +8,7 @@ import { Admin } from "../models/admin.model";
 export class AuthenticationService {
   constructor(private http: HttpClient) {}
 
-  login(email, password): Observable<any> {
-    return this.http.post("/api/admin", { email: email, password: password });
+  login(userData): Observable<any> {
+    return this.http.post("/api/admin", userData);
   }
 }
