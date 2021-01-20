@@ -6,7 +6,8 @@ const courseSchema = new Schema({
     category: String,
     description: String,
     duration: Number,
-    createdOn: Date
+    createdOn: Date,
+    chapters: Array
 })
 
 const Course = mongoose.model('Course', courseSchema)
