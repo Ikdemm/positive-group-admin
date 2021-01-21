@@ -3,7 +3,7 @@ const router = express.Router();
 const Admin = require("../models/admin");
 
 router.post("/", (req, res) => {
-  console.log(req.body);
+  console.log(req.body.email);
   Admin.findOne({ email: req.body.email })
     .then((admin) => {
       if (admin) {

@@ -12,11 +12,17 @@ export class LoginComponent implements OnInit {
   ) {}
 
   onSubmit(email, password) {
-    this.authenticationService.login(email, password).subscribe((res) => {
-      if (res) {
-        this.router.navigate(["/dashboard"]);
-      }
-    });
+    this.authenticationService
+      .login(email.value, password.value)
+      .subscribe((res) => {
+        console.log(
+          "🚀 ~ file: login.component.ts ~ line 17 ~ LoginComponent ~ this.authenticationService.login ~ res",
+          res
+        );
+        if (res) {
+          this.router.navigate(["/dashboard"]);
+        }
+      });
   }
   ngOnInit() {}
 }
