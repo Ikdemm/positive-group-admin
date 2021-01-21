@@ -1,7 +1,8 @@
-import { Course } from './course.model';
+import { Course } from "./course.model";
 
 export class Category {
-    name: String;
-    description: String;
-    courses: Array<Course>;
+  _id: String;
+  name: String;
+  description: String;
+  courses: Array<Course>;
 }
