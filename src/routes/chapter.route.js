@@ -1,7 +1,5 @@
-const express = require('express');
-const router = express.router();
-const Chapter = require('../models/chapter');
-
-
+const express = require("express");
+const router = express.Router();
+const Chapter = require("../models/chapter");
 
 module.exports = router;
