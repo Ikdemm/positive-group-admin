@@ -13,6 +13,7 @@
                                 <th>Catégorie</th>
                                 <th>Description</th>
                                 <th>Durée</th>
+                                <th>Chapitres</th>
                                 <th>Date de Création</th>
                                 <th>Actions</th>
                             </tr>
@@ -22,13 +23,16 @@
                                 <td>{{course.name}}</td>
                                 <td>{{course.category}}</td>
                                 <td>{{course.description}}</td>
-                                <td>{{course.duration}}</td>
+                                <td>{{course.duration}} heures</td>
+                                <td>{{course.chapters.length}}</td>
                                 <td>{{course.date}}</td>
                                 <td class="actions-container">
-                                    <button (click)="deleteCourse(course._id)" type="button" class="btn btn-danger action-button">
+                                    <button (click)="deleteCourse(course._id)" type="button"
+                                        class="btn btn-danger action-button">
                                         <i class="fa fa-trash"></i>
                                     </button>
-                                    <button (click)="openEditCourse(course)" type="button" class="btn btn-primary action-button">
+                                    <button (click)="openEditCourse(course)" type="button"
+                                        class="btn btn-primary action-button">
                                         <i class="fa fa-edit"></i>
                                     </button>
                                 </td>
