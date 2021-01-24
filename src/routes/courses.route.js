@@ -48,19 +48,47 @@ router.delete("/:id", (req, res) => {
 
 router.put("/:id", (req, res) => {
   let updatedCourse = req.body;
-  Course.updateOne({_id: req.params.id}, updatedCourse)
-  .then(() => {
-    console.log("success")
-    res.status(200).json({
-      message: "Updated!",
+  Course.updateOne({ _id: req.params.id }, updatedCourse)
+    .then(() => {
+      res.status(200).json({
+        message: "Updated!",
+      });
+    })
+    .catch((error) => {
+      res.status(400).json({
+        error: error,
+      });
     });
-  })
-  .catch((error) => {
-    console.log("error")
-    res.status(400).json({
-      error: error,
-    });
-  });
+})
+
+// Adding a new chapter to the course
+
+router.put("/chapters/:courseId", (req, res) => {
+  let chapterData = req.body;
+  let courseId = req.params.courseId
+  Course.find({ _id: courseId })
+    .then((courses) => {
+      let course = courses[0];
+      course.chapters.push(chapterData);
+      Course.updateOne({ _id: courseId }, course)
+        .then(() => {
+          res.status(200).json({
+            message: "Updated!",
+          });
+        })
+        .catch((error) => {
+          console.log("cannot find: ", error)
+          res.status(400).json({
+            error: error,
+          });
+        });
+    })
+    .catch((error) => {
+      console.log("error ", error)
+      res.status(400).json({
+        error: error,
+      });
+    })
 })
 
 module.exports = router;
