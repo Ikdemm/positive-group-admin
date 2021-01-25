@@ -1,1 +1,54 @@
-<p>chapters-list works!</p>
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Liste des chapitres
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Chapitre</th>
+                                <th>Description</th>
+                                <th>Cours</th>
+                                <th>Vidéo</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let chapter of chapters">
+                                <td>{{chapter.title}}</td>
+                                <td>{{chapter.description}}</td>
+                                <td>{{chapter.course}}</td>
+                                <td>{{chapter.video}}</td>
+                                <td class="actions-container">
+                                    <button (click)="deleteChapter(chapter._id)" type="button"
+                                        class="btn btn-danger action-button">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                    <button (click)="openEditChapter(chapter)" type="button"
+                                        class="btn btn-primary action-button">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link">Prev</a></li>
+                        <li class="page-item active">
+                            <a class="page-link">1</a>
+                        </li>
+                        <li class="page-item"><a class="page-link">2</a></li>
+                        <li class="page-item"><a class="page-link">3</a></li>
+                        <li class="page-item"><a class="page-link">4</a></li>
+                        <li class="page-item"><a class="page-link">Next</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--/.col-->
+    </div>
+    <!--/.row-->
+</div>

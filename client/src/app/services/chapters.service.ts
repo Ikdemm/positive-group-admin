@@ -20,15 +20,15 @@ export class ChaptersService {
     return this.http.get("/api/chapters", this.requestOptions)
   }
 
-  addCategory(chapter: Chapter): Observable<any> {
+  addChapter(chapter: Chapter): Observable<any> {
     return this.http.post("/api/chapters", chapter, this.requestOptions)
   }
 
-  editCategrory(chapter: Chapter): Observable<any> {
+  editChapter(chapter: Chapter): Observable<any> {
     return this.http.put(`api/chapters/${chapter._id}`, chapter, this.requestOptions)
   }
 
-  deleteCategory(chapterId): Observable<any> {
+  deleteChapter(chapterId): Observable<any> {
     return this.http.delete(`api/chapters/${chapterId}`, this.requestOptions)
   }
 

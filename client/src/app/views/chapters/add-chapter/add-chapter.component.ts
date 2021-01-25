@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Chapter } from '../../../models/chapter.model';
+import { ChaptersService } from '../../../services/chapters.service';
+
 
 @Component({
   selector: 'app-add-chapter',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddChapterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private chaptersService: ChaptersService) { }
 
   ngOnInit(): void {
+
   }
+
+
 
 }
