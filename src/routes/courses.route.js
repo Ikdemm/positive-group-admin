@@ -18,8 +18,7 @@ router.post("/", (req, res) => {
   courseData.date = new Date();
   let newCourse = new Course(courseData);
 
-  newCourse
-    .save((err, newCourse))
+  newCourse.save((newCourse))
     .then(() => {
       res.send(newCourse);
     })

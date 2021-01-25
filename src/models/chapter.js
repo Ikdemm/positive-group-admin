@@ -5,8 +5,7 @@ const chapterSchema = new Schema({
     title: String,
     description: String,
     video: String,
-    course: String,
-    category: String
+    course: String
 })
 
 const Chapter = mongoose.model('Chapter', chapterSchema)

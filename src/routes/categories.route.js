@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   const categoryData = req.body;
-  categoryData.courses = [];
+  // categoryData.courses = [];
   const newCategory = new Category(categoryData);
   newCategory.save((err, newCategory) => {
     if (err) return handleError(err);
@@ -40,17 +40,17 @@ router.delete("/:id", (req, res) => {
 router.put("/:id", (req, res) => {
   console.log(req.body)
   let updatedCategory = req.body;
-  Category.updateOne({_id: req.params.id}, updatedCategory)
-  .then(() => {
-    res.status(200).json({
-      message: "Updated!",
+  Category.updateOne({ _id: req.params.id }, updatedCategory)
+    .then(() => {
+      res.status(200).json({
+        message: "Updated!",
+      });
+    })
+    .catch((error) => {
+      res.status(400).json({
+        error: error,
+      });
     });
-  })
-  .catch((error) => {
-    res.status(400).json({
-      error: error,
-    });
-  });
 })
 
 module.exports = router;
