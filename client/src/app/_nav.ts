@@ -47,9 +47,5 @@ export const navItems: INavData[] = [
         icon: "icon-plus",
       },
     ],
-  },
-  {
-    name: "login",
-    url: "/login",
-  },
+  }
 ];
