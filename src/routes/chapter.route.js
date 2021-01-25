@@ -2,7 +2,21 @@ const express = require("express");
 const router = express.Router();
 const Chapter = require("../models/chapter");
 
-// Adding a new chapter to an existing course
+// Getting the list of chapters
+
+router.get("/", (req, res) => {
+    Chapter.find({})
+        .then((chapters) => {
+            res.status(200).send(chapters)
+        })
+        .catch((error) => {
+            res.status(400).json({
+                error: error
+            });
+        })
+})
+
+// Adding a new chapter
 
 router.post("/", (req, res) => {
     const chapterData = req.body;
