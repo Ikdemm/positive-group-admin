@@ -34,7 +34,7 @@ export const navItems: INavData[] = [
   {
     name: "Cours",
     url: "/courses",
-    icon: "icon-film",
+    icon: "icon-bulb",
     children: [
       {
         name: "Liste des Cours",
@@ -44,6 +44,23 @@ export const navItems: INavData[] = [
       {
         name: "Nouveau Cours",
         url: "/courses/new",
+        icon: "icon-plus",
+      },
+    ],
+  },
+  {
+    name: "Chapitres",
+    url: "/chapters",
+    icon: "icon-film",
+    children: [
+      {
+        name: "Liste des Chapitres",
+        url: "/chapters/list",
+        icon: "icon-list",
+      },
+      {
+        name: "Nouveau Chapitre",
+        url: "/chapters/new",
         icon: "icon-plus",
       },
     ],
