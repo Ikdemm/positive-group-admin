@@ -17,19 +17,19 @@ export class ChaptersService {
   constructor(private http: HttpClient) { }
 
   getChapters(): Observable<any> {
-    return this.http.get("/api/chapters")
+    return this.http.get("/api/chapters", this.requestOptions)
   }
 
   addCategory(chapter: Chapter): Observable<any> {
-    return this.http.post("/api/chapters", chapter)
+    return this.http.post("/api/chapters", chapter, this.requestOptions)
   }
 
   editCategrory(chapter: Chapter): Observable<any> {
-    return this.http.put(`api/chapters/${chapter._id}`, chapter)
+    return this.http.put(`api/chapters/${chapter._id}`, chapter, this.requestOptions)
   }
 
   deleteCategory(chapterId): Observable<any> {
-    return this.http.delete(`api/chapters/${chapterId}`)
+    return this.http.delete(`api/chapters/${chapterId}`, this.requestOptions)
   }
 
 }

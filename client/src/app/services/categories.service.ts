@@ -13,22 +13,22 @@ export class CategoriesService {
     }),
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getCategories(): Observable<any> {
     return this.http.get("/api/categories", this.requestOptions);
   }
 
   createCategory(category: Category) {
-    return this.http.post("/api/categories", category);
+    return this.http.post("/api/categories", category, this.requestOptions);
   }
 
   deleteCategory(id) {
-    return this.http.delete("/api/categories/" + id);
+    return this.http.delete("/api/categories/" + id, this.requestOptions);
   }
 
   updateCategory(category: Category) {
-    return this.http.put("/api/categories/" + category._id, category)
+    return this.http.put("/api/categories/" + category._id, category, this.requestOptions)
   }
 
 }
