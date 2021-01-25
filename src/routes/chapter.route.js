@@ -34,7 +34,7 @@ router.post("/", (req, res) => {
         })
 })
 
-// Adding a new chapter
+// Update an existing chapter
 
 router.put("/:id", (req, res) => {
     let updatedChapter = req.body;
@@ -43,6 +43,22 @@ router.put("/:id", (req, res) => {
         .then(() => {
             res.status(200).json({
                 message: "Updated!",
+            });
+        })
+        .catch((error) => {
+            res.status(400).json({
+                error: error
+            });
+        })
+})
+
+// Delete an existing chapter
+
+router.delete("/:id", (req, res) => {
+    Chapter.deleteOne({ _id: req.params.id })
+        .then(() => {
+            res.status(200).json({
+                message: "Deleted!",
             });
         })
         .catch((error) => {

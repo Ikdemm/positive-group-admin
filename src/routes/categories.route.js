@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Category = require("../models/category");
 
+
 // Retrieving existing Categories
 
 router.get("/", (req, res) => {
@@ -23,6 +24,8 @@ router.post("/", (req, res) => {
   });
 });
 
+// Deleting an existing category
+
 router.delete("/:id", (req, res) => {
   Category.deleteOne({ _id: req.params.id })
     .then(() => {
@@ -36,6 +39,8 @@ router.delete("/:id", (req, res) => {
       });
     });
 });
+
+// Updating an existing category
 
 router.put("/:id", (req, res) => {
   let updatedCategory = req.body;
