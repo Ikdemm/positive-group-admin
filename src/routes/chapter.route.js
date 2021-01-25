@@ -22,9 +22,27 @@ router.post("/", (req, res) => {
     const chapterData = req.body;
     const newChapter = new Chapter(chapterData)
     newChapter.save(newChapter)
-        .then((chapter) => {
+        .then(() => {
             res.status(200).json({
                 message: "Added!",
+            });
+        })
+        .catch((error) => {
+            res.status(400).json({
+                error: error
+            });
+        })
+})
+
+// Adding a new chapter
+
+router.put("/:id", (req, res) => {
+    let updatedChapter = req.body;
+    console.log(updatedChapter)
+    Chapter.updateOne({ _id: req.params.id }, updatedChapter)
+        .then(() => {
+            res.status(200).json({
+                message: "Updated!",
             });
         })
         .catch((error) => {
