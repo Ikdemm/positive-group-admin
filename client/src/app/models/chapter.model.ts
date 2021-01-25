@@ -1,6 +1,7 @@
 export class Chapter {
-  _id: String;
+  _id?: String;
   title: String;
   description: String;
-  link: String;
+  video: String;
+  course: String
 }

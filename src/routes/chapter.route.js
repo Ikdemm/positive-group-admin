@@ -38,9 +38,8 @@ router.post("/", (req, res) => {
 
 router.put("/:id", (req, res) => {
     let updatedChapter = req.body;
-    console.log(updatedChapter)
     Chapter.updateOne({ _id: req.params.id }, updatedChapter)
-        .then(() => {
+        .then((chapter) => {
             res.status(200).json({
                 message: "Updated!",
             });

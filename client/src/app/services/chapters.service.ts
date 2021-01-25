@@ -25,11 +25,11 @@ export class ChaptersService {
   }
 
   editChapter(chapter: Chapter): Observable<any> {
-    return this.http.put(`api/chapters/${chapter._id}`, chapter, this.requestOptions)
+    return this.http.put(`/api/chapters/${chapter._id}`, chapter)
   }
 
   deleteChapter(chapterId): Observable<any> {
-    return this.http.delete(`api/chapters/${chapterId}`, this.requestOptions)
+    return this.http.delete(`/api/chapters/${chapterId}`, this.requestOptions)
   }
 
 }

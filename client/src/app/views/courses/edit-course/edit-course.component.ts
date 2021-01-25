@@ -19,14 +19,13 @@ export class EditCourseComponent implements OnInit {
   editCourseForm: FormGroup;
 
   constructor(
-     private dialogRef: MatDialogRef<EditCourseComponent>, 
-     private categoriesService: CategoriesService,
-     private formBuilder: FormBuilder,
-     private coursesService: CoursesService
-    ) { }
+    private dialogRef: MatDialogRef<EditCourseComponent>,
+    private categoriesService: CategoriesService,
+    private formBuilder: FormBuilder,
+    private coursesService: CoursesService
+  ) { }
 
   ngOnInit(): void {
-    console.log(this.course);
     this.categoriesService.getCategories().subscribe(categories => {
       this.categories = categories;
       console.log(this.categories)

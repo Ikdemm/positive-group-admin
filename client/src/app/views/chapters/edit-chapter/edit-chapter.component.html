@@ -1,1 +1,38 @@
-<p>edit-chapter works!</p>
+<div class="card">
+    <div class="card-header">
+        <strong>Modifier</strong> Chapitre
+    </div>
+    <form (submit)="onSubmit(title.value, course.value, description.value, video.value)" [formGroup]="editChapterForm"
+        enctype="multipart/form-data" class="form-horizontal">
+        <div class="card-body">
+            <div class="form-group">
+                <label class="col-form-label" for="text-input">Titre du chapitre</label>
+                <input [(value)]="chapter.title" type="text" id="text-input" name="text-input" class="form-control"
+                    #title />
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="select1">Cours du chapitre</label>
+                <select [(value)]="chapter.course" id="select1" name="select1" class="form-control" #course>
+                    <option [(value)]="chapter.course">{{chapter.course}}</option>
+                    <option *ngFor="let course of courses" (value)="course.name">{{course.name}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="textarea-input">Description</label>
+                <textarea [(value)]="chapter.description" id="textarea-input" name="textarea-input" rows="9"
+                    class="form-control" #description>
+                </textarea>
+            </div>
+            <div class="form-group">
+                <label class="col-form-label" for="textarea-input">Video</label>
+                <input [(value)]="chapter.video" type="text" id="text-input" name="text-input" class="form-control"
+                    #video />
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Confirmer</button>
+            <button (click)="closeModal()" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i>
+                Annuler</button>
+        </div>
+    </form>
+</div>

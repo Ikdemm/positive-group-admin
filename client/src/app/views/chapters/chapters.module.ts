@@ -12,7 +12,6 @@ import { EditChapterComponent } from './edit-chapter/edit-chapter.component';
 import { ChaptersRoutingModule } from './chapters-routing.module';
 
 
-
 @NgModule({
   declarations: [ChaptersListComponent, AddChapterComponent, EditChapterComponent],
   imports: [
