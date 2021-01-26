@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     this.authenticationService.login(this.loginForm.value).subscribe((res) => {
       if (res) {
+        localStorage.setItem("authenticated", "true");
         this.router.navigate(["/dashboard"]);
       }
     });

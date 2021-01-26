@@ -11,4 +11,8 @@ export class AuthenticationService {
   login(userData): Observable<any> {
     return this.http.post("/api/admin", userData);
   }
+
+  check() {
+    return localStorage.getItem("authenticated");
+  }
 }
