@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { AuthenticationService } from "../../services/authentication.service";
 import { FormGroup, FormControl } from "@angular/forms";
-
+import Swal from "sweetalert2";
 @Component({
   selector: "app-dashboard",
   templateUrl: "login.component.html",
@@ -20,9 +20,27 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     this.authenticationService.login(this.loginForm.value).subscribe((res) => {
-      if (res) {
+      if (res.message === "SUCESS!") {
         localStorage.setItem("authenticated", "true");
         this.router.navigate(["/dashboard"]);
+      } else if (res.message === "WRONG PASSWORD") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops",
+          text: `Wrong password `,
+        });
+      } else if (res.message === "ADMIN NOT FOUND!") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops",
+          text: `Admin not found `,
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops",
+          text: `Something went wrong `,
+        });
       }
     });
   }

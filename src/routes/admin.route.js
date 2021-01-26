@@ -7,16 +7,16 @@ router.post("/", (req, res) => {
     .then((admin) => {
       if (admin) {
         if (admin.password === req.body.password) {
-          res.status(200).json({
+          res.send({
             message: "SUCESS!",
           });
         } else {
-          res.status(404).json({
+          res.send({
             message: "WRONG PASSWORD",
           });
         }
       } else {
-        res.status(404).json({
+        res.send({
           message: "ADMIN NOT FOUND!",
         });
       }
