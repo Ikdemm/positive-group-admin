@@ -59,10 +59,13 @@ export const routes: Routes = [
         loadChildren: () => import('./views/categories/categories.module').then(m => m.CategoriesModule)
       },
       {
+<<<<<<< HEAD
         path: 'courses',
         loadChildren: () => import('./views/courses/courses.module').then(m => m.CoursesModule)
       },
       {
+=======
+>>>>>>> 6a1806e... deleted unnecessary modules
         path: 'charts',
         loadChildren: () => import('./views/chartjs/chartjs.module').then(m => m.ChartJSModule)
       },
