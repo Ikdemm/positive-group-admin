@@ -8,7 +8,11 @@ const coursesRoutes = require("./src/routes/courses.route");
 const categoriesRoutes = require("./src/routes/categories.route");
 const adminRoutes = require("./src/routes/admin.route");
 const chapterRoutes = require("./src/routes/chapter.route");
+<<<<<<< HEAD
 const userRoutes = require("./src/routes/users.route");
+=======
+const userRoutes = require("./src/routes/user.route");
+>>>>>>> 573ee51... added users.routes with a get request
 
 // Using Routes
 app.use("/api/courses", coursesRoutes);
