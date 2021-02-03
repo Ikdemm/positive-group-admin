@@ -7,16 +7,16 @@ router.post("/", (req, res) => {
     .then((admin) => {
       if (admin) {
         if (admin.password === req.body.password) {
-          res.status(200).json({
+          res.send({
             message: "SUCESS!",
           });
         } else {
-          res.status(404).json({
+          res.send({
             message: "WRONG PASSWORD",
           });
         }
       } else {
-        res.status(404).json({
+        res.send({
           message: "ADMIN NOT FOUND!",
         });
       }
@@ -27,6 +27,15 @@ router.post("/", (req, res) => {
         error: error,
       });
     });
+});
+
+router.get("/", async (req, res) => {
+  try {
+    const adminData = await Admin.find({});
+    res.send(adminData[0]);
+  } catch (e) {
+    console.error(e);
+  }
 });
 
 module.exports = router;
