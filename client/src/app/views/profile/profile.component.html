@@ -19,18 +19,19 @@
                 <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
                 <div class="row">
                   <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">Email</p>
-                    <input class="form-control" type="text" name="adminEmail" value="{{ this.AdminData.email }}" />
+                    <label for="email"><i class="icon-envelope"></i> &nbsp;Email</label>
+                    <input class="form-control" type="email" name="email" value="{{ this.AdminData.email }}" />
                   </div>
                   <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">Phone</p>
-                    <input class="form-control" type="text" name="adminPhone" value="{{ this.AdminData.phone }}" />
+                    <label for="phone"><i class="icon-phone"></i> &nbsp;Téléphone</label>
+                    <input class="form-control" type="text" name="phone" value="{{ this.AdminData.phone }}" />
                   </div>
                 </div>
+
+                <button class="btn btn-primary update-btn" type="submit" style="float: righ">
+                  Valider
+                </button>
               </div>
-              <button class="btn btn-primary" type="submit" style="float: righ">
-                Update profile
-              </button>
             </div>
           </div>
         </div>
