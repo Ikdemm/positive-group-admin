@@ -8,15 +8,14 @@
             <div class="col-sm-4 bg-c-lite-green user-profile">
               <div class="card-block text-center text-white">
                 <div class="m-b-25"></div>
-
-                <input class="form-control" type="text" name="adminName" value="{{ AdminData.name }}" />
-                <br />
-                <input class="form-control" type="text" name="adminName" value="{{ AdminData.lastName }}" />
+                <img src="/assets/img/avatars/user.svg" alt="">
+                <input class="form-control data-input" type="text" name="adminName" value="{{ AdminData.name }}" />
+                <input class="form-control data-input" type="text" name="adminName" value="{{ AdminData.lastName }}" />
               </div>
             </div>
             <div class="col-sm-8">
               <div class="card-block">
-                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Informations</h6>
                 <div class="row">
                   <div class="col-sm-6">
                     <label for="email"><i class="icon-envelope"></i> &nbsp;Email</label>
@@ -28,7 +27,7 @@
                   </div>
                 </div>
 
-                <button class="btn btn-primary update-btn" type="submit" style="float: righ">
+                <button class="btn btn-outline-primary update-btn" type="submit" style="float: righ">
                   Valider
                 </button>
               </div>
