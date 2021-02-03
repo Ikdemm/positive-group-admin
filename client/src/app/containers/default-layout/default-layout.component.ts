@@ -18,4 +18,7 @@ export class DefaultLayoutComponent {
     localStorage.removeItem("authenticated");
     this.router.navigate(["/login"]);
   }
+  profile() {
+    this.router.navigate(["/profile"]);
+  }
 }

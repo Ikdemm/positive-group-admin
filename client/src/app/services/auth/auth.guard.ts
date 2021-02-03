@@ -7,8 +7,6 @@ import {
   UrlTree,
 } from "@angular/router";
 import { AuthenticationService } from "../authentication.service";
-import { Observable, of } from "rxjs";
-import { catchError, map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -25,18 +23,5 @@ export class AuthGuard implements CanActivate {
     }
     this.router.navigate(["/login"]);
     return false;
-
-    //   map((response: { authenticated: boolean }) => {
-    //     if (response.authenticated) {
-    //       return true;
-    //     }
-    //     this.router.navigate(["/login"]);
-    //     return false;
-    //   }),
-    //   catchError((error) => {
-    //     this.router.navigate(["/login"]);
-    //     return of(false);
-    //   })
-    // );
   }
 }

@@ -29,4 +29,13 @@ router.post("/", (req, res) => {
     });
 });
 
+router.get("/", async (req, res) => {
+  try {
+    const adminData = await Admin.find({});
+    res.send(adminData[0]);
+  } catch (e) {
+    console.error(e);
+  }
+});
+
 module.exports = router;
