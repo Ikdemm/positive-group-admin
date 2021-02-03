@@ -44,14 +44,14 @@ export const routes: Routes = [
       title: "Register Page",
     },
   },
-  {
-    path: "profile",
-    component: ProfileComponent,
-    data: {
-      title: "Profile Page",
-    },
-    canActivate: [AuthGuard],
-  },
+  // {
+  //   path: "profile",
+  //   component: ProfileComponent,
+  //   data: {
+  //     title: "Profile Page",
+  //   },
+  //   canActivate: [AuthGuard],
+  // },
   {
     path: "",
     component: DefaultLayoutComponent,
@@ -79,7 +79,11 @@ export const routes: Routes = [
         loadChildren: () =>
           import("./views/courses/courses.module").then((m) => m.CoursesModule),
       },
-
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import("./views/profile/profile.module").then((m) => m.ProfileModule)
+      },
       {
         path: "dashboard",
         loadChildren: () =>
@@ -102,4 +106,4 @@ export const routes: Routes = [
   exports: [RouterModule],
   providers: [AuthGuard],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
