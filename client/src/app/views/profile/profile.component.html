@@ -1,10 +1,7 @@
 <!-- <p>profile works!</p> -->
 <div class="main-container">
   <div class="padding">
-    <div
-      class="row container d-flex justify-content-center"
-      style="margin-left: auto; margin-right: auto"
-    >
+    <div class="row container d-flex justify-content-center" style="margin-left: auto; margin-right: auto">
       <div class="col-xl-12 col-md-22">
         <div class="card user-card-full">
           <div class="row m-l-0 m-r-0">
@@ -12,19 +9,9 @@
               <div class="card-block text-center text-white">
                 <div class="m-b-25"></div>
 
-                <input
-                  class="form-control"
-                  type="text"
-                  name="adminName"
-                  placeholder="{{ AdminData.name }}"
-                />
+                <input class="form-control" type="text" name="adminName" value="{{ AdminData.name }}" />
                 <br />
-                <input
-                  class="form-control"
-                  type="text"
-                  name="adminName"
-                  placeholder="{{ AdminData.lastName }}"
-                />
+                <input class="form-control" type="text" name="adminName" value="{{ AdminData.lastName }}" />
               </div>
             </div>
             <div class="col-sm-8">
@@ -33,21 +20,11 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <p class="m-b-10 f-w-600">Email</p>
-                    <input
-                      class="form-control"
-                      type="text"
-                      name="adminEmail"
-                      placeholder="{{ this.AdminData.email }}"
-                    />
+                    <input class="form-control" type="text" name="adminEmail" value="{{ this.AdminData.email }}" />
                   </div>
                   <div class="col-sm-6">
                     <p class="m-b-10 f-w-600">Phone</p>
-                    <input
-                      class="form-control"
-                      type="text"
-                      name="adminPhone"
-                      placeholder="{{ this.AdminData.phone }}"
-                    />
+                    <input class="form-control" type="text" name="adminPhone" value="{{ this.AdminData.phone }}" />
                   </div>
                 </div>
               </div>
