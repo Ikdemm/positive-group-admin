@@ -12,8 +12,12 @@ export class AuthenticationService {
     return this.http.post("/api/admin", userData);
   }
 
-  adminData() {
+  getAdminData() {
     return this.http.get("/api/admin");
+  }
+
+  updateAdminData(newAdminData) {
+    return this.http.put("api/admin", newAdminData);
   }
 
   check() {
