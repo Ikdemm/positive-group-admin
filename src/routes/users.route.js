@@ -9,15 +9,12 @@ router.get("/", usersController.getAllUsers);
 
 router.post("/", usersController.createUser)
 
-
 // Updating an existing user
 
 router.put("/:id", usersController.updateUser)
 
-
 // Delete existing user
 
 router.delete("/:id", usersController.deleteUser)
-
 
 module.exports = router;

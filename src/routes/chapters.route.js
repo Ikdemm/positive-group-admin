@@ -17,5 +17,4 @@ router.put("/:id", chaptersController.updateChapter)
 
 router.delete("/:id", chaptersController.deleteChapter)
 
-
 module.exports = router;

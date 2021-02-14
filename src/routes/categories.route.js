@@ -1,6 +1,4 @@
-const express = require("express");
-const router = express.Router();
-const Category = require("../models/category");
+const router = require("express").Router();
 const categoriesController = require("../controllers/categories.controller")
 
 // Retrieving existing Categories

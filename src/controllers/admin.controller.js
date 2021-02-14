@@ -2,29 +2,65 @@ const Admin = require("../models/admin");
 
 module.exports = {
 
+    // To be edited when we add CRUD for admins
     getAdminData: async (req, res) => {
         try {
-            const adminData = await Admin.find({});
-            res.send(adminData[0]);
-        } catch (e) {
+            const admins = await repository.findAll(Admin)
+            res.status(200).send(admins[0])
+        }
+        catch (e) {
+            console.error(e);
+        }
+    },
+
+    getAllAdmins: async (req, res) => {
+        try {
+            const admins = await repository.findAll(Admin)
+            res.status(200).send(admins)
+        }
+        catch (e) {
+            console.error(e);
+        }
+    },
+
+    getAdminById: async (req, res) => {
+        try {
+            const admin = await repository.findById(req.params.id, Admin)
+            res.status(200).send(admin)
+        }
+        catch (e) {
+            console.error(e);
+        }
+    },
+
+    createAdmin: async (req, res) => {
+        try {
+            const user = await repository.save(req.body, User)
+            res.status(200).send(user)
+        }
+        catch (e) {
             console.error(e);
         }
     },
 
     updateAdmin: async (req, res) => {
         try {
-            const newData = await Admin.updateOne(
-                { firstName: req.body.oldName },
-                {
-                    firstName: req.body.firstName,
-                    lastName: req.body.lastName,
-                    emai: req.body.email,
-                    phoneNumber: req.body.phoneNumber,
-                }
-            );
-            res.send(newData);
-        } catch (e) {
+            const updatedAdmin = await repository.updateOne(req.params.id, req.body, Admin)
+            res.status(200).send(updatedAdmin)
+        }
+        catch (e) {
+            console.error(e);
+        }
+    },
+
+    deleteAdmin: async (req, res) => {
+        try {
+            const deletedAmin = await repository.delete(req.params.id, Amin)
+            res.status(200).send(deletedAmin)
+        }
+        catch (e) {
             console.error(e);
         }
     }
+
 }
