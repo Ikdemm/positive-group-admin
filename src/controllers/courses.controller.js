@@ -22,20 +22,20 @@ module.exports = {
         }
     },
 
-    deleteCourse: async (req, res) => {
+    updateCourse: async (req, res) => {
         try {
-            const deletedCourse = await repository.delete(req.params.id, Course)
-            res.status(200).send(deletedCourse)
+            const updatedCourse = await repository.updateOne(req.params.id, req.body, Course)
+            res.status(200).send(updatedCourse)
         }
         catch (e) {
             console.error(e);
         }
     },
 
-    updateCourse: async (req, res) => {
+    deleteCourse: async (req, res) => {
         try {
-            const updatedCourse = await repository.updateOne(req.params.id, req.body, Course)
-            res.status(200).send(updatedCourse)
+            const deletedCourse = await repository.delete(req.params.id, Course)
+            res.status(200).send(deletedCourse)
         }
         catch (e) {
             console.error(e);

@@ -13,48 +13,33 @@ module.exports = {
         }
     },
 
-    createUser: (req, res) => {
-        let newUser = new User(req.body);
-
-        User.save((newUser))
-            .then(() => {
-                res.status(200).json({
-                    message: "Added!",
-                });
-            })
-            .catch((error) => {
-                res.status(400).json({
-                    error: error
-                });
-            })
+    createUser: async (req, res) => {
+        try {
+            const user = await repository.save(req.body, User)
+            res.status(200).send(user)
+        }
+        catch (e) {
+            console.error(e);
+        }
     },
 
-    updateUser: (req, res) => {
-        let updatedUser = req.body;
-        User.updateOne({ _id: req.params.id }, updatedUser)
-            .then(() => {
-                res.status(200).json({
-                    message: "Updated!",
-                });
-            })
-            .catch((error) => {
-                res.status(400).json({
-                    error: error
-                });
-            })
+    updateUser: async (req, res) => {
+        try {
+            const updatedUser = await repository.updateOne(req.params.id, req.body, User)
+            res.status(200).send(updatedUser)
+        }
+        catch (e) {
+            console.error(e);
+        }
     },
 
-    deleteUser: (req, res) => {
-        User.deleteOne({ _id: req.params.id })
-            .then(() => {
-                res.status(200).json({
-                    message: "Deleted!",
-                });
-            })
-            .catch((error) => {
-                res.status(400).json({
-                    error: error
-                });
-            })
-    }
+    deleteUser: async (req, res) => {
+        try {
+            const deletedUser = await repository.delete(req.params.id, User)
+            res.status(200).send(deletedUser)
+        }
+        catch (e) {
+            console.error(e);
+        }
+    },
 }
