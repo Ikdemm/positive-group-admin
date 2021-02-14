@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 const coursesRoutes = require("./src/routes/courses.route");
 const categoriesRoutes = require("./src/routes/categories.route");
 const adminRoutes = require("./src/routes/admin.route");
-const chapterRoutes = require("./src/routes/chapter.route");
+const chapterRoutes = require("./src/routes/chapters.route");
 const userRoutes = require("./src/routes/users.route");
 const authRoutes = require("./src/routes/auth.route");
 
