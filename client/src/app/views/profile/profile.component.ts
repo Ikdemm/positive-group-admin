@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
-import { AuthenticationService } from "../../services/authentication.service";
+import { AdminService } from "../../services/admin.service";
 import Swal from "sweetalert2";
 import { Admin } from "../../models/admin.model";
 @Component({
@@ -18,14 +18,14 @@ export class ProfileComponent implements OnInit {
     lastName: new FormControl(""),
   });
 
-  constructor(private authenticationService: AuthenticationService) {}
+  constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
     this.getAdminData();
   }
 
   getAdminData() {
-    this.authenticationService.getAdminData().subscribe((res: Admin) => {
+    this.adminService.getAdminData().subscribe((res: Admin) => {
       this.adminData = res;
       this.updateProfileForm.reset({
         email: res.email,
@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
 
   onSubmit(): void {
     this.updateProfileForm.value.oldName = this.adminData.firstName;
-    this.authenticationService
+    this.adminService
       .updateAdminData(this.updateProfileForm.value)
       .subscribe((res) => {
         if (res) {

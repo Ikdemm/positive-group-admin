@@ -6,18 +6,10 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class AuthenticationService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   login(userData): Observable<any> {
-    return this.http.post("/api/admin", userData);
-  }
-
-  getAdminData() {
-    return this.http.get("/api/admin");
-  }
-
-  updateAdminData(newAdminData) {
-    return this.http.put("api/admin", newAdminData);
+    return this.http.post("/api/auth", userData);
   }
 
   check() {
