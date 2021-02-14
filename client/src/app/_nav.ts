@@ -64,5 +64,22 @@ export const navItems: INavData[] = [
         icon: "icon-plus",
       },
     ],
+  },
+  {
+    name: "Utilisateurs",
+    url: "/users",
+    icon: "icon-user",
+    children: [
+      {
+        name: "Liste des Utilisateurs",
+        url: "/users/list",
+        icon: "icon-list",
+      },
+      {
+        name: "Nouvel Utilisateur",
+        url: "/users/new",
+        icon: "icon-plus",
+      },
+    ],
   }
 ];
