@@ -23,32 +23,23 @@ module.exports = {
         }
     },
 
-    deleteCategory: (req, res) => {
-        Category.deleteOne({ _id: req.params.id })
-            .then(() => {
-                res.status(200).json({
-                    message: "Deleted!",
-                });
-            })
-            .catch((error) => {
-                res.status(400).json({
-                    error: error,
-                });
-            });
+    deleteCategory: async (req, res) => {
+        try {
+            const deletedCategory = await repository.delete(req.params.id, Category)
+            res.status(200).send(deletedCategory)
+        }
+        catch (e) {
+            console.error(e);
+        }
     },
 
-    updateCategory: (req, res) => {
-        let updatedCategory = req.body;
-        Category.updateOne({ _id: req.params.id }, updatedCategory)
-            .then(() => {
-                res.status(200).json({
-                    message: "Updated!",
-                });
-            })
-            .catch((error) => {
-                res.status(400).json({
-                    error: error,
-                });
-            });
+    updateCategory: async (req, res) => {
+        try {
+            const updatedCategory = await repository.updateOne(req.params.id, req.body, Category)
+            res.status(200).send(updatedCategory)
+        }
+        catch (e) {
+            console.error(e);
+        }
     }
 }
