@@ -1,7 +1,7 @@
 const Admin = require("../models/admin");
 
 module.exports = {
-    authenticate: (req, res) => {
+    login: (req, res) => {
         Admin.findOne({ email: req.body.email })
             .then((admin) => {
                 if (admin) {

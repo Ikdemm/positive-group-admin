@@ -3,9 +3,11 @@ const app = express();
 const bodyParser = require('body-parser');
 const path = require('path')
 
+// Using Body-Parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// Using Cross Origin middelware
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -25,6 +27,7 @@ const categoriesRoutes = require("./src/routes/categories.route");
 const adminRoutes = require("./src/routes/admin.route");
 const chapterRoutes = require("./src/routes/chapter.route");
 const userRoutes = require("./src/routes/users.route");
+const authRoutes = require("./src/routes/auth.route");
 
 // Using Routes
 app.use("/api/courses", coursesRoutes);
@@ -32,11 +35,12 @@ app.use("/api/categories", categoriesRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/chapters", chapterRoutes);
 app.use("/api/users", userRoutes)
+app.use("/api/auth", authRoutes)
 
 // Use express.static for frontend
 app.use('/', express.static(path.join(__dirname, 'client/dist')))
 
-// Send back the server side
+// Send back the client side
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/dist/index.html'));
 })

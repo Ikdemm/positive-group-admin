@@ -1,6 +1,4 @@
-const express = require("express");
-const router = express.Router();
-const Course = require("../models/course");
+const router = require("express").Router();
 const coursesController = require("../controllers/courses.controller")
 
 // Retrieving existing Courses
