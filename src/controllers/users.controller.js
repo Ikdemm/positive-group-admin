@@ -1,17 +1,16 @@
 const User = require("../models/user");
+const repository = require("../repositories/repository")
 
 module.exports = {
 
-    getAllUsers: (req, res) => {
-        User.find({})
-            .then((users) => {
-                res.status(200).send(users)
-            })
-            .catch((error) => {
-                res.status(400).json({
-                    error: error
-                });
-            })
+    getAllUsers: async (req, res) => {
+        try {
+            const users = await repository.findAll(User)
+            res.status(200).send(users)
+        }
+        catch (e) {
+            console.error(e);
+        }
     },
 
     createUser: (req, res) => {

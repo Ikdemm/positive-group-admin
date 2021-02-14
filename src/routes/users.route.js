@@ -1,4 +1,4 @@
-const express = require("express").Router();
+const router = require("express").Router();
 const usersController = require("../controllers/users.controller")
 
 // Retrieving existing users

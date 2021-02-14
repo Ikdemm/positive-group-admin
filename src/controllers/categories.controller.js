@@ -1,21 +1,26 @@
-const Category = require("../models/category")
+const Category = require("../models/category");
+const repository = require("../repositories/repository")
 
 module.exports = {
 
-    getAllCategories: (req, res) => {
-        Category.find({}, (err, categories) => {
-            if (err) return handleError(err);
-            res.send(categories);
-        });
+    getAllCategories: async (req, res) => {
+        try {
+            const categories = await repository.findAll(Category)
+            res.status(200).send(categories)
+        }
+        catch (e) {
+            console.error(e);
+        }
     },
 
-    addCategory: (req, res) => {
-        const categoryData = req.body;
-        const newCategory = new Category(categoryData);
-        newCategory.save((err, newCategory) => {
-            if (err) return handleError(err);
-            res.send(newCategory);
-        });
+    addCategory: async (req, res) => {
+        try {
+            const category = await repository.save(req.body, Category)
+            res.status(200).send(category)
+        }
+        catch (e) {
+            console.error(e);
+        }
     },
 
     deleteCategory: (req, res) => {
