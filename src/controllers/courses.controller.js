@@ -1,6 +1,7 @@
 const course = require('../models/course');
 
 module.exports = {
+
     getAllCourses: (req, res) => {
         Course.find({}, (err, courses) => {
             if (err) return handleError(err);

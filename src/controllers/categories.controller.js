@@ -1,21 +1,23 @@
 const Category = require("../models/category")
 
 module.exports = {
+
     getAllCategories: (req, res) => {
         Category.find({}, (err, categories) => {
             if (err) return handleError(err);
             res.send(categories);
         });
     },
+
     addCategory: (req, res) => {
         const categoryData = req.body;
-        // categoryData.courses = [];
         const newCategory = new Category(categoryData);
         newCategory.save((err, newCategory) => {
             if (err) return handleError(err);
             res.send(newCategory);
         });
     },
+
     deleteCategory: (req, res) => {
         Category.deleteOne({ _id: req.params.id })
             .then(() => {
@@ -29,6 +31,7 @@ module.exports = {
                 });
             });
     },
+
     updateCategory: (req, res) => {
         let updatedCategory = req.body;
         Category.updateOne({ _id: req.params.id }, updatedCategory)
