@@ -1,35 +1,76 @@
-<!-- <p>profile works!</p> -->
-<div class="main-container">
-  <div class="padding">
-    <div class="row container d-flex justify-content-center" style="margin-left: auto; margin-right: auto">
-      <div class="col-xl-12 col-md-22">
-        <div class="card user-card-full">
-          <div class="row m-l-0 m-r-0">
-            <div class="col-sm-4 bg-c-lite-green user-profile">
-              <div class="card-block text-center text-white">
-                <div class="m-b-25"></div>
-                <img src="/assets/img/avatars/user.svg" alt="">
-                <input class="form-control data-input" type="text" name="adminName" value="{{ AdminData.name }}" />
-                <input class="form-control data-input" type="text" name="adminName" value="{{ AdminData.lastName }}" />
-              </div>
-            </div>
-            <div class="col-sm-8">
-              <div class="card-block">
-                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Informations</h6>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <label for="email"><i class="icon-envelope"></i> &nbsp;Email</label>
-                    <input class="form-control" type="email" name="email" value="{{ this.AdminData.email }}" />
-                  </div>
-                  <div class="col-sm-6">
-                    <label for="phone"><i class="icon-phone"></i> &nbsp;Téléphone</label>
-                    <input class="form-control" type="text" name="phone" value="{{ this.AdminData.phone }}" />
-                  </div>
+<form
+  [formGroup]="updateProfileForm"
+  (submit)="onSubmit()"
+  enctype="multipart/form-data"
+>
+  <!-- <p>profile works!</p> -->
+  <div class="main-container">
+    <div class="padding">
+      <div
+        class="row container d-flex justify-content-center"
+        style="margin-left: auto; margin-right: auto"
+      >
+        <div class="col-xl-12 col-md-22">
+          <div class="card user-card-full">
+            <div class="row m-l-0 m-r-0">
+              <div class="col-sm-4 bg-c-lite-green user-profile">
+                <div class="card-block text-center text-white">
+                  <div class="m-b-25"></div>
+                  <img src="/assets/img/avatars/user.svg" alt="" />
+                  <input
+                    class="form-control data-input"
+                    type="text"
+                    name="adminName"
+                    value="{{ adminData.firstName }}"
+                    formControlName="firstName"
+                  />
+                  <input
+                    class="form-control data-input"
+                    type="text"
+                    name="adminName"
+                    value="{{ adminData.lastName }}"
+                    formControlName="lastName"
+                  />
                 </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="card-block">
+                  <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Informations</h6>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <label for="email"
+                        ><i class="icon-envelope"></i> &nbsp;Email</label
+                      >
+                      <input
+                        class="form-control"
+                        type="email"
+                        name="email"
+                        value="{{ this.adminData.email }}"
+                        formControlName="email"
+                      />
+                    </div>
+                    <div class="col-sm-6">
+                      <label for="phone"
+                        ><i class="icon-phone"></i> &nbsp;Téléphone</label
+                      >
+                      <input
+                        class="form-control"
+                        type="text"
+                        name="phone"
+                        value="{{ this.adminData.phoneNumber }}"
+                        formControlName="phoneNumber"
+                      />
+                    </div>
+                  </div>
 
-                <button class="btn btn-outline-primary update-btn" type="submit" style="float: righ">
-                  Valider
-                </button>
+                  <button
+                    class="btn btn-outline-primary update-btn"
+                    type="submit"
+                    style="float: righ"
+                  >
+                    Valider
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -37,4 +78,4 @@
       </div>
     </div>
   </div>
-</div>
+</form>
