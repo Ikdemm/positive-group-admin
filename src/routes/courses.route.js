@@ -1,93 +1,52 @@
 const express = require("express");
 const router = express.Router();
 const Course = require("../models/course");
+const coursesController = require("../controllers/courses.controller")
 
 // Retrieving existing Courses
 
-router.get("/", (req, res) => {
-  Course.find({}, (err, courses) => {
-    if (err) return handleError(err);
-    res.send(courses);
-  });
-});
+router.get("/", coursesController.getAllCourses);
 
 // Creating new courses
 
-router.post("/", (req, res) => {
-  let courseData = req.body;
-  courseData.date = new Date();
-  let newCourse = new Course(courseData);
-
-  newCourse.save((newCourse))
-    .then(() => {
-      res.send(newCourse);
-    })
-    .catch((error) => {
-      res.status(400).json({
-        error: error,
-      });
-    });
-});
+router.post("/", coursesController.createCourse);
 
 // Deleting an existing course
 
-router.delete("/:id", (req, res) => {
-  Course.deleteOne({ _id: req.params.id })
-    .then(() => {
-      res.status(200).json({
-        message: "Deleted!",
-      });
-    })
-    .catch((error) => {
-      res.status(400).json({
-        error: error,
-      });
-    });
-});
+router.delete("/:id", coursesController.deleteCourse);
 
-router.put("/:id", (req, res) => {
-  let updatedCourse = req.body;
-  Course.updateOne({ _id: req.params.id }, updatedCourse)
-    .then(() => {
-      res.status(200).json({
-        message: "Updated!",
-      });
-    })
-    .catch((error) => {
-      res.status(400).json({
-        error: error,
-      });
-    });
-})
+// Updating an existing course
+
+router.put("/:id", coursesController.updateCourse)
 
 // Adding a new chapter to the course
 
-router.put("/chapters/:courseId", (req, res) => {
-  let chapterData = req.body;
-  let courseId = req.params.courseId
-  Course.find({ _id: courseId })
-    .then((courses) => {
-      let course = courses[0];
-      course.chapters.push(chapterData);
-      Course.updateOne({ _id: courseId }, course)
-        .then(() => {
-          res.status(200).json({
-            message: "Updated!",
-          });
-        })
-        .catch((error) => {
-          console.log("cannot find: ", error)
-          res.status(400).json({
-            error: error,
-          });
-        });
-    })
-    .catch((error) => {
-      console.log("error ", error)
-      res.status(400).json({
-        error: error,
-      });
-    })
-})
+// router.put("/chapters/:courseId", (req, res) => {
+//   let chapterData = req.body;
+//   let courseId = req.params.courseId
+//   Course.find({ _id: courseId })
+//     .then((courses) => {
+//       let course = courses[0];
+//       course.chapters.push(chapterData);
+//       Course.updateOne({ _id: courseId }, course)
+//         .then(() => {
+//           res.status(200).json({
+//             message: "Updated!",
+//           });
+//         })
+//         .catch((error) => {
+//           console.log("cannot find: ", error)
+//           res.status(400).json({
+//             error: error,
+//           });
+//         });
+//     })
+//     .catch((error) => {
+//       console.log("error ", error)
+//       res.status(400).json({
+//         error: error,
+//       });
+//     })
+// })
 
 module.exports = router;
