@@ -18,16 +18,18 @@
                   <div class="m-b-25"></div>
                   <img src="/assets/img/avatars/user.svg" alt="" />
                   <input
+                    *ngIf="toggle"
                     class="form-control data-input"
                     type="text"
-                    name="adminName"
+                    name="firstName"
                     value="{{ adminData.firstName }}"
                     formControlName="firstName"
                   />
                   <input
+                    *ngIf="toggle"
                     class="form-control data-input"
                     type="text"
-                    name="adminName"
+                    name="lastName"
                     value="{{ adminData.lastName }}"
                     formControlName="lastName"
                   />
@@ -38,37 +40,89 @@
                   <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Informations</h6>
                   <div class="row">
                     <div class="col-sm-6">
-                      <label for="email"
+                      <label for="email" *ngIf="toggle"
                         ><i class="icon-envelope"></i> &nbsp;Email</label
                       >
                       <input
+                        *ngIf="toggle"
                         class="form-control"
                         type="email"
                         name="email"
                         value="{{ this.adminData.email }}"
                         formControlName="email"
                       />
+                      <input
+                        *ngIf="!toggle"
+                        class="form-control"
+                        name="oldPassWord"
+                        type="password"
+                        placeholder="
+                      Ancien mot de passe"
+                        formControlName="oldPassWord"
+                      />
                     </div>
                     <div class="col-sm-6">
-                      <label for="phone"
+                      <label for="phone" *ngIf="toggle"
                         ><i class="icon-phone"></i> &nbsp;Téléphone</label
                       >
                       <input
+                        *ngIf="toggle"
                         class="form-control"
                         type="text"
                         name="phone"
                         value="{{ this.adminData.phoneNumber }}"
                         formControlName="phoneNumber"
                       />
+                      <input
+                        *ngIf="!toggle"
+                        type="password"
+                        name="newPassWord"
+                        class="form-control"
+                        placeholder="Nouvelle mot de passe"
+                        formControlName="newPassWord"
+                      />
+                      <input
+                        *ngIf="!toggle"
+                        name="confirmPassWord"
+                        type="password"
+                        class="form-control"
+                        placeholder="Confirmer le mot de passe"
+                        formControlName="confirmPassWord"
+                      />
                     </div>
                   </div>
 
+                  <input
+                    class="btn btn-outline-primary update-btn"
+                    type="button"
+                    *ngIf="!toggle"
+                    style="float: right"
+                    (click)="updatePassword()"
+                    value="Changer mot de pass"
+                  />
                   <button
                     class="btn btn-outline-primary update-btn"
-                    type="submit"
-                    style="float: righ"
+                    *ngIf="toggle"
+                    (click)="onSubmit()"
+                    style="float: right"
                   >
                     Valider
+                  </button>
+                  <button
+                    *ngIf="!toggle"
+                    class="btn btn-outline-primary update-btn"
+                    style="float: left"
+                    (click)="changeView()"
+                  >
+                    Modifier profil
+                  </button>
+                  <button
+                    *ngIf="toggle"
+                    class="btn btn-outline-primary update-btn"
+                    style="float: left"
+                    (click)="changeView()"
+                  >
+                    Changer mot de pass
                   </button>
                 </div>
               </div>

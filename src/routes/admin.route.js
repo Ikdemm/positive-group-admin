@@ -8,7 +8,7 @@ router.post("/", (req, res) => {
       if (admin) {
         if (admin.password === req.body.password) {
           res.send({
-            message: "SUCESS!",
+            message: "SUCCESS!",
           });
         } else {
           res.send({
@@ -45,7 +45,7 @@ router.put("/", async (req, res) => {
       {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        emai: req.body.email,
+        email: req.body.email,
         phoneNumber: req.body.phoneNumber,
       }
     );
@@ -53,6 +53,27 @@ router.put("/", async (req, res) => {
   } catch (e) {
     console.error(e);
   }
+});
+
+router.patch("/", (req, res) => {
+  Admin.findOne({ password: req.body.oldPassWord })
+    .then((admin) => {
+      if (admin) {
+        Admin.updateOne(
+          { password: req.body.oldPassWord },
+          { password: req.body.newPassWord }
+        ).then(() => {
+          res.send({ message: "SUCCESS!" });
+        });
+      } else {
+        res.send({
+          message: "Wrong Password",
+        });
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 });
 
 module.exports = router;

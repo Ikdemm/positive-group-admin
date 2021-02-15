@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     this.authenticationService.login(this.loginForm.value).subscribe((res) => {
-      if (res.message === "SUCESS!") {
+      if (res.message === "SUCCESS!") {
         localStorage.setItem("authenticated", "true");
         this.router.navigate(["/dashboard"]);
       } else if (res.message === "WRONG PASSWORD") {

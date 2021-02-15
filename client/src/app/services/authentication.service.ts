@@ -20,6 +20,11 @@ export class AuthenticationService {
     return this.http.put("api/admin", newAdminData);
   }
 
+  updateAdminPassWord(passwords) {
+    console.log("service==>", passwords);
+    return this.http.patch("/api/admin", passwords);
+  }
+
   check() {
     return localStorage.getItem("authenticated");
   }
