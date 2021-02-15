@@ -5,6 +5,7 @@ export class User {
     birthDate: Date;
     gender: String;
     job: String;
+    bonus: String;
     email: String;
     password: String;
     isActivated: Boolean;

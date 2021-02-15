@@ -20,10 +20,6 @@ export class UsersService {
     return this.http.get("/api/users", this.requestOptions);
   }
 
-  createUser(user: User) {
-    return this.http.post("/api/users", user, this.requestOptions);
-  }
-
   deleteUser(id) {
     return this.http.delete("/api/users/" + id, this.requestOptions);
   }

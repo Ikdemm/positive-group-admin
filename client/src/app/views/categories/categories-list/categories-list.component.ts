@@ -4,18 +4,20 @@ import { Category } from "../../../models/category.model";
 import { MatDialog } from "@angular/material/dialog";
 import { EditCategoryComponent } from "../edit-category/edit-category.component";
 import Swal from "sweetalert2";
+
 @Component({
   selector: "app-categories-list",
   templateUrl: "./categories-list.component.html",
   styleUrls: ["./categories-list.component.css"],
 })
 export class CategoriesListComponent implements OnInit {
+
   categories: Array<Category>;
 
   constructor(
     private categoriesService: CategoriesService,
     private dialogRef: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getCategories();

@@ -46,7 +46,6 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
-import { UsersListComponent } from './views/users/users-list/users-list.component';
 // import { ProfileComponent } from './views/profile/profile.component';
 
 @NgModule({
@@ -73,8 +72,7 @@ import { UsersListComponent } from './views/users/users-list/users-list.componen
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent,
-    UsersListComponent
+    RegisterComponent
     // ProfileComponent
   ],
   providers: [{

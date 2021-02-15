@@ -80,6 +80,13 @@ export const routes: Routes = [
           import("./views/courses/courses.module").then((m) => m.CoursesModule),
       },
       {
+        path: "users",
+        loadChildren: () =>
+          import("./views/users/users.module").then(
+            (m) => m.UsersModule
+          ),
+      },
+      {
         path: 'profile',
         loadChildren: () =>
           import("./views/profile/profile.module").then((m) => m.ProfileModule)
