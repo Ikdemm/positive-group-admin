@@ -12,7 +12,7 @@ const userSchema = new Schema({
     isActivated: Boolean,
     invitees: Array,
     inviter: String,
-    bonus: Number
+    bonus: Number // To be changed with calculation
 })
 
 const User = mongoose.model('User', userSchema)
