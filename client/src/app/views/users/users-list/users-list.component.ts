@@ -38,7 +38,11 @@ export class UsersListComponent implements OnInit {
   upgradeUser(user): void {
     user.isActivated = true;
     this.usersService.updateUser(user).subscribe((res) => {
-      console.log(res)
+      Swal.fire({
+        icon: "success",
+        title: "Done",
+        text: `compte activé`,
+      });
     })
   }
 

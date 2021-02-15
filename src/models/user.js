@@ -12,6 +12,7 @@ const userSchema = new Schema({
     isActivated: Boolean,
     invitees: Array,
     inviter: String,
+    bonus: Number
 })
 
 const User = mongoose.model('User', userSchema)
