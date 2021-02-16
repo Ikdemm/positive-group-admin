@@ -10,10 +10,13 @@ module.exports = {
 
     adminLogin: async (req, res) => {
         try {
-            const admin = await repository.findOne({ email: req.body.email }, Admin);
-            if (admin.password === req.body.password) {
-                res.send({
-                    message: "SUCCESS!",
+            const adminData = await repository.findOne({ email: req.body.email }, Admin);
+            const admin = { email: adminData.email }
+
+            if (await bcrypt.compare(adminData.password, req.body.password)) {
+                const accessToken = jwt.sign(admin, process.env.ACCESS_TOKEN_SECRET)
+                res.status(200).json({
+                    accessToken: accessToken,
                 });
             } else {
                 res.send({
