@@ -1,5 +1,5 @@
 const User = require("../models/user");
-const repository = require("../repositories/repository")
+const repository = require("../repositories/base.repository")
 
 module.exports = {
 

@@ -1,5 +1,5 @@
 const Admin = require("../models/admin");
-const repository = require("../repositories/repository")
+const repository = require("../repositories/base.repository")
 
 module.exports = {
 

@@ -1,5 +1,5 @@
 const Chapter = require("../models/chapter");
-const repository = require("../repositories/repository")
+const repository = require("../repositories/base.repository")
 
 module.exports = {
 

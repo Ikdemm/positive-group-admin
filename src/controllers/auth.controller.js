@@ -1,9 +1,10 @@
 const Admin = require("../models/admin");
 const User = require("../models/user");
-const repository = require("../repositories/repository");
+const repository = require("../repositories/base.repository");
 const bcrypt = require("bcrypt");
 
 module.exports = {
+
     adminLogin: async (req, res) => {
         try {
             const admin = await repository.findOne({ email: req.body.email }, Admin);
@@ -26,13 +27,13 @@ module.exports = {
 
     userLogin: async (req, res) => {
         try {
-            const user = await repository.findOne({ email: req.body.email });
-            if (user.password === req.body.password) {
+            const user = await repository.findOne({ email: req.body.email }, User);
+            if (await bcrypt.compare(user.password, req.body.password)) {
                 res.status(200).send({
                     message: "SUCCESS!",
                 });
             } else {
-                res.status(200).send({
+                res.status(405).send({
                     message: "WRONG PASSWORD",
                 });
             }
