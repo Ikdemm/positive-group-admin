@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 
-const bcrypt = require("bcrypt")
+const authenticateToken = require("./src/middlewares/authenticateToken")
 
 // Using Body-Parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -33,8 +33,8 @@ const userRoutes = require("./src/routes/users.route");
 const authRoutes = require("./src/routes/auth.route");
 
 // Using Routes
-app.use("/api/courses", coursesRoutes);
-app.use("/api/categories", categoriesRoutes);
+app.use("/api/courses", authenticateToken, coursesRoutes);
+app.use("/api/categories", authenticateToken, categoriesRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/chapters", chapterRoutes);
 app.use("/api/users", userRoutes)

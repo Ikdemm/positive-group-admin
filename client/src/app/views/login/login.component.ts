@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { AuthenticationService } from "../../services/authentication.service";
+import { LocalStorageService } from "../../services/local-storage.service";
 import { FormGroup, FormControl } from "@angular/forms";
 import Swal from "sweetalert2";
+
 @Component({
   selector: "app-dashboard",
   templateUrl: "login.component.html",
@@ -16,15 +18,13 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authenticationService: AuthenticationService,
+    private localStorageService: LocalStorageService,
     private router: Router
   ) { }
 
   onSubmit(): void {
     this.authenticationService.login(this.loginForm.value).subscribe((res) => {
-      if (res.message === "SUCESS!") {
-        localStorage.setItem("authenticated", "true");
-        this.router.navigate(["/dashboard"]);
-      } else if (res.message === "WRONG PASSWORD") {
+      if (res.message === "WRONG PASSWORD") {
         Swal.fire({
           icon: "error",
           title: "Oops",
@@ -37,11 +37,9 @@ export class LoginComponent implements OnInit {
           text: `Erreur d'authentification`,
         });
       } else {
-        Swal.fire({
-          icon: "error",
-          title: "Oops",
-          text: `Erreur d'authentification`,
-        });
+        console.log(res)
+        this.localStorageService.set("accessToken", res.accessToken);
+        this.router.navigate(["/dashboard"]);
       }
     });
   }

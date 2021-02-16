@@ -1,5 +1,5 @@
 const Category = require("../models/category");
-const repository = require("../repositories/base.repository")
+const repository = require("../repositories/base.repository");
 
 module.exports = {
 
