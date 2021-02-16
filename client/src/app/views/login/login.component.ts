@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 @Component({
   selector: "app-dashboard",
   templateUrl: "login.component.html",
+  styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router
-  ) {}
+  ) { }
 
   onSubmit(): void {
     this.authenticationService.login(this.loginForm.value).subscribe((res) => {
@@ -45,5 +46,5 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }
