@@ -9,7 +9,7 @@ export class AdminService {
   constructor(private http: HttpClient) { }
 
   getAdminData() {
-    return this.http.get("/api/admin");
+    return this.http.get(`/api/admin/`);
   }
 
   updateAdminData(newAdminData) {

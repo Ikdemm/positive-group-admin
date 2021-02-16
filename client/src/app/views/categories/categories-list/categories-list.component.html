@@ -12,7 +12,7 @@
                                 <th>Catégorie</th>
                                 <th>Description</th>
                                 <th>Cours</th>
-                                <th>Actions</th>
+                                <th class="last-header">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -21,10 +21,12 @@
                                 <td>{{category.description}}</td>
                                 <td>{{category.courses.length}}</td>
                                 <td class="actions-container">
-                                    <button (click)="deleteCategory(category._id)" type="button" class="btn btn-danger action-button">
+                                    <button (click)="deleteCategory(category._id)" type="button"
+                                        class="btn btn-danger action-button">
                                         <i class="fa fa-trash"></i>
                                     </button>
-                                    <button (click)="openEditCategory(category)" type="button" class="btn btn-primary action-button">
+                                    <button (click)="openEditCategory(category)" type="button"
+                                        class="btn btn-primary action-button">
                                         <i class="fa fa-edit"></i>
                                     </button>
                                 </td>

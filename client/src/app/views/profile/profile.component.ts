@@ -9,6 +9,7 @@ import { Admin } from "../../models/admin.model";
   styleUrls: ["./profile.component.css"],
 })
 export class ProfileComponent implements OnInit {
+
   adminData: Admin;
 
   updateProfileForm = new FormGroup({

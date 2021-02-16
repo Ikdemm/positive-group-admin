@@ -6,14 +6,14 @@
                     <i class="fa fa-align-justify"></i> Liste des utilsateurs
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>Nom</th>
                                 <th>Prénom</th>
                                 <th>Etat</th>
                                 <th>Bonus</th>
-                                <th>Actions</th>
+                                <th class="last-header">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -21,16 +21,16 @@
                                 <td>{{user.lastName}}</td>
                                 <td>{{user.firstName}}</td>
                                 <td>{{user.isActivated ? "active" : "non active"}}</td>
-                                <!-- <td>{{user.isActivated}}</td> -->
-                                <td>{{user.bonus}}</td>
+                                <td>{{user.bonus}} TD</td>
                                 <td class="actions-container">
                                     <button (click)="deleteUser(user._id)" type="button"
                                         class="btn btn-danger action-button">
                                         <i class="fa fa-trash"></i>
                                     </button>
-                                    <button (click)="upgradeUser(user)" type="button"
+                                    <button (click)="changeUserSubscription(user)" type="button"
                                         class="btn btn-primary action-button">
-                                        <i class="fa fa-arrow-up"></i>
+                                        <i *ngIf="!user.isActivated" class="fa fa-arrow-up"></i>
+                                        <i *ngIf="user.isActivated" class="fa fa-arrow-down"></i>
                                     </button>
                                 </td>
                             </tr>

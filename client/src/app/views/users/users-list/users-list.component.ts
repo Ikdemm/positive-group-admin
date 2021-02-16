@@ -35,14 +35,23 @@ export class UsersListComponent implements OnInit {
     });
   }
 
-  upgradeUser(user): void {
-    user.isActivated = true;
+  changeUserSubscription(user): void {
+    user.isActivated = !user.isActivated;
     this.usersService.updateUser(user).subscribe((res) => {
-      Swal.fire({
-        icon: "success",
-        title: "Done",
-        text: `compte activé`,
-      });
+      if (user.isActivated) {
+        Swal.fire({
+          icon: "success",
+          title: "Activation",
+          text: "compte activé avec succès",
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Désactivation",
+          text: "compte désactivé avec succès",
+        });
+      }
+
     })
   }
 

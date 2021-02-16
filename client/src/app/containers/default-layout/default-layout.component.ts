@@ -6,7 +6,7 @@ import { Router } from "@angular/router";
   templateUrl: "./default-layout.component.html",
 })
 export class DefaultLayoutComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
   public sidebarMinimized = false;
   public navItems = navItems;
 
@@ -18,7 +18,7 @@ export class DefaultLayoutComponent {
     localStorage.removeItem("authenticated");
     this.router.navigate(["/login"]);
   }
-  profile() {
+  goToProfile() {
     this.router.navigate(["/profile"]);
   }
 }

@@ -1,8 +1,22 @@
 .actions-container {
     display: flex;
+    justify-content: flex-end;
 }
 
 .action-button {
     padding: 2px 5px !important;
     margin-left: 3px;
+    border-radius: 0;
+}
+
+tr:hover {
+    background-color: rgb(219, 219, 219);
+}
+
+.main {
+    background-color: revert;
+}
+
+.last-header {
+    text-align: right;
 }

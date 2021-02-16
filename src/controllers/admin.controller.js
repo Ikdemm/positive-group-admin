@@ -6,7 +6,7 @@ module.exports = {
     // To be edited when we add CRUD for admins
     getAdminData: async (req, res) => {
         try {
-            const admins = await repository.findAll(Admin)
+            const admins = await repository.findOne(Admin)
             res.status(200).send(admins[0])
         }
         catch (e) {
@@ -26,7 +26,7 @@ module.exports = {
 
     getAdminById: async (req, res) => {
         try {
-            const admin = await repository.findById(req.params.id, Admin)
+            const admin = await repository.findOneById(req.params.id, Admin)
             res.status(200).send(admin)
         }
         catch (e) {
