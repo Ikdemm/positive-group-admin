@@ -18,5 +18,9 @@ module.exports = {
 
     findOneById: (id, model) => {
         return model.findById(id)
+    },
+
+    findOne: (data, model) => {
+        return model.findOne(data)
     }
 }
