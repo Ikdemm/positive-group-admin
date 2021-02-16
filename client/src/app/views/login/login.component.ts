@@ -28,19 +28,19 @@ export class LoginComponent implements OnInit {
         Swal.fire({
           icon: "error",
           title: "Oops",
-          text: `Wrong password `,
+          text: `Mot de passe incorrect`,
         });
       } else if (res.message === "ADMIN NOT FOUND!") {
         Swal.fire({
           icon: "error",
           title: "Oops",
-          text: `Admin not found `,
+          text: `Erreur d'authentification`,
         });
       } else {
         Swal.fire({
           icon: "error",
           title: "Oops",
-          text: `Something went wrong `,
+          text: `Erreur d'authentification`,
         });
       }
     });

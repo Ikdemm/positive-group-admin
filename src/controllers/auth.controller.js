@@ -11,18 +11,27 @@ module.exports = {
     adminLogin: async (req, res) => {
         try {
             const adminData = await repository.findOne({ email: req.body.email }, Admin);
-            const admin = { email: adminData.email }
-
-            if (await bcrypt.compare(adminData.password, req.body.password)) {
-                const accessToken = jwt.sign(admin, process.env.ACCESS_TOKEN_SECRET)
-                res.status(200).json({
-                    accessToken: accessToken,
+            if (!adminData) {
+                res.status(400).send({
+                    message: "ADMIN NOT FOUND",
                 });
             } else {
-                res.send({
-                    message: "WRONG PASSWORD",
-                });
+                const admin = { email: adminData.email }
+                console.log(req.body.password)
+                // const password = await bcrypt.hash(req.body.password, 10)
+                // console.log(await bcrypt.compare(adminData.password, req.body.password))
+                if (await bcrypt.compare(req.body.password, adminData.password)) {
+                    const accessToken = jwt.sign(admin, process.env.ACCESS_TOKEN_SECRET)
+                    res.status(200).json({
+                        accessToken: accessToken,
+                    });
+                } else {
+                    res.send({
+                        message: "WRONG PASSWORD",
+                    });
+                }
             }
+
         }
         catch (e) {
             res.status(400).json({
@@ -31,7 +40,20 @@ module.exports = {
         }
     },
 
-    userLogin: async (req, res) => {
+    adminSignup: async (req, res) => {
+        try {
+            let adminData = req.body;
+            adminData.password = await bcrypt.hash(adminData.password, 10);
+            const admin = await repository.save(adminData, Admin);
+            res.status(201).send({ message: "Created!" })
+        }
+        catch (e) {
+            console.error(e)
+            res.status(500).send()
+        }
+    },
+
+    login: async (req, res) => {
         try {
             const userData = await repository.findOne({ email: req.body.email }, User);
             const user = { email: userData.email }
@@ -58,7 +80,7 @@ module.exports = {
         try {
             let userData = req.body;
             userData.password = await bcrypt.hash(userData.password, 10);
-            const user = repository.save(user, User);
+            const user = await repository.save(userData, User);
             res.status(201).send({ message: "Created!" })
         }
         catch (e) {

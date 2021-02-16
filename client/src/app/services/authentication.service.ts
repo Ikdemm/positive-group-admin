@@ -9,7 +9,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
   login(userData): Observable<any> {
-    return this.http.post("/api/auth", userData);
+    return this.http.post("/api/auth/admins/login", userData);
   }
 
   check() {
