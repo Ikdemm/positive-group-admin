@@ -16,7 +16,7 @@ module.exports = {
     createCourse: async (req, res) => {
         try {
             const course = await repository.save(req.body, Course)
-            res.status(200).send(course)
+            res.status(201).send(course)
         }
         catch (e) {
             console.error(e);

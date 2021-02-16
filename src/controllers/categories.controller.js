@@ -16,7 +16,7 @@ module.exports = {
     addCategory: async (req, res) => {
         try {
             const category = await repository.save(req.body, Category)
-            res.status(200).send(category)
+            res.status(201).send(category)
         }
         catch (e) {
             console.error(e);

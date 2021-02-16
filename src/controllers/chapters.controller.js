@@ -16,7 +16,7 @@ module.exports = {
     createChapter: async (req, res) => {
         try {
             const chapter = await repository.save(req.body, Chapter)
-            res.status(200).send(chapter)
+            res.status(201).send(chapter)
         }
         catch (e) {
             console.error(e);

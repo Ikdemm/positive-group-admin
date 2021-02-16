@@ -16,7 +16,7 @@ module.exports = {
     createUser: async (req, res) => {
         try {
             const user = await repository.save(req.body, User)
-            res.status(200).send(user)
+            res.status(201).send(user)
         }
         catch (e) {
             console.error(e);
