@@ -1,0 +1,8 @@
+.actions-container {
+    display: flex;
+}
+
+.action-button {
+    padding: 2px 5px !important;
+    margin-left: 3px;
+}
