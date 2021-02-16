@@ -2,6 +2,7 @@ const Admin = require("../models/admin");
 const User = require("../models/user");
 const repository = require("../repositories/base.repository");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken")
 
 module.exports = {
 
@@ -27,8 +28,10 @@ module.exports = {
 
     userLogin: async (req, res) => {
         try {
-            const user = await repository.findOne({ email: req.body.email }, User);
-            if (await bcrypt.compare(user.password, req.body.password)) {
+            const userData = await repository.findOne({ email: req.body.email }, User);
+            const user = { email: userData.email }
+            jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
+            if (await bcrypt.compare(userData.password, req.body.password)) {
                 res.status(200).send({
                     message: "SUCCESS!",
                 });

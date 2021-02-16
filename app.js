@@ -8,6 +8,7 @@ const bcrypt = require("bcrypt")
 // Using Body-Parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(express.json())
 
 // Using Cross Origin middelware
 app.use((req, res, next) => {
