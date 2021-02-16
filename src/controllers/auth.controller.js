@@ -1,3 +1,5 @@
+require("dotenv").config()
+
 const Admin = require("../models/admin");
 const User = require("../models/user");
 const repository = require("../repositories/base.repository");
@@ -30,10 +32,11 @@ module.exports = {
         try {
             const userData = await repository.findOne({ email: req.body.email }, User);
             const user = { email: userData.email }
-            jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
+
             if (await bcrypt.compare(userData.password, req.body.password)) {
-                res.status(200).send({
-                    message: "SUCCESS!",
+                const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+                res.status(200).json({
+                    accessToken: accessToken,
                 });
             } else {
                 res.status(405).send({
