@@ -17,11 +17,20 @@ h1 {
     font-weight: 600;
 }
 
-.signup-card {
+.login-card:hover {
     background-color: #173F5F !important;
+    transition: .7s;
+}
+
+.login-card {
+    transition: .7s;
 }
 
 p {
     font-weight: 300;
     font-size: 1.2em;
+}
+
+.btn-link {
+    color: white;
 }
