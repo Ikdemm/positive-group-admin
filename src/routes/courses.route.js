@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const coursesController = require("../controllers/courses.controller")
+const authenticateToken = require("../middlewares/authenticateToken");
 
 // Retrieving existing Courses
 
@@ -7,15 +8,15 @@ router.get("/", coursesController.getAllCourses);
 
 // Creating new courses
 
-router.post("/", coursesController.createCourse);
+router.post("/", authenticateToken, coursesController.createCourse);
 
 // Deleting an existing course
 
-router.delete("/:id", coursesController.deleteCourse);
+router.delete("/:id", authenticateToken, coursesController.deleteCourse);
 
 // Updating an existing course
 
-router.put("/:id", coursesController.updateCourse)
+router.put("/:id", authenticateToken, coursesController.updateCourse)
 
 // Adding a new chapter to the course
 

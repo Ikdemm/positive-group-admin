@@ -39,9 +39,9 @@ const userRoutes = require("./src/routes/users.route");
 const authRoutes = require("./src/routes/auth.route");
 
 // Using Routes
-app.use("/api/courses", authenticateToken, coursesRoutes);
-app.use("/api/categories", authenticateToken, categoriesRoutes);
-app.use("/api/admin", adminRoutes);
+app.use("/api/courses", coursesRoutes);
+app.use("/api/categories", categoriesRoutes);
+app.use("/api/admin", authenticateToken, adminRoutes);
 app.use("/api/chapters", chapterRoutes);
 app.use("/api/users", userRoutes)
 app.use("/api/auth", authRoutes)
@@ -54,7 +54,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/dist/index.html'));
 })
 
-// Returning a 404 not found error for unhandled endpoints
+// Returning a 404 not found error for unsupported endpoints
 app.use(unhandledRequests);
 app.use(errorHandler)
 
