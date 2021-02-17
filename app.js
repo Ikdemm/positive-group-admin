@@ -11,7 +11,8 @@ const authenticateToken = require("./src/middlewares/authenticateToken")
 // Using Body-Parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.json())
+app.use(express.json());
+app.use(morgan('dev'))
 
 // Using Cross Origin middelware
 app.use((req, res, next) => {
