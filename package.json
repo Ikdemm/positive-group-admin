@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js",
     "build-dev": "cd ./client && ng build --prod --aot --buildOptimizer --commonChunk --vendorChunk --optimization --progress",
-    "start-dev": "npm run build-dev && npm run dev",
-    "start": "node server.js"
+    "start-dev": "npm run build-dev && npm run start",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -25,9 +25,13 @@
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.12",
-    "nodemon": "^2.0.7",
     "sweetalert2": "^10.13.3"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.7"
   }
 }

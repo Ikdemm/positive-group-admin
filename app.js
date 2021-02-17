@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
+var session = require('express-session');
+
+const morgan = require('morgan');
 
 const authenticateToken = require("./src/middlewares/authenticateToken")
 

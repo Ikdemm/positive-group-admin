@@ -15,6 +15,7 @@ module.exports = {
     },
 
     getAllAdmins: async (req, res) => {
+        error
         try {
             const admins = await repository.findAll(Admin)
             res.status(200).send(admins)
