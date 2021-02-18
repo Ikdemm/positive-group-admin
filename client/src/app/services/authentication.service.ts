@@ -23,6 +23,7 @@ export class AuthenticationService {
   // }
 
   forgotPassword(user: String): Observable<any> {
+    console.log(user)
     return this.http.post("/api/auth/admins/forgot", user, this.requestOptions)
   }
 }
