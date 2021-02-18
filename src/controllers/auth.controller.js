@@ -11,15 +11,13 @@ module.exports = {
     adminLogin: async (req, res) => {
         try {
             const adminData = await repository.findOne({ email: req.body.email }, Admin);
+            console.log(adminData)
             if (!adminData) {
                 res.status(400).send({
                     message: "ADMIN NOT FOUND",
                 });
             } else {
                 const admin = { email: adminData.email }
-                console.log(req.body.password)
-                // const password = await bcrypt.hash(req.body.password, 10)
-                // console.log(await bcrypt.compare(adminData.password, req.body.password))
                 if (await bcrypt.compare(req.body.password, adminData.password)) {
                     const accessToken = jwt.sign(admin, process.env.ACCESS_TOKEN_SECRET)
                     res.status(200).json({
@@ -33,9 +31,10 @@ module.exports = {
             }
 
         }
-        catch (e) {
+        catch (err) {
+            console.log(err)
             res.status(400).json({
-                error: error,
+                error: err,
             });
         }
     },

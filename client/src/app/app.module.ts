@@ -53,7 +53,7 @@ import { ForgotPasswordComponent } from './views/forgot-password/forgot-password
 
 @NgModule({
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     AppRoutingModule,
     AppAsideModule,
