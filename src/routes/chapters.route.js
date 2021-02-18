@@ -18,4 +18,5 @@ router.put("/:id", authenticateToken, chaptersController.updateChapter)
 
 router.delete("/:id", authenticateToken, chaptersController.deleteChapter)
 
+
 module.exports = router;

@@ -7,6 +7,7 @@ const adminSchema = new Schema({
   lastName: String,
   password: String,
   phoneNumber: Number,
+  photo: String
 });
 
 const Admin = mongoose.model("Admin", adminSchema);
