@@ -84,7 +84,6 @@ module.exports = {
         const token = jwt.sign(payload, secret, { expiresIn: '15m' })
         const link = `http://localhost:8000/reset-password/${admin._id}/${token}`
 
-        console.log(link)
         res.send(link)
     }
 
