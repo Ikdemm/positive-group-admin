@@ -21,6 +21,6 @@ module.exports = {
     },
 
     findOne: (data, model) => {
-        return model.findOne(data)
+        return model.find(data)
     }
 }

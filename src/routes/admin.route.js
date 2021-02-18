@@ -12,4 +12,6 @@ router.put("/:id", authenticateToken, adminController.updateAdmin);
 
 router.delete("/:id", authenticateToken, adminController.deleteAdmin);
 
+router.post("/forgot", adminController.forgotPassword);
+
 module.exports = router;

@@ -16,7 +16,7 @@ export class AuthenticationService {
   //   return localStorage.getItem("authenticated");
   // }
 
-  forgotPassword(user): Observable<any> {
+  forgotPassword(user: String): Observable<any> {
     return this.http.post("/api/auth/admins/forgot", user)
   }
 }
