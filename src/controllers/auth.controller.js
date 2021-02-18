@@ -11,9 +11,13 @@ const authRepository = require('../repositories/auth.repository')
 module.exports = {
 
     login: async (req, res) => {
+
         try {
             const { status, data } = await authRepository.login(req.body, Admin)
-            res.status(status).json(data)
+            if (status == 400) {
+                res.status(status).json({ message: data })
+            }
+            res.status(status).json({ accessToken: data })
         }
         catch (e) {
             res.status(400).send({ error: e })
@@ -22,22 +26,15 @@ module.exports = {
     },
 
     signup: async (req, res) => {
+
         try {
-            let adminData = req.body;
-            /** 
-             *  Hash the password
-             */
-            adminData.password = await bcrypt.hash(adminData.password, 10);
-            /** 
-             *  Save the new admin to the database
-             */
-            const admin = await repository.save(adminData, Admin);
-            res.status(201).send({ message: "Created!" })
+            const { status, message } = await authRepository.signup(req.body, Admin)
+            res.status(status).json(message)
         }
         catch (e) {
-            console.error(e)
-            res.status(500).send()
+            res.status(500).send({ error: e })
         }
+
     },
 
     forgotPassword: async (req, res) => {

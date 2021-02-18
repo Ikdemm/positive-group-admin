@@ -28,10 +28,9 @@ module.exports = {
                      * Create a jwt Token and send it back to the client
                      */
                     const accessToken = jwt.sign(admin, process.env.ACCESS_TOKEN_SECRET)
-                    return (200, { accessToken: accessToken })
-                } else {
-                    return (400, { message: "WRONG PASSWORD" })
+                    return ({ status: 200, accessToken: accessToken })
                 }
+                return ({ status: 400, message: "WRONG PASSWORD" })
             }
         }
 
@@ -40,7 +39,21 @@ module.exports = {
         }
     },
 
-    signup: async (req, res) => {
-
-    }
+    signup: async (data, model) => {
+        try {
+            let adminData = data;
+            /** 
+             *  Hash the password
+             */
+            adminData.password = await bcrypt.hash(adminData.password, 10);
+            /** 
+             *  Save the new admin to the database
+             */
+            const admin = await repository.save(adminData, model);
+            return ({ status: 201, message: "Created!" })
+        }
+        catch (e) {
+            throw (e)
+        }
+    },
 }
