@@ -6,3 +6,7 @@ package-lock.json
 
 #config files
 database.config.js
+
+.env
+
+dist/
