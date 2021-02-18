@@ -87,5 +87,26 @@ module.exports = {
             console.error(e)
             res.status(500).send()
         }
+    },
+
+    forgotPassword: async (req, res) => {
+        // Fetch admin from Database
+        const { email } = req.body;
+        const admin = await repository.findOne({ email: email }, Admin);
+
+        if (!admin) {
+            res.status(500).json({ message: "No such email" })
+        }
+
+        // Create a one time link valid for 15 minutes
+        const secret = process.env.ACCESS_TOKEN_SECRET + email;
+        const payload = {
+            email: admin.email,
+            id: admin._id
+        }
+        const token = jwt.sign(payload, secret, { expiresIn: '15m' })
+        const link = `http://localhost:8000/reset-password/${admin._id}/${token}`
+        console.log(link)
+        res.send(link)
     }
 }

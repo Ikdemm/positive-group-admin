@@ -10,6 +10,9 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor(private localStorageService: LocalStorageService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        if (req.url.includes("forgot")) {
+            return next.handle(req);
+        }
         req = req.clone({
             setHeaders: {
                 'Content-Type': 'application/json; charset=utf-8',
