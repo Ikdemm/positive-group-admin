@@ -24,14 +24,14 @@ module.exports = {
                  * Compare the input password with the hashed password in the database
                  */
                 const admin = { email: adminData.email }
-                if (await bcrypt.compare(req.body.password, adminData.password)) {
+                if (await bcrypt.compare(data.password, adminData.password)) {
                     /** 
                      * Create a jwt Token and send it back to the client
                      */
                     const accessToken = jwt.sign(admin, process.env.ACCESS_TOKEN_SECRET)
                     return ({ status: 200, accessToken: accessToken })
                 }
-                return ({ status: 400, message: "WRONG PASSWORD" })
+                return ({ status: 401, message: "WRONG PASSWORD" })
             }
         }
 

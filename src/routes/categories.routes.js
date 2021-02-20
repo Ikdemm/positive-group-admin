@@ -2,13 +2,16 @@ const router = require("express").Router();
 const categoriesController = require("../controllers/categories.controller");
 const authenticateToken = require("../middlewares/authenticateToken");
 
+const multer = require('multer');
+const upload = multer({ dest: 'src/uploads/' })
+
 // Retrieving existing Categories
 
 router.get("/", categoriesController.getAllCategories);
 
 // Creating new categories
 
-router.post("/", authenticateToken, categoriesController.addCategory);
+router.post("/", authenticateToken, upload.single('categoryImage'), categoriesController.addCategory);
 
 // Deleting an existing category
 

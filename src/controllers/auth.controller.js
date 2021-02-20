@@ -8,11 +8,13 @@ module.exports = {
     login: async (req, res) => {
 
         try {
-            const { status, data } = await authRepository.login(req.body, Admin)
+            const { status, accessToken } = await authRepository.login(req.body, Admin)
             if (status == 400) {
-                res.status(status).json({ message: data })
+                res.status(400).json({ message: "ADMIN NOT FOUND" })
+            } else if (status == 401) {
+                res.status(401).json({ message: "WRONG PASSWORD" })
             }
-            res.status(status).json({ accessToken: data })
+            res.status(200).json({ accessToken: accessToken })
         }
         catch (e) {
             res.status(400).send({ error: e })
