@@ -16,6 +16,7 @@ router.delete("/:id", authenticateToken, categoriesController.deleteCategory);
 
 // Updating an existing category
 
-router.put("/:id", authenticateToken, categoriesController.updateCategory)
+router.put("/:id", authenticateToken, categoriesController.updateCategory);
+
 
 module.exports = router;

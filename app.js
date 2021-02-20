@@ -44,12 +44,12 @@ app.use((req, res, next) => {
   Importing Routes
 **/
 
-const coursesRoutes = require("./src/routes/courses.route");
-const categoriesRoutes = require("./src/routes/categories.route");
-const adminRoutes = require("./src/routes/admin.route");
-const chapterRoutes = require("./src/routes/chapters.route");
-const userRoutes = require("./src/routes/users.route");
-const authRoutes = require("./src/routes/auth.route");
+const coursesRoutes = require("./src/routes/courses.routes");
+const categoriesRoutes = require("./src/routes/categories.routes");
+const adminRoutes = require("./src/routes/admin.routes");
+const chapterRoutes = require("./src/routes/chapters.routes");
+const userRoutes = require("./src/routes/users.routes");
+const authRoutes = require("./src/routes/auth.routes");
 
 /*
   Using Routes
