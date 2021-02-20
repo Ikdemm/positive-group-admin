@@ -15,10 +15,10 @@ module.exports = {
 
     addCategory: async (req, res) => {
         try {
-            const image = req.file;
-            console.log(image)
-            const category = await repository.save(req.body, Category)
-            res.status(201).send(category)
+            const newCategory = req.body;
+            newCategory.image = req.file.destination + "/" + req.file.filename;
+            // const category = await repository.save(req.body, Category)
+            res.status(201).send(newCategory)
         }
         catch (e) {
             console.error(e);

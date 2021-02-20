@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const categorySchema = new Schema({
     name: String,
-    photo: String,
+    image: String,
     description: String,
     courses: Array
 })
