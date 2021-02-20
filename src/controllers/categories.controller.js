@@ -1,5 +1,6 @@
 const Category = require("../models/category");
 const repository = require("../repositories/base.repository");
+const filesRepository = require("../repositories/files.repository")
 
 module.exports = {
 
@@ -15,10 +16,13 @@ module.exports = {
 
     addCategory: async (req, res) => {
         try {
+            // const path = req.file.path;
+            // const categoryName = req.body.name
             const newCategory = req.body;
-            newCategory.image = req.file.destination + "/" + req.file.filename;
-            // const category = await repository.save(req.body, Category)
-            res.status(201).send(newCategory)
+            const imageUrl = await filesRepository.saveFileToCloudinary(req.file.path, req.body.name)
+            newCategory.image = imageUrl;
+            const category = await repository.save(newCategory, Category)
+            res.status(201).send(category)
         }
         catch (e) {
             console.error(e);
