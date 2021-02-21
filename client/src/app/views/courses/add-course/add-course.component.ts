@@ -20,10 +20,12 @@ export class AddCourseComponent implements OnInit {
     duration: new FormControl(0),
   });
 
+  selectedImage: File = null;
+
   constructor(
     private coursesService: CoursesService,
     private categoriesService: CategoriesService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.categoriesService
@@ -33,11 +35,22 @@ export class AddCourseComponent implements OnInit {
       });
   }
 
+  onImageSelected(event) {
+    this.selectedImage = <File>event.target.files[0];
+  }
+
   onSubmit() {
-    this.coursesService
-      .createCourse(this.courseForm.value)
-      .subscribe((course: Course) => {
-        console.log(course);
-      });
+    let formData = new FormData();
+    formData.append("name", this.courseForm.value.name);
+    formData.append("description", this.courseForm.value.description);
+    formData.append("duration", this.courseForm.value.duration);
+    formData.append("category", this.courseForm.value.category);
+    formData.append("courseImage", this.selectedImage, this.selectedImage.name);
+    console.log(formData)
+    // this.coursesService
+    //   .createCourse(this.formData)
+    //   .subscribe((res) => {
+    //     console.log(res);
+    //   });
   }
 }

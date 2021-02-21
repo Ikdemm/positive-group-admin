@@ -29,30 +29,25 @@ export class AddCategoryComponent implements OnInit {
     formData.append("description", this.categoryForm.value.description);
     formData.append("categoryImage", this.selectedImage, this.selectedImage.name);
     this.categoriesService.createCategory(formData)
-      .subscribe((event) => {
-        if (event.type === HttpEventType.UploadProgress) {
-          console.log('Upload Progress: ', Math.round(event.loaded / event.total * 100))
+      .subscribe((res) => {
+        if (res) {
+          Swal.fire({
+            icon: "success",
+            title: "Done",
+            text: `Category added`,
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops",
+            text: `Something went wrong `,
+          });
         }
-        console.log(event)
-        // if (res) {
-        //   Swal.fire({
-        //     icon: "success",
-        //     title: "Done",
-        //     text: `Category added`,
-        //   });
-        // } else {
-        //   Swal.fire({
-        //     icon: "error",
-        //     title: "Oops",
-        //     text: `Something went wrong `,
-        //   });
-        // }
-      });
+      })
   }
 
   onImageSelected(event) {
     this.selectedImage = <File>event.target.files[0];
-    console.log(this.selectedImage)
   }
 
   ngOnInit(): void { }
