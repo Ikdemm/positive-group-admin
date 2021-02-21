@@ -27,7 +27,7 @@ export class AddCategoryComponent implements OnInit {
     let formData = new FormData();
     formData.append("name", this.categoryForm.value.name);
     formData.append("description", this.categoryForm.value.description);
-    // formData.append("categoryImage", this.selectedImage, this.selectedImage.name);
+    formData.append("categoryImage", this.selectedImage, this.selectedImage.name);
     this.categoriesService.createCategory(formData)
       .subscribe((event) => {
         if (event.type === HttpEventType.UploadProgress) {
@@ -52,6 +52,7 @@ export class AddCategoryComponent implements OnInit {
 
   onImageSelected(event) {
     this.selectedImage = <File>event.target.files[0];
+    console.log(this.selectedImage)
   }
 
   ngOnInit(): void { }
