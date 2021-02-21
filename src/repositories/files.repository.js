@@ -3,7 +3,7 @@ require("dotenv")
 const cloudinary = require("cloudinary").v2
 
 module.exports = {
-    saveFileToCloudinary: async (path, categoryName) => {
+    saveFileToCloudinary: async (fileType, path, fileName) => {
 
         try {
 
@@ -16,8 +16,8 @@ module.exports = {
             const image = await cloudinary.uploader.upload(
                 path,
                 {
-                    public_id: `categories/${categoryName}`,
-                    tags: 'category'
+                    public_id: `${fileType}/${fileName}`,
+                    tags: fileType
                 }
             );
 

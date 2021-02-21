@@ -8,7 +8,7 @@ const courseSchema = new Schema({
     duration: Number,
     createdOn: Date,
     chapters: Array,
-    photo: String
+    image: String
 })
 
 const Course = mongoose.model('Course', courseSchema)

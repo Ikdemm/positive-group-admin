@@ -1,6 +1,8 @@
 const router = require("express").Router();
-const coursesController = require("../controllers/courses.controller")
+const coursesController = require("../controllers/courses.controller");
 const authenticateToken = require("../middlewares/authenticateToken");
+
+const upload = require("../middlewares/multer")
 
 // Retrieving existing Courses
 
@@ -8,7 +10,7 @@ router.get("/", coursesController.getAllCourses);
 
 // Creating new courses
 
-router.post("/", authenticateToken, coursesController.createCourse);
+router.post("/", authenticateToken, upload.single('courseImage'), coursesController.createCourse);
 
 // Deleting an existing course
 
