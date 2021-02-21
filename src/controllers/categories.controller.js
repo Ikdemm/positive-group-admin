@@ -39,7 +39,11 @@ module.exports = {
 
     updateCategory: async (req, res) => {
         try {
-            onImageSelectedres.status(201).send(category)
+            const updatedCategory = req.body;
+            const imageUrl = await filesRepository.saveFileToCloudinary("category", req.file.path, req.body.name)
+            updatedCategory.image = imageUrl;
+            const category = await repository.updateOne(req.params.id, updatedCategory, Category)
+            res.status(200).send(category)
         }
         catch (e) {
             console.error(e);

@@ -2,7 +2,7 @@
     <div class="card-header">
         <strong>Modifier</strong> Catégorie
     </div>
-    <form (submit)="onSubmit(name.value, description.value)" [formGroup]="editCategoryForm"
+    <form (submit)="onSubmit(name.value, description.value, $event)" [formGroup]="editCategoryForm"
         enctype="multipart/form-data" class="form-horizontal">
         <div class="card-body">
             <div class="form-group">
@@ -18,8 +18,8 @@
             </div>
             <div class="form-group">
                 <label class="col-form-label" for="text-input">Image de la catégorie</label>
-                <input [(value)]="category.image" type="file" id="text-input" name="text-input" class="form-control"
-                    #image />
+                <input type="file" id="text-input" name="text-input" class="form-control"
+                    (change)="onImageSelected($event)" #image />
             </div>
         </div>
         <div class="card-footer">
