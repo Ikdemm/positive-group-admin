@@ -32,22 +32,18 @@ export class EditCategoryComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onSubmit(name, description, event): void {
-    event.preventDefault();
+  onSubmit(name, description): void {
     let formData = new FormData()
     formData.append("name", name);
     formData.append("description", description);
-    console.log(this.selectedImage)
     formData.append("categoryImage", this.selectedImage, this.selectedImage.name);
-    console.log(this.category._id)
     this.categoriesService.updateCategory(this.category._id, formData).subscribe((res) => {
-      console.log(res)
-      // Swal.fire({
-      //   icon: "success",
-      //   title: "Done",
-      //   text: `Category updated`,
-      // });
-      // this.closeModal();
+      Swal.fire({
+        icon: "success",
+        title: "Done",
+        text: `Category updated`,
+      });
+      this.closeModal();
     });
   }
 
@@ -58,6 +54,5 @@ export class EditCategoryComponent implements OnInit {
 
   onImageSelected(event) {
     this.selectedImage = <File>event.target.files[0];
-    console.log(this.selectedImage)
   }
 }
