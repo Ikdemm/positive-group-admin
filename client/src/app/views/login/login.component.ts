@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
           title: "Oops",
           text: `Erreur d'authentification`,
         });
-      } else {
+      } else if (res.accessToken) {
         console.log(res)
         this.localStorageService.set("accessToken", res.accessToken);
         this.router.navigate(["/dashboard"]);

@@ -1,7 +1,7 @@
 const multer = require('multer');
-const { callbackPromise } = require("nodemailer/lib/shared");
 
 const storage = multer.diskStorage({
+
     destination: (req, file, cb) => {
         cb(null, 'src/uploads');
     },

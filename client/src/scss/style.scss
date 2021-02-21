@@ -1,7 +1,3 @@
-$primary: #173F5F;
-$seconday: #F6D55C;
-$danger: #ED553B;
-
 // If you want to override variables do it here
 @import "variables";
 
@@ -10,3 +6,6 @@ $danger: #ED553B;
 
 // If you want to add something do it here
 @import "custom";
+
+// Custom fonts
+@import "./fonts/lato.scss"

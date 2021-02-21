@@ -9,35 +9,19 @@ const morgan = require('morgan');
 const errorHandler = require('./src/middlewares/errorHandler');
 const unhandledRequests = require('./src/middlewares/unhandledRequests')
 const authenticateToken = require("./src/middlewares/authenticateToken")
+const corsMiddleware = require("./src/middlewares/cors.middleware")
 
 // Using middlewares to all the requests
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(express.json());
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(express.json({ limit: '50mb' }));
 app.use(morgan('dev'))
 
 /*
   Using Cross Origin middelware
 **/
 
-// app.all('/*', (req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header('Access-Control-Allow-Headers', 'X-Requested-With');
-//   next();
-// });
-
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  if (req.method === "OPTIONS") {
-    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
-    return res.status(200).json({});
-  }
-  next();
-});
+app.use(corsMiddleware())
 
 
 /* 

@@ -15,7 +15,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
   login(userData): Observable<any> {
-    return this.http.post("/api/auth/admins/login", userData, this.requestOptions);
+    return this.http.post("/api/auth/login", userData, this.requestOptions);
   }
 
   // check() {
@@ -24,6 +24,6 @@ export class AuthenticationService {
 
   forgotPassword(user: String): Observable<any> {
     console.log(user)
-    return this.http.post("/api/auth/admins/forgot", user, this.requestOptions)
+    return this.http.post("/api/auth/forgot", user, this.requestOptions)
   }
 }

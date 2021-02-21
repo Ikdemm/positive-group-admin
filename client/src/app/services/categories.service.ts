@@ -19,8 +19,12 @@ export class CategoriesService {
     return this.http.get("/api/categories", this.requestOptions);
   }
 
-  createCategory(category: Category) {
-    return this.http.post("/api/categories", category, this.requestOptions);
+  createCategory(categoryData): Observable<any> {
+    console.log(categoryData)
+    return this.http.post("http://localhost:8000/api/categories", categoryData, {
+      reportProgress: true,
+      observe: 'events'
+    });
   }
 
   deleteCategory(id) {

@@ -7,7 +7,8 @@
             <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="text-input">Titre de la catégorie</label>
                 <div class="col-md-9">
-                    <input type="text" id="text-input" name="text-input" class="form-control" placeholder="Titre" formControlName="name">
+                    <input type="text" id="text-input" name="text-input" class="form-control" placeholder="Titre"
+                        formControlName="name">
                     <!-- <span class="help-block">Ex: JavaScript pour les débutants</span> -->
                 </div>
             </div>
@@ -16,6 +17,12 @@
                 <div class="col-md-9">
                     <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control"
                         placeholder="Ajouter une déscription pour le cours .." formControlName="description"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="file-input">Image du cours</label>
+                <div class="col-md-9">
+                    <input type="file" id="file-input" name="file-input" (change)="onImageSelected($event)" />
                 </div>
             </div>
         </div>
