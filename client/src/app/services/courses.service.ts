@@ -11,7 +11,7 @@ export class CoursesService {
   constructor(private http: HttpClient) { }
 
   getCourses(): Observable<any> {
-    return this.http.get("/api/courses")
+    return this.http.get("http://localhost:8000/api/courses")
   }
 
   createCourse(course: FormData): Observable<any> {
@@ -19,11 +19,11 @@ export class CoursesService {
   }
 
   deleteCourse(id) {
-    return this.http.delete("/api/courses/" + id)
+    return this.http.delete("http://localhost:8000/api/courses/" + id)
   }
 
-  updateCourse(course: Course) {
-    return this.http.put("/api/courses/" + course._id, course)
+  updateCourse(id, course: FormData) {
+    return this.http.put("http://localhost:8000/api/courses/" + id, course)
   }
 
 }

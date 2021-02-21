@@ -12,12 +12,13 @@ import Swal from "sweetalert2";
 export class EditCategoryComponent implements OnInit {
   category: Category;
   editCategoryForm: FormGroup;
+  selectedImage: File = null;
 
   constructor(
     private dialogRef: MatDialogRef<EditCategoryComponent>,
     private categoriesService: CategoriesService,
     private formBuilder: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -32,9 +33,11 @@ export class EditCategoryComponent implements OnInit {
   }
 
   onSubmit(name, description): void {
-    this.category.name = name;
-    this.category.description = description;
-    this.categoriesService.updateCategory(this.category).subscribe((res) => {
+    let formData = new FormData()
+    formData.append("name", name);
+    formData.append("description", description);
+    formData.append("categoryImage", this.selectedImage, this.selectedImage.name);
+    this.categoriesService.updateCategory(this.category._id, formData).subscribe((res) => {
       Swal.fire({
         icon: "success",
         title: "Done",
@@ -47,5 +50,9 @@ export class EditCategoryComponent implements OnInit {
   cancel(event): void {
     event.preventDefault();
     this.closeModal();
+  }
+
+  onImageSelected(event) {
+    this.selectedImage = <File>event.target.files[0];
   }
 }
