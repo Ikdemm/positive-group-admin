@@ -14,8 +14,8 @@ export class CoursesService {
     return this.http.get("/api/courses")
   }
 
-  createCourse(course: Course): Observable<any> {
-    return this.http.post("/api/courses", course);
+  createCourse(course: FormData): Observable<any> {
+    return this.http.post("http://localhost:8000/api/courses", course);
   }
 
   deleteCourse(id) {

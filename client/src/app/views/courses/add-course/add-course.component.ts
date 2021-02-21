@@ -46,11 +46,10 @@ export class AddCourseComponent implements OnInit {
     formData.append("duration", this.courseForm.value.duration);
     formData.append("category", this.courseForm.value.category);
     formData.append("courseImage", this.selectedImage, this.selectedImage.name);
-    console.log(formData)
-    // this.coursesService
-    //   .createCourse(this.formData)
-    //   .subscribe((res) => {
-    //     console.log(res);
-    //   });
+    this.coursesService
+      .createCourse(formData)
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
 }
