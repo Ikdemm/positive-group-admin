@@ -1,5 +1,6 @@
 const Course = require('../models/course');
 const repository = require("../repositories/base.repository");
+const filesRepository = require("../repositories/files.repository")
 
 module.exports = {
 
