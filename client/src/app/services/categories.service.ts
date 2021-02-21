@@ -21,15 +21,7 @@ export class CategoriesService {
 
   createCategory(categoryData: FormData): Observable<any> {
     console.log(categoryData)
-    return this.http.post("http://localhost:8000/api/categories", categoryData
-      , {
-        reportProgress: true,
-        observe: 'events',
-        headers: new HttpHeaders({
-          "Access-Control-Allow-Origin": "*",
-        })
-      }
-    );
+    return this.http.post("http://localhost:8000/api/categories", categoryData);
   }
 
   deleteCategory(id) {

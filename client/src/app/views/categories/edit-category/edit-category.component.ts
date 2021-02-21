@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
   styleUrls: ["./edit-category.component.css"],
 })
 export class EditCategoryComponent implements OnInit {
-  category: Category;
+  category: any;
   editCategoryForm: FormGroup;
   selectedImage: File = null;
 
@@ -22,6 +22,7 @@ export class EditCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
+    console.log(this.category)
   }
 
   createForm(): void {
@@ -36,7 +37,8 @@ export class EditCategoryComponent implements OnInit {
     let formData = new FormData()
     formData.append("name", name);
     formData.append("description", description);
-    formData.append("categoryImage", this.selectedImage, this.selectedImage.name);
+    formData.append("image", this.category.image);
+    this.selectedImage && formData.append("categoryImage", this.selectedImage, this.selectedImage.name);
     this.categoriesService.updateCategory(this.category._id, formData).subscribe((res) => {
       Swal.fire({
         icon: "success",

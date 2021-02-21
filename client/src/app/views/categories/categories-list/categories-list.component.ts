@@ -46,6 +46,7 @@ export class CategoriesListComponent implements OnInit {
     const dialogRef = this.dialogRef.open(EditCategoryComponent, {
       width: "600px",
     });
+    console.log(category)
     dialogRef.componentInstance.category = category;
     dialogRef.afterClosed().subscribe(() => {
       this.getCategories();
