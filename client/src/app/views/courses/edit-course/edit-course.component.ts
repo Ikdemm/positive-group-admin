@@ -15,6 +15,7 @@ export class EditCourseComponent implements OnInit {
 
   course: Course;
   categories: Array<Category>;
+  selectedImage: File = null;
 
   editCourseForm: FormGroup;
 
@@ -42,12 +43,13 @@ export class EditCourseComponent implements OnInit {
   }
 
   onSubmit(name, category, description, duration) {
-    this.course.name = name;
-    this.course.category = category;
-    this.course.description = description;
-    this.course.duration = duration;
-    console.log(this.course)
-    this.coursesService.updateCourse(this.course).subscribe(res => {
+    let formData = new FormData();
+    formData.append("name", name);
+    formData.append("category", category);
+    formData.append("description", description);
+    formData.append("duration", duration);
+    this.selectedImage && formData.append("courseImage", this.selectedImage, this.selectedImage.name)
+    this.coursesService.updateCourse(this.course._id, formData).subscribe(res => {
       console.log(res);
       this.closeModal();
     })
@@ -56,6 +58,10 @@ export class EditCourseComponent implements OnInit {
   cancel(event): void {
     event.preventDefault();
     this.closeModal();
+  }
+
+  onImageSelected(event) {
+    this.selectedImage = <File>event.target.files[0];
   }
 
 }

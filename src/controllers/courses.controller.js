@@ -30,7 +30,9 @@ module.exports = {
     updateCourse: async (req, res) => {
         try {
             const updatedCourse = req.body;
-            const imageUrl = await filesRepository.saveFileToCloudinary("course", req.file.path, req.body.name)
+            const imageUrl = req.file ?
+                await filesRepository.saveFileToCloudinary("course", req.file.path, req.body.name)
+                : req.body.image;
             updatedCourse.image = imageUrl;
             const course = await repository.updateOne(req.params.id, updatedCourse, Course)
             res.status(200).send(course)
