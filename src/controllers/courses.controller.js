@@ -15,7 +15,10 @@ module.exports = {
 
     createCourse: async (req, res) => {
         try {
-            const course = await repository.save(req.body, Course)
+            const newCourse = req.body;
+            const imageUrl = await filesRepository.saveFileToCloudinary("course", req.file.path, req.body.name)
+            newCourse.image = imageUrl;
+            const course = await repository.save(newCourse, Course)
             res.status(201).send(course)
         }
         catch (e) {
