@@ -39,11 +39,9 @@ module.exports = {
 
     updateCategory: async (req, res) => {
         try {
-            console.log(req.body)
             const updatedCategory = req.body;
-            // const imageUrl = await filesRepository.saveFileToCloudinary("category", req.file.path, req.body.name)
-            // console.log(imageUrl)
-            // updatedCategory.image = imageUrl;
+            const imageUrl = await filesRepository.saveFileToCloudinary("category", req.file.path, req.body.name)
+            updatedCategory.image = imageUrl;
             const category = await repository.updateOne(req.params.id, updatedCategory, Category)
             res.status(201).send(category)
         }

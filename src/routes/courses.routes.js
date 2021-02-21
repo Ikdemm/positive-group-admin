@@ -18,7 +18,7 @@ router.delete("/:id", authenticateToken, coursesController.deleteCourse);
 
 // Updating an existing course
 
-router.put("/:id", authenticateToken, coursesController.updateCourse);
+router.put("/:id", authenticateToken, upload.single('courseImage'), coursesController.updateCourse);
 
 
 module.exports = router;
