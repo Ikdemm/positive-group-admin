@@ -14,6 +14,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     CommonModule,
     UsersRoutingModule,
     HttpClientModule
-  ]
+  ],
+  entryComponents: [UserDetailsComponent]
 })
 export class UsersModule { }

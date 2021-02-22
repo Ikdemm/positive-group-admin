@@ -17,15 +17,15 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<any> {
-    return this.http.get("/api/users", this.requestOptions);
+    return this.http.get("http://localhost:8000/api/users", this.requestOptions);
   }
 
   deleteUser(id) {
-    return this.http.delete("/api/users/" + id, this.requestOptions);
+    return this.http.delete("http://localhost:8000/api/users/" + id, this.requestOptions);
   }
 
   updateUser(user: User) {
-    return this.http.put("/api/users/" + user._id, user, this.requestOptions)
+    return this.http.put("http://localhost:8000/api/users/" + user._id, user, this.requestOptions)
   }
 
 }
