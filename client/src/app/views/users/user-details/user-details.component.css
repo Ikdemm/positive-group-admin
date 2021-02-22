@@ -15,6 +15,30 @@
     font-weight: 400;
 }
 
+.invitees-number {
+    font-size: 40px;
+    font-weight: bolder;
+    line-height: normal;
+    font-family: Arial;
+    text-align: center;
+}
+
+.terques {
+    color: #4CC5CD;
+}
+
+.red {
+    color: #e26b7f;
+}
+
+.green {
+    color: #97be4b;
+}
+
+.purple {
+    color: #caa3da;
+}
+
 .profile-nav, .profile-info{
     margin-top:30px;   
 }
