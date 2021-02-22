@@ -20,13 +20,16 @@
 
 tr:hover {
     background-color: rgb(235, 235, 235);
-    cursor: pointer;
 }
 
 .table-header {
     background-color: rgb(235, 235, 235);
     cursor: auto;
     border: 0;
+}
+
+.username:hover {
+    color:rgb(214, 204, 69)
 }
 
 .main {
