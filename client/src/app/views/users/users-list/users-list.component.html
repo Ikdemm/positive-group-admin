@@ -18,12 +18,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let user of users">
-                                <!-- <td class="avatar-container">
-                                    <img src="/assets/img/avatars/avatar1.png" class="avatar-img">
-                                </td> -->
-                                <td><img src="/assets/img/avatars/avatar1.png" class="avatar-img"> {{user.lastName}}
-                                    {{user.firstName}}</td>
+                            <tr *ngFor="let user of users" (click)="openUserDetails(user)">
+                                <td>
+                                    <img [src]="user.image" class="avatar-img" />
+                                    {{user.lastName}}
+                                    {{user.firstName}}
+                                </td>
                                 <td>
                                     <span *ngIf="user.isActivated" class="premium">Premium</span>
                                     <span *ngIf="!user.isActivated" class="free">Free</span>
@@ -45,7 +45,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <ul class="pagination">
+                    <!-- <ul class="pagination">
                         <li class="page-item"><a class="page-link">Prev</a></li>
                         <li class="page-item active">
                             <a class="page-link">1</a>
@@ -54,7 +54,7 @@
                         <li class="page-item"><a class="page-link">3</a></li>
                         <li class="page-item"><a class="page-link">4</a></li>
                         <li class="page-item"><a class="page-link">Next</a></li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </div>

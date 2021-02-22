@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/user.model';
 import { UsersService } from '../../../services/users.service';
 import Swal from "sweetalert2";
+import { UserDetailsComponent } from '../user-details/user-details.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-users-list',
@@ -12,7 +14,10 @@ export class UsersListComponent implements OnInit {
 
   users: Array<User>;
 
-  constructor(private usersService: UsersService) { }
+  constructor(
+    private usersService: UsersService,
+    private dialogRef: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.getUsers()
@@ -53,6 +58,16 @@ export class UsersListComponent implements OnInit {
       }
 
     })
+  }
+
+  openUserDetails(user: User): void {
+    const dialogRef = this.dialogRef.open(UserDetailsComponent, {
+      width: "1000px",
+    });
+    dialogRef.componentInstance.user = user;
+    dialogRef.afterClosed().subscribe(() => {
+      this.getUsers();
+    });
   }
 
 }
