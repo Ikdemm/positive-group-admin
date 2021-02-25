@@ -17,13 +17,11 @@ module.exports = {
 
     createCourse: async (req, res) => {
         try {
-            console.log(req.body)
             const newCourse = req.body;
             const imageUrl = await filesRepository.saveFileToCloudinary("course", req.file.path, req.body.name)
             newCourse.image = imageUrl;
             const course = await repository.save(newCourse, Course);
-            const courseId = course._id
-            const updatedCategory = await Category.updateOne({ name: req.body.category }, { $addToSet: { courses: [courseId] } })
+            const updatedCategory = await Category.updateOne({ name: req.body.category }, { $addToSet: { courses: [course._id] } })
             console.log(updatedCategory)
             if (updatedCategory) {
                 res.status(201).send(course)
