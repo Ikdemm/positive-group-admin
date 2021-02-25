@@ -8,8 +8,8 @@ module.exports = {
     login: async (req, res) => {
 
         try {
-            console.log("yo")
             const { status, accessToken } = await authRepository.login(req.body, Admin)
+            console.log(status, accessToken)
             if (status == 400) {
                 res.status(400).json({ message: "ADMIN NOT FOUND" })
             } else if (status == 401) {
