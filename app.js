@@ -11,8 +11,8 @@ const unhandledRequests = require('./src/middlewares/unhandledRequests')
 const authenticateToken = require("./src/middlewares/authenticateToken")
 
 // Using middlewares to all the requests
-app.use(bodyParser.urlencoded({ limit: '9999999999999999', extended: false }));
-app.use(bodyParser.json({ limit: '9999999999999999' }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(morgan('dev'))
 
 /*

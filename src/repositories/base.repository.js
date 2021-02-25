@@ -12,15 +12,15 @@ module.exports = {
         return model.deleteOne({ _id: id })
     },
 
-    updateOne: (id, updatedData, model) => {
-        return model.updateOne({ _id: id }, updatedData, model)
+    updateOne: (model, id, updatedData) => {
+        return model.replaceOne({ _id: id }, updatedData)
     },
 
     findOneById: (id, model) => {
         return model.findById(id)
     },
 
-    findOne: (data, model) => {
-        return model.findOne(data)
+    findOne: (model, filter) => {
+        return model.findOne(filter)
     }
 }

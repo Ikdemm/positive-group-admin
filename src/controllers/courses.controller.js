@@ -1,6 +1,7 @@
 const Course = require('../models/course');
 const repository = require("../repositories/base.repository");
-const filesRepository = require("../repositories/files.repository")
+const filesRepository = require("../repositories/files.repository");
+const Category = require('../models/category');
 
 module.exports = {
 
@@ -16,11 +17,17 @@ module.exports = {
 
     createCourse: async (req, res) => {
         try {
+            console.log(req.body)
             const newCourse = req.body;
             const imageUrl = await filesRepository.saveFileToCloudinary("course", req.file.path, req.body.name)
             newCourse.image = imageUrl;
-            const course = await repository.save(newCourse, Course)
-            res.status(201).send(course)
+            const course = await repository.save(newCourse, Course);
+            const courseId = course._id
+            const updatedCategory = await Category.updateOne({ name: req.body.category }, { $addToSet: { courses: [courseId] } })
+            console.log(updatedCategory)
+            if (updatedCategory) {
+                res.status(201).send(course)
+            }
         }
         catch (e) {
             console.error(e);
