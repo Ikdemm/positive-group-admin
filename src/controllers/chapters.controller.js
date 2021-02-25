@@ -1,4 +1,5 @@
 const Chapter = require("../models/chapter");
+const Course = require("../models/course")
 const repository = require("../repositories/base.repository")
 
 module.exports = {
@@ -15,8 +16,14 @@ module.exports = {
 
     createChapter: async (req, res) => {
         try {
-            const chapter = await repository.save(req.body, Chapter)
-            res.status(201).send(chapter)
+            const chapter = await repository.save(req.body, Chapter);
+            const updatedCourse = await Course.updateOne(
+                { name: req.body.course },
+                { $addToSet: { chapters: [chapter._id] } }
+            );
+            if (updatedCourse) {
+                res.status(201).send(chapter)
+            }
         }
         catch (e) {
             console.error(e);
