@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 import { AdminService } from "../../services/admin.service";
-import Swal from "sweetalert2";
 import { Admin } from "../../models/admin.model";
+import { LocalStorageService } from "../../services/local-storage.service";
+import Swal from "sweetalert2";
+
 @Component({
   selector: "app-profile",
   templateUrl: "./profile.component.html",
@@ -11,6 +13,7 @@ import { Admin } from "../../models/admin.model";
 export class ProfileComponent implements OnInit {
 
   adminData: Admin;
+  // adminEmail: string;
 
   updateProfileForm = new FormGroup({
     email: new FormControl(""),
@@ -19,14 +22,15 @@ export class ProfileComponent implements OnInit {
     lastName: new FormControl(""),
   });
 
-  constructor(private adminService: AdminService) { }
+  constructor(private adminService: AdminService, private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
     this.getAdminData();
   }
 
   getAdminData() {
-    this.adminService.getAdminData().subscribe((res: Admin) => {
+    let adminEmail = this.localStorageService.get("email");
+    this.adminService.getAdminData(adminEmail).subscribe((res: Admin) => {
       this.adminData = res;
       this.updateProfileForm.reset({
         email: res.email,
