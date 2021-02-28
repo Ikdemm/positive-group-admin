@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
           text: `Erreur d'authentification`,
         });
       } else if (res.accessToken) {
-        console.log(res)
+        this.localStorageService.set("email", this.loginForm.value.email)
         this.localStorageService.set("accessToken", res.accessToken);
         this.router.navigate(["/dashboard"]);
       }
