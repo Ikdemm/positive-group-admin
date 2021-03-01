@@ -20,7 +20,7 @@ module.exports = {
         return model.findById(id)
     },
 
-    findOne: (model, filter) => {
+    findOne: (filter, model) => {
         return model.findOne(filter)
     }
 }

@@ -26,9 +26,10 @@ module.exports = {
         }
     },
 
-    getAdminById: async (req, res) => {
+    getAdminByEmail: async (req, res) => {
         try {
-            const admin = await repository.findOneById(req.params.id, Admin)
+            console.log(req.params.email)
+            const admin = await repository.findOne({ email: req.params.email }, Admin)
             res.status(200).send(admin)
         }
         catch (e) {

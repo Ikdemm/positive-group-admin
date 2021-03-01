@@ -28,17 +28,22 @@ export class ProfileComponent implements OnInit {
     this.getAdminData();
   }
 
-  getAdminData() {
-    let adminEmail = this.localStorageService.get("email");
-    this.adminService.getAdminData(adminEmail).subscribe((res: Admin) => {
-      this.adminData = res;
-      this.updateProfileForm.reset({
-        email: res.email,
-        firstName: res.firstName,
-        lastName: res.lastName,
-        phoneNumber: res.phoneNumber,
+  async getAdminData() {
+    try {
+      let adminEmail = await this.localStorageService.get("email")
+      this.adminService.getAdminData(adminEmail).subscribe((res: Admin) => {
+        console.log(res)
+        this.adminData = res;
+        this.updateProfileForm.reset({
+          email: res.email,
+          firstName: res.firstName,
+          lastName: res.lastName,
+          phoneNumber: res.phoneNumber,
+        });
       });
-    });
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   onSubmit(): void {

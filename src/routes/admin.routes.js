@@ -4,7 +4,7 @@ const authenticateToken = require("../middlewares/authenticateToken");
 
 router.get("/", authenticateToken, adminController.getAdminData);
 
-router.get("/:id", authenticateToken, adminController.getAdminById);
+router.get("/:email", authenticateToken, adminController.getAdminByEmail);
 
 router.post("/", authenticateToken, adminController.createAdmin);
 

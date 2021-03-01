@@ -13,7 +13,7 @@ module.exports = {
             /** 
              * Fetch the admin from the Database
              */
-            const adminData = await baseRepository.findOne(model, { email: data.email });
+            const adminData = await baseRepository.findOne({ email: data.email }, model);
             /** 
              * Check if an admin with that email exists
              */
