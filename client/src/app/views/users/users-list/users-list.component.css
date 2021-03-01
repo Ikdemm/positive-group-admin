@@ -29,7 +29,8 @@ tr:hover {
 }
 
 .username:hover {
-    color:rgb(214, 204, 69)
+    color:rgb(214, 204, 69);
+    cursor: pointer;
 }
 
 .main {
@@ -53,6 +54,7 @@ th {
     border-radius: 50%;
     width: 2.5em;
     height: 2.5em;
+    cursor: pointer;
 }
 
 td {

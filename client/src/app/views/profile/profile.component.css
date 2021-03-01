@@ -1,3 +1,13 @@
+.admin-inputs {
+  margin-top: 2.5em;
+}
+
+.admin-avatar {
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
+}
+
 .main-container {
   background-color: rgb(238, 238, 238);
   position: relative;
@@ -18,7 +28,7 @@
   color:rgb(238, 238, 238);
   font-weight: 500;
   border: rgb(238, 238, 238) 2px solid;
-  margin-top: 2em;
+  margin-top: 0.5em;
 }
 
 .user-card-full {
@@ -56,10 +66,6 @@
   background: linear-gradient(to right, #4ca1af, #3498db);
 }
 
-.user-profile {
-  padding: 50px 0;
-}
-
 .card-block {
   padding: 1.25rem;
 }
@@ -87,7 +93,7 @@ h6 {
 }
 
 .card-block {
-  padding: 5.25rem;
+  padding: 3rem;
 }
 
 .b-b-default {

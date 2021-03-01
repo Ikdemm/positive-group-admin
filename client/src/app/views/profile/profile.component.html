@@ -10,12 +10,15 @@
               <div class="row m-l-0 m-r-0">
                 <div class="col-sm-4 bg-c-lite-green user-profile">
                   <div class="card-block text-center text-white">
-                    <div class="m-b-25"></div>
-                    <img src="/assets/img/avatars/avatar1.png" class="admin-avatar" alt="" />
-                    <input class="form-control data-input" type="text" name="adminName"
-                      value="{{ adminData.firstName }}" formControlName="firstName" />
-                    <input class="form-control data-input" type="text" name="adminName" value="{{ adminData.lastName }}"
-                      formControlName="lastName" />
+                    <div class="m-b-25">
+                      <img src="/assets/img/avatars/avatar1.png" class="admin-avatar" alt="" />
+                      <div class="admin-inputs">
+                        <input class="form-control data-input" type="text" name="adminName"
+                          value="{{ adminData.firstName }}" formControlName="firstName" />
+                        <input class="form-control data-input" type="text" name="adminName"
+                          value="{{ adminData.lastName }}" formControlName="lastName" />
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-sm-8">
