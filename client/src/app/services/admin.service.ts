@@ -10,7 +10,7 @@ export class AdminService {
   constructor(private http: HttpClient) { }
 
   getAdminData(email: String): Observable<any> {
-    return this.http.get(`http://localhost:8000/api/admin/${email}`);
+    return this.http.get(`/api/admin/${email}`);
   }
 
   updateAdminData(newAdminData): Observable<any> {
