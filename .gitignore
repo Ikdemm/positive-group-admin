@@ -9,4 +9,4 @@ database.config.js
 
 #.env
 
-dist/
+# dist/
