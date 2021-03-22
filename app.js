@@ -65,7 +65,7 @@ app.use("/api/auth", authRoutes)
  * Static
  */
 
-const _clientDir = "client/dist/ng/browser";
+const _clientDir = "client/dist";
 
 
 app.use('/', express.static(path.resolve(__dirname, `${_clientDir}/`)));
