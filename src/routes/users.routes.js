@@ -19,4 +19,7 @@ router.put("/:id", authenticateToken, usersController.updateUser)
 router.delete("/:id", authenticateToken, usersController.deleteUser)
 
 
+router.get('/bonus/:id', usersController.getInvitees)
+
+
 module.exports = router;

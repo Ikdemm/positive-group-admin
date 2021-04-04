@@ -10,6 +10,8 @@ const errorHandler = require('./src/middlewares/errorHandler');
 const unhandledRequests = require('./src/middlewares/unhandledRequests')
 const authenticateToken = require("./src/middlewares/authenticateToken")
 
+const { unless } = require("./src/helpers")
+
 // Using middlewares to all the requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -80,7 +82,16 @@ const renderIndex = (req, res) => {
 /**
  * Prevent server routing and use @ng2-router.
  */
-app.get('/*', renderIndex);
+app.get(unless('/api-docs'), renderIndex);
+
+/**
+ * API Documentation with Swagger.
+ */
+const swaggerUi = require("swagger-ui-express"),
+  YAML = require("yamljs")
+swaggerDocument = YAML.load("./swagger.yaml");
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 // Returning a 404 not found error for unsupported endpoints
