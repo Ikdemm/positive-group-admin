@@ -51,7 +51,7 @@ module.exports = {
             // Get user id from params
             const userId = req.params.id;
             // Get level1 invitees from bonus tree
-            const level1Invitees = await BonusTree.find({ user_id: userId }, 'invitees')
+            const level1Invitees = await BonusTree.find({ user_id: userId }, 'invitees - _id')
             console.log("========== level1Invitees: ", level1Invitees[0].invitees)
             const level1Number = level1Invitees[0].invitees.length;
 

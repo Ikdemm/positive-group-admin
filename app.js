@@ -51,6 +51,7 @@ const adminRoutes = require("./src/routes/admin.routes");
 const chapterRoutes = require("./src/routes/chapters.routes");
 const userRoutes = require("./src/routes/users.routes");
 const authRoutes = require("./src/routes/auth.routes");
+const codeRoutes = require("./src/routes/codes.routes")
 
 /*
   Using Routes
@@ -62,6 +63,7 @@ app.use("/api/admin", authenticateToken, adminRoutes);
 app.use("/api/chapters", chapterRoutes);
 app.use("/api/users", userRoutes)
 app.use("/api/auth", authRoutes)
+app.use("/api/codes", codeRoutes)
 
 /**
  * Static
