@@ -12,7 +12,7 @@ router.put("/:id", authenticateToken, usersController.updateUser)
 router.delete("/:id", authenticateToken, usersController.deleteUser)
 
 
-router.get('/:id/invitees', usersController.getInvitees)
+router.get('/:userId/invitees', usersController.getInvitees)
 
 
 module.exports = router;
