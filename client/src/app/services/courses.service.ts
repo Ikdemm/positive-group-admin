@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Course } from '../models/course.model';
 import { Observable } from 'rxjs';
 
+import { DEV_REQUEST_URL } from '../constants/dev';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,19 +14,19 @@ export class CoursesService {
   constructor(private http: HttpClient) { }
 
   getCourses(): Observable<any> {
-    return this.http.get("/api/courses")
+    return this.http.get(DEV_REQUEST_URL + "/api/courses")
   }
 
   createCourse(course: FormData): Observable<any> {
-    return this.http.post("/api/courses", course);
+    return this.http.post(DEV_REQUEST_URL + "/api/courses", course);
   }
 
   deleteCourse(id) {
-    return this.http.delete("/api/courses/" + id)
+    return this.http.delete(DEV_REQUEST_URL + "/api/courses/" + id)
   }
 
   updateCourse(id, course: FormData) {
-    return this.http.put("/api/courses/" + id, course)
+    return this.http.put(DEV_REQUEST_URL + "/api/courses/" + id, course)
   }
 
 }

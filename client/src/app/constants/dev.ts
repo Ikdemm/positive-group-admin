@@ -1,0 +1,1 @@
+export const DEV_REQUEST_URL = "https://localhost:8000"
