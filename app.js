@@ -45,25 +45,13 @@ app.use((req, res, next) => {
   Importing Routes
 **/
 
-const coursesRoutes = require("./src/routes/courses.routes");
-const categoriesRoutes = require("./src/routes/categories.routes");
-const adminRoutes = require("./src/routes/admin.routes");
-const chapterRoutes = require("./src/routes/chapters.routes");
-const userRoutes = require("./src/routes/users.routes");
-const authRoutes = require("./src/routes/auth.routes");
-const codeRoutes = require("./src/routes/codes.routes")
+const routes = require("./src/routes")
 
 /*
   Using Routes
 **/
 
-app.use("/api/courses", coursesRoutes);
-app.use("/api/categories", categoriesRoutes);
-app.use("/api/admin", authenticateToken, adminRoutes);
-app.use("/api/chapters", chapterRoutes);
-app.use("/api/users", userRoutes)
-app.use("/api/auth", authRoutes)
-app.use("/api/codes", codeRoutes)
+app.use("/api", routes)
 
 /**
  * Static
