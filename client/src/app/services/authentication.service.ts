@@ -17,7 +17,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
   login(userData): Observable<any> {
-    return this.http.post("http://localhost:8000/api/auth/login", userData);
+    return this.http.post(DEV_REQUEST_URL + "/api/auth/login", userData);
   }
 
   // check() {
@@ -26,6 +26,6 @@ export class AuthenticationService {
 
   forgotPassword(user: String): Observable<any> {
     console.log(user)
-    return this.http.post(DEV_REQUEST_URL + "/api/auth/forgot", user, this.requestOptions)
+    return this.http.post(DEV_REQUEST_URL + "/api/auth/forgot", user)
   }
 }
