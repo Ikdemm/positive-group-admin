@@ -18,7 +18,7 @@ export class CategoriesService {
   constructor(private http: HttpClient) { }
 
   getCategories(): Observable<any> {
-    return this.http.get(DEV_REQUEST_URL + "/api/categories", this.requestOptions);
+    return this.http.get(DEV_REQUEST_URL + "/api/categories");
   }
 
   createCategory(categoryData: FormData): Observable<any> {
@@ -27,11 +27,11 @@ export class CategoriesService {
   }
 
   deleteCategory(id) {
-    return this.http.delete(DEV_REQUEST_URL + "/api/categories/" + id, this.requestOptions);
+    return this.http.delete(DEV_REQUEST_URL + "/api/categories/" + id);
   }
 
   updateCategory(id: String, category: FormData) {
-    return this.http.put(DEV_REQUEST_URL + "/api/categories/" + id, category, this.requestOptions)
+    return this.http.put(DEV_REQUEST_URL + "/api/categories/" + id, category)
   }
 
 }

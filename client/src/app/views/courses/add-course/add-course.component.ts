@@ -17,6 +17,7 @@ export class AddCourseComponent implements OnInit {
     name: new FormControl(""),
     category: new FormControl(""),
     description: new FormControl(""),
+    price: new FormControl(0),
     duration: new FormControl(0),
   });
 
@@ -32,6 +33,7 @@ export class AddCourseComponent implements OnInit {
       .getCategories()
       .subscribe((categories: Array<Category>) => {
         this.categories = categories;
+        console.log(this.categories)
       });
   }
 
@@ -45,6 +47,7 @@ export class AddCourseComponent implements OnInit {
     formData.append("description", this.courseForm.value.description);
     formData.append("duration", this.courseForm.value.duration);
     formData.append("category", this.courseForm.value.category);
+    formData.append("price", this.courseForm.value.price);
     formData.append("courseImage", this.selectedImage, this.selectedImage.name);
     this.coursesService
       .createCourse(formData)
