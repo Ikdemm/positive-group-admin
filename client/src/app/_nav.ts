@@ -76,5 +76,22 @@ export const navItems: INavData[] = [
         icon: "icon-list",
       }
     ],
+  },
+  {
+    name: "Requêtes",
+    url: "/requests",
+    icon: "icon-lock",
+    children: [
+      {
+        name: "Requêtes d'activation",
+        url: "/requests/activation-requests",
+        icon: "icon-list",
+      },
+      {
+        name: "Requêtes de cours",
+        url: "/requests/courses-requests",
+        icon: "icon-list",
+      }
+    ],
   }
 ];
