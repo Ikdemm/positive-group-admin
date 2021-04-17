@@ -1,0 +1,106 @@
+components:
+  schemas:
+    UserLoginForm:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+
+    UserLoginResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: the bearer token
+        user:
+          type: string
+          description: the data of the user
+
+    UserSignUpForm:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        code:
+          type: string
+
+    Course:
+      type: object
+      properties:
+        name:
+          type: string
+        category:
+          type: string
+        description:
+          type: string
+        duration:
+          type: number
+        createdOn:
+          type: string
+        chapters:
+          type: array
+
+    User:
+      type: object
+      properties:
+        _id:
+          description: id of the user
+          type: string
+        firstName:
+          description: first name of the user
+          type: string
+        lastName:
+          description: last name of the user
+          type: string
+        birthDate:
+          description: birthdate of the user
+          type: string
+        gender:
+          description: gender of the user
+          type: string
+        job:
+          description: job of the user
+          type: string
+        email:
+          description: email of the user
+          type: string
+        password:
+          description: password of the user
+          type: string
+        isActivated:
+          description: is the account activated
+          type: boolean
+        invitees:
+          description: users invited by this user
+          type: array
+        inviter:
+          description: the user who invited user, null if none
+          type: string
+        bonus:
+          description: bonus cumulated by the user
+          type: string
+        image:
+          description: image of the user
+          type: string
+        phone:
+          description: phone number of the user
+          type: string
+        location:
+          description: location by governorate of the user
+          type: string
+
+    Chapter:
+      - $ref: "./schema/Chapter.yaml"
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
