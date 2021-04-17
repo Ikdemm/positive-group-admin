@@ -16,9 +16,13 @@ module.exports = {
 
     getAllRequests: async (req, res) => {
         try {
-            let requetsList = await User.find({}, { 'requests': 1, '_id': 0 })
-            console.log(requetsList)
-            res.status(200).send(requetsList)
+            let requestsList = []
+            let requestsResponse = await User.find({}, { 'requests': 1, '_id': 0 })
+            requestsResponse.map((singleRequests) => {
+                requestsList = requestsList.concat(singleRequests.requests)
+            })
+            console.log(requestsList)
+            res.status(200).send(requestsList)
         } catch (error) {
             res.status(500).error(error)
         }
