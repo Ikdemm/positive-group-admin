@@ -11,4 +11,7 @@ export class User {
     isActivated: Boolean;
     invitees: Array<String>;
     inviter: String;
+    image: String;
+    phone: Number;
+    location: String;
 }

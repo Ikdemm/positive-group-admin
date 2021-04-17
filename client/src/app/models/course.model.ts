@@ -7,5 +7,6 @@ export class Course {
   description: String;
   duration: Number;
   createdOn: Date;
+  price: Number
   chapters: Array<Chapter>;
 }

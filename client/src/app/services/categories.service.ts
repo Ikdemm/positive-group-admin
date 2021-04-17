@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Category } from "../models/category.model";
 
+import { DEV_REQUEST_URL } from '../constants/dev';
+
 @Injectable({
   providedIn: "root",
 })
@@ -16,20 +18,20 @@ export class CategoriesService {
   constructor(private http: HttpClient) { }
 
   getCategories(): Observable<any> {
-    return this.http.get("http://localhost:8000/api/categories", this.requestOptions);
+    return this.http.get(DEV_REQUEST_URL + "/api/categories");
   }
 
   createCategory(categoryData: FormData): Observable<any> {
     console.log(categoryData)
-    return this.http.post("http://localhost:8000/api/categories", categoryData);
+    return this.http.post(DEV_REQUEST_URL + "/api/categories", categoryData);
   }
 
   deleteCategory(id) {
-    return this.http.delete("http://localhost:8000/api/categories/" + id, this.requestOptions);
+    return this.http.delete(DEV_REQUEST_URL + "/api/categories/" + id);
   }
 
   updateCategory(id: String, category: FormData) {
-    return this.http.put("http://localhost:8000/api/categories/" + id, category, this.requestOptions)
+    return this.http.put(DEV_REQUEST_URL + "/api/categories/" + id, category)
   }
 
 }

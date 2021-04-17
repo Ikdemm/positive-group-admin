@@ -1,0 +1,102 @@
+openapi: 3.0.0
+info:
+  title: Positive Group Admin Side
+  version: 1.0.0
+servers:
+  - url: "{protocol}://localhost:{port}/{environment}"
+    description: Local Development Server
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: http
+      port:
+        enum:
+          - "8000"
+        default: "8000"
+      environment:
+        default: api
+        enum:
+          - api
+# security:
+#   - BearerAuth: []
+paths:
+  /users:
+    get:
+      summary: Returns a list of users.
+      tags:
+        - Users
+      description: Optional extended description in Markdown.
+      security:
+        - BearerAuth: []
+      responses:
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "200":
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          description: id of the user
+          type: string
+        firstName:
+          description: first name of the user
+          type: string
+        lastName:
+          description: last name of the user
+          type: string
+        birthDate:
+          description: birthdate of the user
+          type: string
+        gender:
+          description: gender of the user
+          type: string
+        job:
+          description: job of the user
+          type: string
+        email:
+          description: email of the user
+          type: string
+        password:
+          description: password of the user
+          type: string
+        isActivated:
+          description: is the account activated
+          type: boolean
+        invitees:
+          description: users invited by this user
+          type: array
+        inviter:
+          description: the user who invited user, null if none
+          type: string
+        bonus:
+          description: bonus cumulated by the user
+          type: string
+        image:
+          description: image of the user
+          type: string
+        phone:
+          description: phone number of the user
+          type: string
+        location:
+          description: location by governorate of the user
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid

@@ -51,14 +51,6 @@ export const routes: Routes = [
       title: "Forgot Password",
     },
   },
-  // {
-  //   path: "profile",
-  //   component: ProfileComponent,
-  //   data: {
-  //     title: "Profile Page",
-  //   },
-  //   canActivate: [AuthGuard],
-  // },
   {
     path: "",
     component: DefaultLayoutComponent,
@@ -97,6 +89,13 @@ export const routes: Routes = [
         path: 'profile',
         loadChildren: () =>
           import("./views/profile/profile.module").then((m) => m.ProfileModule)
+      },
+      {
+        path: "requests",
+        loadChildren: () =>
+          import("./views/requests/requests.module").then(
+            (m) => m.RequestsModule
+          ),
       },
       {
         path: "dashboard",

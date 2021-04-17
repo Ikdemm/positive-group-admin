@@ -33,7 +33,8 @@ export class EditCategoryComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onSubmit(name, description): void {
+  onSubmit(name, description, $event): void {
+    $event.preventDefault();
     let formData = new FormData()
     formData.append("name", name);
     formData.append("description", description);

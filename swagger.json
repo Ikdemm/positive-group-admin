@@ -1,0 +1,12 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Positive Group Admin Side",
+        "description": "The API for the Admin Dashboard of Positive Group",
+        "licenses": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    }
+}

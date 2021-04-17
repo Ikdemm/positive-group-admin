@@ -10,6 +10,8 @@ const errorHandler = require('./src/middlewares/errorHandler');
 const unhandledRequests = require('./src/middlewares/unhandledRequests')
 const authenticateToken = require("./src/middlewares/authenticateToken")
 
+const { unless } = require("./src/helpers")
+
 // Using middlewares to all the requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -19,11 +21,11 @@ app.use(morgan('dev'))
   Using Cross Origin middelware
 **/
 
-// app.all('/*', (req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header('Access-Control-Allow-Headers', 'X-Requested-With');
-//   next();
-// });
+app.all('/*', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+  next();
+});
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -43,23 +45,13 @@ app.use((req, res, next) => {
   Importing Routes
 **/
 
-const coursesRoutes = require("./src/routes/courses.routes");
-const categoriesRoutes = require("./src/routes/categories.routes");
-const adminRoutes = require("./src/routes/admin.routes");
-const chapterRoutes = require("./src/routes/chapters.routes");
-const userRoutes = require("./src/routes/users.routes");
-const authRoutes = require("./src/routes/auth.routes");
+const routes = require("./src/routes")
 
 /*
   Using Routes
 **/
 
-app.use("/api/courses", coursesRoutes);
-app.use("/api/categories", categoriesRoutes);
-app.use("/api/admin", authenticateToken, adminRoutes);
-app.use("/api/chapters", chapterRoutes);
-app.use("/api/users", userRoutes)
-app.use("/api/auth", authRoutes)
+app.use("/api", routes)
 
 /**
  * Static
@@ -80,7 +72,16 @@ const renderIndex = (req, res) => {
 /**
  * Prevent server routing and use @ng2-router.
  */
-app.get('/*', renderIndex);
+app.get(unless('/api-docs'), renderIndex);
+
+/**
+ * API Documentation with Swagger.
+ */
+const swaggerUi = require("swagger-ui-express"),
+  YAML = require("yamljs")
+swaggerDocument = YAML.load("./swagger.yaml");
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 // Returning a 404 not found error for unsupported endpoints
