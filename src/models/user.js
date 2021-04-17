@@ -19,6 +19,7 @@ const userSchema = new Schema({
             }
         },
     },
+    accountType: { type: String, enum: ['free', 'requested', 'premium'], default: 'free' },
     password: { type: String, unique: true },
     isActivated: { type: Boolean, default: false },
     invitees: { type: Array, default: [] },

@@ -41,9 +41,9 @@ export class UsersListComponent implements OnInit {
   }
 
   changeUserSubscription(user): void {
-    user.isActivated = !user.isActivated;
+    user.accountType = 'premium';
     this.usersService.updateUser(user).subscribe((res) => {
-      if (user.isActivated) {
+      if (user.accountType == 'premium') {
         Swal.fire({
           icon: "success",
           title: "Activation",
