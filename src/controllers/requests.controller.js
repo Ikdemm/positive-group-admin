@@ -1,30 +1,44 @@
 require("dotenv").config();
 const User = require("../models/user");
+const Course = require("../models/course")
 
 module.exports = {
 
-    requestCourse: async (req, res) => {
+    getAllCoursesRequests: async (req, res) => {
         try {
-            let userId = req.params.userId;
-            let courseId = req.params.courseId;
-            await User.findByIdAndUpdate(userId, { $push: { requests: courseId } })
-            res.status(200).send("Request Created")
+            let requestsList = []
+
+            // Getting the requesting user
+            let requestingUsers = await User.find({ courseRequests: { $exists: true, $not: { $size: 0 } } }, { projection: { _v: 0 } })
+
+            await Promise.all(requestingUsers.map(async (singleUser) => {
+
+                await Promise.all(singleUser.courseRequests.map(async (requestedCourse) => {
+                    let course = await Course.findById(requestedCourse)
+                    console.log(course)
+                    requestsList = requestsList.concat([{
+                        user: singleUser,
+                        course: course
+                    }])
+                }))
+            }))
+
+            console.log(requestsList)
+            res.status(200).send(requestsList)
+
         } catch (error) {
-            res.status(500).error(error)
+            console.error(error)
+            res.status(500).send(error)
         }
     },
 
-    getAllRequests: async (req, res) => {
+    getAllActivationRequests: async (req, res) => {
         try {
-            let requestsList = []
-            let requestsResponse = await User.find({}, { 'requests': 1, '_id': 0 })
-            requestsResponse.map((singleRequests) => {
-                requestsList = requestsList.concat(singleRequests.requests)
-            })
-            console.log(requestsList)
-            res.status(200).send(requestsList)
+            let pendingUsers = await User.find({ accountType: 'pending' });
+            res.status(200).send(pendingUsers)
         } catch (error) {
-            res.status(500).error(error)
+            console.error(error)
+            res.status(500).send(error)
         }
     }
 }

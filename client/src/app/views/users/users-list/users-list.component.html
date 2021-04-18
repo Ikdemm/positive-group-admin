@@ -24,8 +24,9 @@
                                     <span class="username">{{user.lastName}} {{user.firstName}}</span>
                                 </td>
                                 <td>
-                                    <span *ngIf="user.isActivated" class="premium">Premium</span>
-                                    <span *ngIf="!user.isActivated" class="free">Free</span>
+                                    <span *ngIf="user.accountType === 'premium'" class="premium">Premium</span>
+                                    <span *ngIf="user.accountType === 'free'" class="free">Free</span>
+                                    <span *ngIf="user.accountType === 'requested'" class="free">requested</span>
                                 </td>
                                 <td>15</td>
                                 <td>Ariana</td>

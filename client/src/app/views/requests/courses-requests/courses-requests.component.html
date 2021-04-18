@@ -3,25 +3,24 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <strong>Liste des requêtes</strong>
-                    <!-- <div class="card-header-actions">
-                        <a href="https://valor-software.com/ngx-bootstrap/#/alerts" target="_blank">
-                            <small className="text-muted">docs</small>
-                        </a>
-                    </div> -->
+                    <strong>Liste des requêtes d'achat de cours</strong>
                 </div>
                 <div class="card-body">
-                    <alert type="success">
-                        <strong>Well done!</strong> You successfully read this important alert message.
-                    </alert>
-                    <alert type="info">
-                        <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
-                    </alert>
-                    <alert type="warning">
-                        <strong>Warning!</strong> Better check yourself, you're not looking too good.
-                    </alert>
-                    <alert type="danger">
-                        <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                    <p *ngIf="coursesRequests.length == 0">Pas de requêtes d'achat de cours ...</p>
+                    <alert type="warning" *ngFor="let request of coursesRequests">
+                        <div class="row">
+                            <div class="col-9">
+                                <strong>{{request.user.firstName}} {{request.user.lastName}}</strong>
+                                veut acheter le cours <strong>{{request.course.name}}</strong> qui coûte
+                                <strong>{{request.course.price}} </strong>dt<br />
+                                <i class="fa fa-envelope"></i> {{request.user.email}} -
+                                <i class="fa fa-phone"></i> {{request.user.phone}}
+                            </div>
+                            <div class="col-3 actions-buttons">
+                                <span (click)="acceptCourseRequest(request)" class="accept-btn">Activer</span>
+                                <span (click)="ignoreCourseRequest(request)" class="ignore-btn">Ignorer</span>
+                            </div>
+                        </div>
                     </alert>
                 </div>
             </div>

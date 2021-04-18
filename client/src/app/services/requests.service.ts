@@ -17,7 +17,20 @@ export class RequestsService {
 
   constructor(private http: HttpClient) { }
 
-  getAllRequests(): Observable<any> {
-    return this.http.get(DEV_REQUEST_URL + "/api/requests")
+  getAllActivationRequests(): Observable<any> {
+    return this.http.get(DEV_REQUEST_URL + "/api/requests/activation-requests")
   }
+
+  respondToActivationRequest(user): Observable<any> {
+    return this.http.put(DEV_REQUEST_URL + `/api/users/${user._id}`, user)
+  }
+
+  getAllCoursesRequests(): Observable<any> {
+    return this.http.get(DEV_REQUEST_URL + "/api/requests/courses-requests")
+  }
+
+  respondToCourseRequest(user): Observable<any> {
+    return this.http.put(DEV_REQUEST_URL + `/api/users/${user._id}`, user)
+  }
+
 }

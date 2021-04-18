@@ -2,6 +2,7 @@ import { Component, SecurityContext, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AlertConfig } from 'ngx-bootstrap/alert';
 import { RequestsService } from '../../../services/requests.service';
+import Swal from "sweetalert2";
 
 // such override allows to keep some initial values
 
@@ -17,79 +18,38 @@ export function getAlertConfig(): AlertConfig {
 })
 export class CoursesRequestsComponent implements OnInit {
 
-  constructor(sanitizer: DomSanitizer, private requestsService: RequestsService) {
-    this.alertsHtml = this.alertsHtml.map((alert: any) => ({
-      type: alert.type,
-      msg: sanitizer.sanitize(SecurityContext.HTML, alert.msg)
-    }));
-  }
-  requets: Array<any>;
-  dismissible = true;
-  alerts: any = [
-    {
-      type: 'success',
-      msg: `You successfully read this important alert message.`
-    },
-    {
-      type: 'info',
-      msg: `This alert needs your attention, but it's not super important.`
-    },
-    {
-      type: 'danger',
-      msg: `Better check yourself, you're not looking too good.`
-    }
-  ];
+  constructor(private requestsService: RequestsService) { }
 
-  alertsHtml: any = [
-    {
-      type: 'success',
-      msg: `<strong>Well done!</strong> You successfully read this important alert message.`
-    },
-    {
-      type: 'info',
-      msg: `<strong>Heads up!</strong> This alert needs your attention, but it's not super important.`
-    },
-    {
-      type: 'danger',
-      msg: `<strong>Warning!</strong> Better check yourself, you're not looking too good.`
-    }
-  ];
+  coursesRequests: Array<any>;
 
-  index = 0;
-  messages = [
-    'You successfully read this important alert message.',
-    'Now this text is different from what it was before. Go ahead and click the button one more time',
-    'Well done! Click reset button and you\'ll see the first message'
-  ];
-
-  alertsDismiss: any = [];
-
-  reset(): void {
-    this.alerts = this.alerts.map((alert: any) => Object.assign({}, alert));
+  getCoursesRequests(): void {
+    this.requestsService.getAllCoursesRequests().subscribe((requests) => {
+      this.coursesRequests = requests;
+      console.log(this.coursesRequests)
+    })
   }
 
-  changeText() {
-    if (this.messages.length - 1 !== this.index) {
-      this.index++;
-    }
+  acceptCourseRequest({ user, course }): void {
+    user.courseRequests = user.courseRequests.filter((request) => {
+      return request !== course._id
+    })
+    user.courses.push(course._id)
+    this.requestsService.respondToCourseRequest(user).subscribe((response) => {
+      this.getCoursesRequests()
+    })
   }
 
-  add(): void {
-    this.alertsDismiss.push({
-      type: 'info',
-      msg: `This alert will be closed in 5 seconds (added: ${new Date().toLocaleTimeString()})`,
-      timeout: 5000
-    });
-  }
-
-  getRequests(): void {
-    this.requestsService.getAllRequests().subscribe((requests) => {
-      console.log(requests)
+  ignoreCourseRequest({ user, course }): void {
+    user.courseRequests = user.courseRequests.filter((request) => {
+      return request !== course._id
+    })
+    this.requestsService.respondToCourseRequest(user).subscribe((response) => {
+      this.getCoursesRequests()
     })
   }
 
   ngOnInit(): void {
-    this.getRequests()
+    this.getCoursesRequests()
   }
 
 }

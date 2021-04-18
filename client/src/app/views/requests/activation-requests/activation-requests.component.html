@@ -11,17 +11,25 @@
                     </div> -->
                 </div>
                 <div class="card-body">
-                    <alert type="success">
-                        <strong>Well done!</strong> You successfully read this important alert message.
-                    </alert>
-                    <alert type="info">
-                        <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
-                    </alert>
-                    <alert type="warning">
-                        <strong>Warning!</strong> Better check yourself, you're not looking too good.
-                    </alert>
-                    <alert type="danger">
-                        <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                    <p *ngIf="activationRequests.length == 0">Pas de requêtes d'activation ...</p>
+                    <alert type="info" *ngFor="let request of activationRequests">
+                        <div class="row">
+                            <div class="col-9">
+                                <strong *ngIf="request.firstName && request.lastName">
+                                    {{request.firstName}} {{request.lastName}}
+                                </strong>
+                                <strong *ngIf="!(request.firstName && request.lastName)">
+                                    Un utilisateur inconnu
+                                </strong>
+                                veut activer son compte.<br />
+                                <i class="fa fa-envelope"></i> {{request.email}} - <i class="fa fa-phone"></i>
+                                {{request.phone}}
+                            </div>
+                            <div class="col-3 actions-buttons">
+                                <span (click)="acceptRequest(request)" class="accept-btn">Activer</span>
+                                <span (click)="ignoreRequest(request)" class="ignore-btn">Ignorer</span>
+                            </div>
+                        </div>
                     </alert>
                 </div>
             </div>

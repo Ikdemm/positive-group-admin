@@ -1,5 +1,46 @@
 .alert-md-local {
-    background-color: #009688;
-    border-color: #00695C;
-    color: #fff;
-  }
+  background-color: #009688;
+  border-color: #00695C;
+  color: #fff;
+}
+
+.actions-buttons {
+  text-align: right;
+  padding-top: 10px;
+}
+
+.accept-btn {
+  background-color: transparent;
+  border: rgb(57, 133, 34) solid 1px;
+  padding: 4px 10px;
+  border-radius: 5px;
+  color: rgb(57, 133, 34);
+  transition: .4s;
+  cursor: pointer
+}
+
+.accept-btn:hover {
+  background-color: transparent;
+  border: rgb(57, 133, 34) solid 1px;
+  background-color: rgb(57, 133, 34);
+  color: #fff;
+  transition: .4s;
+}
+
+.ignore-btn {
+  background-color: transparent;
+  padding: 4px 10px;
+  border-radius: 5px;
+  border: rgb(190, 22, 22) solid 1px;
+  color: rgb(190, 22, 22);
+  transition: .4s;
+  cursor: pointer;
+}
+
+.ignore-btn:hover {
+  background-color: transparent;
+  border: rgb(190, 22, 22) solid 1px;
+  background-color: rgb(190, 22, 22);
+  color: #fff;
+  transition: .4s;
+}

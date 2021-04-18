@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/user.model';
 import { UsersService } from '../../../services/users.service';
-import Swal from "sweetalert2";
 import { UserDetailsComponent } from '../user-details/user-details.component';
 import { MatDialog } from '@angular/material/dialog';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-users-list',

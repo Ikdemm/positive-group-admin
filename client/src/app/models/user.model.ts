@@ -1,3 +1,9 @@
+enum accountTypeEnum {
+    'free',
+    'pending',
+    'premium',
+}
+
 export class User {
     _id: String;
     firstName: String;
@@ -7,6 +13,7 @@ export class User {
     job: String;
     bonus: String;
     email: String;
+    accountType: accountTypeEnum;
     password: String;
     isActivated: Boolean;
     invitees: Array<String>;
