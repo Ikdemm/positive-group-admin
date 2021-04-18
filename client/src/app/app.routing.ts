@@ -98,6 +98,11 @@ export const routes: Routes = [
           ),
       },
       {
+        path: "codes",
+        loadChildren: () =>
+          import("./views/codes/codes.module").then((m) => m.CodesModule),
+      },
+      {
         path: "dashboard",
         loadChildren: () =>
           import("./views/dashboard/dashboard.module").then(

@@ -93,5 +93,27 @@ export const navItems: INavData[] = [
         icon: "icon-list",
       }
     ],
+  },
+  {
+    name: "Codes",
+    url: "/codes",
+    icon: "icon-clip",
+    children: [
+      {
+        name: "Code d'activation",
+        url: "/codes/activation-codes",
+        icon: "icon-list",
+      },
+      {
+        name: "Code d'achat de cours",
+        url: "/codes/courses-codes",
+        icon: "icon-list",
+      },
+      {
+        name: "Nouveau code",
+        url: "/codes/add-code",
+        icon: "icon-plus",
+      }
+    ],
   }
 ];
