@@ -80,7 +80,7 @@ export const navItems: INavData[] = [
   {
     name: "Requêtes",
     url: "/requests",
-    icon: "icon-lock",
+    icon: "icon-question",
     children: [
       {
         name: "Requêtes d'activation",
@@ -97,7 +97,7 @@ export const navItems: INavData[] = [
   {
     name: "Codes",
     url: "/codes",
-    icon: "icon-clip",
+    icon: "icon-lock",
     children: [
       {
         name: "Code d'activation",
