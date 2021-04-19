@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from "@angular/forms";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormControl, NgForm } from "@angular/forms";
 import { CoursesService } from '../../../services/courses.service';
 
 
@@ -12,23 +12,13 @@ export class AddCodeComponent implements OnInit {
 
   constructor(private coursesService: CoursesService) { }
 
+  @ViewChild('codeForm') codeForm: NgForm;
+
   courses: Array<object> = []
 
   codeTypes = ['activation', 'credit', 'course'];
 
   selectedForm = 'course';
-
-  activationCodeForm = new FormGroup({
-
-  })
-
-  courseCodeForm = new FormGroup({
-
-  })
-
-  creditCodeForm = new FormGroup({
-
-  })
 
   getCourses(): void {
     this.coursesService.getCourses().subscribe((courses) => {
@@ -39,6 +29,18 @@ export class AddCodeComponent implements OnInit {
   onChangeForm($event): void {
     console.log($event.target.value)
     this.selectedForm = $event.target.value
+    console.log(this.codeForm.value)
+  }
+
+  onSubmit(): void {
+    switch (this.selectedForm) {
+      case 'course':
+        console.log('course')
+      case 'activation':
+        console.log('activation')
+      case 'credit':
+        console.log('credit')
+    }
   }
 
   ngOnInit(): void {

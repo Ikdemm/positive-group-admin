@@ -1,23 +1,23 @@
-<div class="card">
-    <div class="card-header"><strong>Ajouter</strong> chapitre</div>
-    <div class="card-body">
-        <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="select1">Type du code</label>
-            <div class="col-md-9">
-                <select id="select1" name="select1" class="form-control" (change)="onChangeForm($event)">
-                    <option value="0">Sélectionner un type</option>
-                    <option *ngFor="let codeType of codeTypes" (value)="(codeType)">
-                        {{ codeType }}
-                    </option>
-                </select>
-            </div>
-        </div>
-        <form *ngIf="selectedForm == 'course'" [formGroup]="courseCodeForm" (submit)="onSubmitCourseCode()"
-            enctype="multipart/form-data" class="form-horizontal">
+<form #codeForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="card">
+        <div class="card-header"><strong>Ajouter</strong> chapitre</div>
+        <div class="card-body">
             <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="select1">Type du code</label>
+                <div class="col-md-9">
+                    <select id="select1" name="codeType" class="form-control" (change)="onChangeForm($event)"
+                        [(ngModel)]="selectedForm">
+                        <option value="0">course</option>
+                        <option *ngFor="let codeType of codeTypes" (value)="(codeType)">
+                            {{ codeType }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div *ngIf="selectedForm == 'course'" class="form-group row">
                 <label class="col-md-3 col-form-label" for="course-select">Cours</label>
                 <div class="col-md-9">
-                    <select id="course-select" name="course-select" class="form-control">
+                    <select id="course-select" name="course" class="form-control" ngModel>
                         <option value="0">Sélectionner un cours</option>
                         <option *ngFor="let course of courses" (value)="(course._id)">
                             {{ course.name }}
@@ -25,14 +25,12 @@
                     </select>
                 </div>
             </div>
-        </form>
-        <form *ngIf="selectedForm == 'credit'" [formGroup]="creditCodeForm" (submit)="onSubmitCreditCode()"
-            enctype="multipart/form-data" class="form-horizontal">
-            <label class="col-md-3 col-form-label" for="select1">Montant</label>
-            <div class="col-md-9">
-                <input formControlName="credit" type="number" id="credit-input" name="credit-input" class="form-control"
-                    placeholder="0" />
+            <div *ngIf="selectedForm == 'credit'" class="form-group row">
+                <label class="col-md-3 col-form-label" for="select1">Montant</label>
+                <div class="col-md-9">
+                    <input type="number" id="credit-input" name="credit" class="form-control" placeholder="0" ngModel />
+                </div>
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</form>
