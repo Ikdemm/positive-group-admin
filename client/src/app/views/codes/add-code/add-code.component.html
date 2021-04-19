@@ -28,9 +28,21 @@
             <div *ngIf="selectedForm == 'credit'" class="form-group row">
                 <label class="col-md-3 col-form-label" for="select1">Montant</label>
                 <div class="col-md-9">
-                    <input type="number" id="credit-input" name="credit" class="form-control" placeholder="0" ngModel />
+                    <input type="number" id="credit-input" name="value" class="form-control" placeholder="0" ngModel />
                 </div>
             </div>
+            <div>
+                <input type="text" id="generated-code" name="generated-code" class="form-control" placeholder="résultat"
+                    [(ngModel)]="generatedCode" />
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-sm btn-primary">
+                <i class="fa fa-dot-circle-o"></i> Confirmer
+            </button>
+            <button type="reset" class="btn btn-sm btn-danger">
+                <i class="fa fa-ban"></i> Annuler
+            </button>
         </div>
     </div>
 </form>

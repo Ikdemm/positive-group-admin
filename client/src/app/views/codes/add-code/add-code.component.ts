@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, NgForm } from "@angular/forms";
+import { NgForm } from "@angular/forms";
 import { CoursesService } from '../../../services/courses.service';
+import { CodesService } from '../../../services/codes.service';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { CoursesService } from '../../../services/courses.service';
 })
 export class AddCodeComponent implements OnInit {
 
-  constructor(private coursesService: CoursesService) { }
+  constructor(private coursesService: CoursesService, private codesService: CodesService) { }
 
   @ViewChild('codeForm') codeForm: NgForm;
 
@@ -19,6 +20,8 @@ export class AddCodeComponent implements OnInit {
   codeTypes = ['activation', 'credit', 'course'];
 
   selectedForm = 'course';
+
+  generatedCode: String = '';
 
   getCourses(): void {
     this.coursesService.getCourses().subscribe((courses) => {
@@ -33,14 +36,10 @@ export class AddCodeComponent implements OnInit {
   }
 
   onSubmit(): void {
-    switch (this.selectedForm) {
-      case 'course':
-        console.log('course')
-      case 'activation':
-        console.log('activation')
-      case 'credit':
-        console.log('credit')
-    }
+    this.codesService.generateCode(this.codeForm.value).subscribe((res) => {
+      console.log(res)
+      this.generatedCode = res.code
+    })
   }
 
   ngOnInit(): void {

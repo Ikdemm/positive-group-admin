@@ -1,30 +1,34 @@
 const ActivationCode = require("../models/activationCode");
 const CreditCode = require("../models/creditCode");
-const courseCode = require("../models/courseCode");
-const codeGenerator = require("../helpers/codesGenerator")
+const codeGenerator = require("../helpers/codesGenerator");
+const CourseCode = require("../models/courseCode");
+const Course = require("../models/course");
 
 module.exports = {
 
     generateCode: async (req, res) => {
         try {
+            let createdCode = null;
+            let newCode = null;
             let code = codeGenerator();
-            switch (req.body.type) {
+            switch (req.body.codeType) {
                 case 'activation':
-                    let createdCode = await ActivationCode.save({ code: code })
+                    createdCode = await ActivationCode.create({ code: code })
                     break;
                 case 'course':
-                    let newCode = {
+                    let courseId = await Course.findOne({ name: req.body.course }, '_id')
+                    newCode = {
                         code: code,
-                        course: req.body.courseId
+                        course: courseId._id
                     }
-                    let createdCode = await ActivationCode.save(newCode)
+                    createdCode = await CourseCode.create(newCode)
                     break;
                 case 'credit':
-                    let newCode = {
+                    newCode = {
                         code: code,
                         value: req.body.value
                     }
-                    let createdCode = await ActivationCode.save({ code: code })
+                    createdCode = await CreditCode.create(newCode)
                     break;
             }
             res.status(200).send(createdCode)

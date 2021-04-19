@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const courseCodeSchema = new Schema({
     code: String,
-    course: { type: Syting, required: true, default: null },
+    course: { type: String, required: true, default: null },
     usedBy: { type: String, default: null },
 });
 
