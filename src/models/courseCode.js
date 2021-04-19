@@ -2,9 +2,11 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const courseCodeSchema = new Schema({
-    code: String,
+    code: { type: String, required: true },
     course: { type: String, required: true, default: null },
     usedBy: { type: String, default: null },
+    createdOn: { type: Date, default: new Date() },
+    usedOn: { type: Date, default: null }
 });
 
 const CourseCode = mongoose.model("CourseCode", courseCodeSchema);

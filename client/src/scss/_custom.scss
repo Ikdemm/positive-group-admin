@@ -1,1 +1,46 @@
 // Here you can add other styles
+
+.actions-container {
+    display: flex;
+    vertical-align: middle;
+    padding-top: 20px;
+}
+
+.action-button {
+    padding: 4px 8px !important;
+    margin-left: 3px;
+    border-radius: 0;
+    transition: .4s;
+}
+
+.action-button:hover {
+    background: transparent;
+    border: 1px solid gray;
+    color: gray;
+    transition: .4s;
+}
+
+tr:hover {
+    background-color: rgb(197, 197, 197) !important; 
+}
+
+.table-header {
+    background-color: rgb(235, 235, 235);
+    cursor: auto;
+    border: 0;
+}
+
+th {
+    border: 0;
+    background-color: rgb(197, 197, 197)
+}
+
+.last-header {
+    text-align: right;
+    border: 0;
+}
+
+td {
+    font-size: 1.3em;
+    vertical-align: middle;
+}

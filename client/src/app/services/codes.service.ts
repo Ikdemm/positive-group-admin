@@ -14,4 +14,8 @@ export class CodesService {
     return this.http.post(DEV_REQUEST_URL + '/api/codes', codeData)
   }
 
+  getActivationCodes(): Observable<any> {
+    return this.http.get(DEV_REQUEST_URL + '/api/codes/activation-codes')
+  }
+
 }
