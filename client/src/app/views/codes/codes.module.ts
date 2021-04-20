@@ -8,10 +8,11 @@ import { AddCodeComponent } from './add-code/add-code.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { CreditCodesComponent } from './credit-codes/credit-codes.component';
 
 
 @NgModule({
-  declarations: [CoursesCodesComponent, ActivationCodesComponent, AddCodeComponent],
+  declarations: [CoursesCodesComponent, ActivationCodesComponent, AddCodeComponent, CreditCodesComponent],
   imports: [
     CommonModule,
     CodesRoutingModule,

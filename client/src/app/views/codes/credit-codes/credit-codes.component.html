@@ -11,16 +11,16 @@
                             <tr>
                                 <th>Code</th>
                                 <th>Utilisé par</th>
-                                <th>Cours</th>
+                                <th>Valeur</th>
                                 <th>Date de génération</th>
                                 <th>Date d'utilisation</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let code of coursesCodes">
+                            <tr *ngFor="let code of creditCodes">
                                 <td>{{code.code}}</td>
-                                <td>{{code.course}}</td>
+                                <td>{{code.value}}</td>
                                 <td *ngIf="code.usedBy">{{code.usedBy}}</td>
                                 <td *ngIf="!code.usedBy"><i>PERSONNE</i></td>
                                 <td>{{code.createdOn}}</td>
