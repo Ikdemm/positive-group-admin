@@ -20,9 +20,10 @@
                             <tr *ngFor="let code of activationCodes">
                                 <td>{{code.code}}</td>
                                 <td *ngIf="code.usedBy">{{code.usedBy}}</td>
-                                <td *ngIf="!code.usedBy"><i>PERSONNE</i></td>
+                                <td *ngIf="!code.usedBy"><b>PERSONNE</b></td>
                                 <td>{{code.createdOn}}</td>
-                                <td>{{code.usedOn}}</td>
+                                <td *ngIf="code.usedOn">{{code.usedOn}}</td>
+                                <td *ngIf="!code.usedOn">Non untilisé</td>
                                 <td class="actions-container">
                                     <button (click)="deleteCode(code._id)" type="button"
                                         class="btn btn-danger action-button">
