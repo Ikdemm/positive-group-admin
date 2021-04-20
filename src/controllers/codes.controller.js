@@ -56,10 +56,55 @@ module.exports = {
     },
 
     getCoursesCodes: async (req, res) => {
-
+        try {
+            let coursesCodes = await CourseCode.find({})
+            res.status(200).send(coursesCodes)
+        } catch (error) {
+            console.error(error)
+            res.status(500).send(error)
+        }
     },
 
     getCreditCodes: async (req, res) => {
-
+        try {
+            let creditCodes = await CreditCode.find({})
+            res.status(200).send(creditCodes)
+        } catch (error) {
+            console.error(error)
+            res.status(500).send(error)
+        }
     },
+
+    deleteCourseCode: async (req, res) => {
+        try {
+            let codeId = req.params.codeId
+            await CourseCode.deleteOne({ _id: codeId })
+            res.status(200).send({ message: "Deleted" })
+        } catch (error) {
+            console.error(error)
+            res.status(500).send(error)
+        }
+    },
+
+    deleteActivationCode: async (req, res) => {
+        try {
+            let codeId = req.params.codeId
+            await ActivationCode.deleteOne({ _id: codeId })
+            res.status(200).send({ message: "Deleted" })
+        } catch (error) {
+            console.error(error)
+            res.status(500).send(error)
+        }
+    },
+
+    deleteCreditCode: async (req, res) => {
+        try {
+            let codeId = req.params.codeId
+            await CreditCode.deleteOne({ _id: codeId })
+            res.status(200).send({ message: "Deleted" })
+        } catch (error) {
+            console.error(error)
+            res.status(500).send(error)
+        }
+    }
 }

@@ -18,4 +18,16 @@ export class CodesService {
     return this.http.get(DEV_REQUEST_URL + '/api/codes/activation-codes')
   }
 
+  getCoursesCodes(): Observable<any> {
+    return this.http.get(DEV_REQUEST_URL + '/api/codes/course-codes')
+  }
+
+  getCreditCodes(): Observable<any> {
+    return this.http.get(DEV_REQUEST_URL + '/api/codes/credit-codes')
+  }
+
+  deleteCode(codeId, type): Observable<any> {
+    return this.http.delete(DEV_REQUEST_URL + `/api/codes/${type}-codes/${codeId}`)
+  }
+
 }

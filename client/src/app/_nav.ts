@@ -97,17 +97,22 @@ export const navItems: INavData[] = [
   {
     name: "Codes",
     url: "/codes",
-    icon: "icon-lock",
+    icon: "icon-menu",
     children: [
       {
-        name: "Code d'activation",
+        name: "Codes d'activation",
         url: "/codes/activation-codes",
-        icon: "icon-list",
+        icon: "icon-lock",
       },
       {
-        name: "Code d'achat de cours",
+        name: "Codes de cours",
         url: "/codes/courses-codes",
-        icon: "icon-list",
+        icon: "icon-film",
+      },
+      {
+        name: "Codes de crédit",
+        url: "/codes/credit-codes",
+        icon: "icon-wallet",
       },
       {
         name: "Nouveau code",
