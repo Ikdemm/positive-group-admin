@@ -19,6 +19,12 @@ export class ActivationCodesComponent implements OnInit {
     })
   }
 
+  deleteCode(codeId): void {
+    this.codesService.deleteCode(codeId, 'activation').subscribe((res) => {
+      this.getActivationCodes();
+    })
+  }
+
   ngOnInit(): void {
     this.getActivationCodes();
   }

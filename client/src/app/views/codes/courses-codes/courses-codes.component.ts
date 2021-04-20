@@ -19,6 +19,12 @@ export class CoursesCodesComponent implements OnInit {
     })
   }
 
+  deleteCode(codeId): void {
+    this.codesService.deleteCode(codeId, 'course').subscribe((res) => {
+      this.getCoursesCodes();
+    })
+  }
+
   ngOnInit(): void {
     this.getCoursesCodes();
   }

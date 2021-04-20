@@ -19,6 +19,12 @@ export class CreditCodesComponent implements OnInit {
     })
   }
 
+  deleteCode(codeId): void {
+    this.codesService.deleteCode(codeId, 'credit').subscribe((res) => {
+      this.getCreditCodes();
+    })
+  }
+
   ngOnInit(): void {
     this.getCreditCodes();
   }
