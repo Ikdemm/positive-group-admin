@@ -40,7 +40,7 @@ module.exports = {
 
         // Get level 1 invitees
         let user = await User.findById(userId);
-        let level1Invitees = user.invitees, isUserActivated = user.isActivated;
+        let level1Invitees = user.invitees;
 
         let response = {}
 
@@ -53,7 +53,8 @@ module.exports = {
             if (currentInvitee != null) {
                 let responseInvitee = {
                     inviteeId: invitee,
-                    isActivated: currentInvitee.isActivated
+                    accountType: currentInvitee.accountType,
+                    courses: currentInvitee.courses.length
                 }
                 response.level1Invitees.push(responseInvitee)
             } else {
@@ -74,11 +75,12 @@ module.exports = {
                                 if (currentInvitee != null) {
                                     let responseInvitee = {
                                         inviteeId: inviteeId,
-                                        isActivated: currentInvitee.isActivated
+                                        accountType: currentInvitee.accountType,
+                                        courses: currentInvitee.courses.length
                                     }
                                     response[`level${i + 1}Invitees`].push(responseInvitee)
                                 } else {
-                                    User.findByIdAndUpdate(invitee, { $pullAll: { invitees: [inviteeId] } })
+                                    User.findByIdAndUpdate(inviteeId, { $pullAll: { invitees: [inviteeId] } })
                                 }
                             }))
                         }

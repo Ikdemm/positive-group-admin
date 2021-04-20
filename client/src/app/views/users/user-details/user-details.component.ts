@@ -11,9 +11,11 @@ import { BONUS_INIT } from '../../../constants/dev';
 export class UserDetailsComponent implements OnInit {
 
   user: User;
-  inviteesList: object;
+  inviteesList: object = {};
   // bonus: Array<Number> = new Array(10);
   bonus = BONUS_INIT;
+
+  levels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
   constructor(private usersService: UsersService) { }
 
@@ -29,16 +31,20 @@ export class UserDetailsComponent implements OnInit {
     for (let i = 1; i < 11; i++) {
       let bonus = 0
       this.inviteesList[`level${i}Invitees`].map(invitee => {
-        if (invitee.isActivated) {
+        if (invitee.accountType == 'premium') {
           bonus += 5
         }
+        bonus += invitee.courses * 5
       })
+      console.log(bonus)
       this.bonus[i] = bonus
     }
-    console.log(this.bonus)
   }
 
   ngOnInit(): void {
+    for (let i = 1; i < 11; i++) {
+      this.inviteesList[`level${i}Invitees`] = {}
+    }
     this.getUserInvitees();
   }
 
