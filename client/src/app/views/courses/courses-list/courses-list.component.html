@@ -5,7 +5,11 @@
                 <div class="card-header">
                     <i class="fa fa-align-justify"></i> Liste des catégories
                 </div>
-                <div class="card-body">
+                <div *ngIf="courses.length == 0" class="card-body">
+                    <p>Pas de chapitres</p>
+                </div>
+                <div *ngIf="!courses.length == 0" class="card-body">
+
                     <table class="table table-striped">
                         <thead>
                             <tr>

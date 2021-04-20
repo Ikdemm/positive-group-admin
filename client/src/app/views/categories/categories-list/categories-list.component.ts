@@ -32,14 +32,29 @@ export class CategoriesListComponent implements OnInit {
   }
 
   deleteCategory(id) {
-    this.categoriesService.deleteCategory(id).subscribe((res) => {
-      Swal.fire({
-        icon: "success",
-        title: "Done",
-        text: `Category deleted`,
-      });
-      this.getCategories();
-    });
+
+    Swal.fire({
+      title: 'Vous êtes sûr?',
+      text: "Les données supprimées seront perdus",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Annuler',
+      confirmButtonText: 'Oui, supprimer!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Supprimé!',
+          'Suppression terminée avec succès',
+          'success'
+        )
+        this.categoriesService.deleteCategory(id).subscribe((res) => {
+          this.getCategories();
+        })
+      }
+    })
+
   }
 
   openEditCategory(category: Category): void {

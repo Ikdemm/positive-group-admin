@@ -5,8 +5,12 @@
                 <div class="card-header">
                     <i class="fa fa-align-justify"></i> Liste des chapitres
                 </div>
-                <div class="card-body">
-                    <table class="table table-striped">
+                <div *ngIf="chapters.length == 0" class="card-body">
+                    <p>Pas de chapitres ...</p>
+                </div>
+                <div *ngIf="!chapters.length == 0" class="card-body">
+
+                    <table *ngIf="chapters" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Chapitre</th>

@@ -40,12 +40,31 @@ export class CoursesRequestsComponent implements OnInit {
   }
 
   ignoreCourseRequest({ user, course }): void {
-    user.courseRequests = user.courseRequests.filter((request) => {
-      return request !== course._id
+    Swal.fire({
+      title: 'Vous êtes sûr?',
+      text: "Les données supprimées seront perdus",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Annuler',
+      confirmButtonText: 'Oui, supprimer!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Ignoré!',
+          'Demande ignorée avec succès',
+          'success'
+        )
+        user.courseRequests = user.courseRequests.filter((request) => {
+          return request !== course._id
+        })
+        this.requestsService.respondToCourseRequest(user).subscribe((response) => {
+          this.getCoursesRequests()
+        })
+      }
     })
-    this.requestsService.respondToCourseRequest(user).subscribe((response) => {
-      this.getCoursesRequests()
-    })
+
   }
 
   ngOnInit(): void {

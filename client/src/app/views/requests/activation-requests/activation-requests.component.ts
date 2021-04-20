@@ -2,6 +2,7 @@ import { Component, SecurityContext, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AlertConfig } from 'ngx-bootstrap/alert';
 import { RequestsService } from '../../../services/requests.service';
+import Swal from "sweetalert2";
 
 // such override allows to keep some initial values
 
@@ -29,10 +30,30 @@ export class ActivationRequestsComponent implements OnInit {
   }
 
   ignoreRequest(user): void {
-    user.accountType = "free"
-    this.requestsService.respondToActivationRequest(user).subscribe((res) => {
-      this.getRequests()
+
+    Swal.fire({
+      title: 'Vous êtes sûr?',
+      text: "Les données supprimées seront perdus",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Annuler',
+      confirmButtonText: 'Oui, supprimer!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Ignoré!',
+          'Demande ignorée avec succès',
+          'success'
+        )
+        user.accountType = "free"
+        this.requestsService.respondToActivationRequest(user).subscribe((res) => {
+          this.getRequests()
+        })
+      }
     })
+
   }
 
   getRequests(): void {

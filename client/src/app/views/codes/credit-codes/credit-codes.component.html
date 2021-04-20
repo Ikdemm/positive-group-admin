@@ -3,10 +3,11 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <i class="fa fa-align-justify"></i> Liste des chapitres
+                    <i class="fa fa-align-justify"></i> Liste des codes
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped">
+                    <p *ngIf="!creditCodes">Pas de codes</p>
+                    <table *ngIf="creditCodes" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Code</th>

@@ -4,6 +4,7 @@ import { CoursesService } from '../../../services/courses.service';
 
 import { MatDialog } from "@angular/material/dialog";
 import { EditCourseComponent } from '../edit-course/edit-course.component';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-courses-list',
@@ -27,11 +28,29 @@ export class CoursesListComponent implements OnInit {
   }
 
   deleteCourse(id) {
-    console.log("Deleting ...")
-    this.coursesService.deleteCourse(id).subscribe((res) => {
-      console.log(res)
-      this.getCourses()
+    Swal.fire({
+      title: 'Vous êtes sûr?',
+      text: "Les données supprimées seront perdus",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Annuler',
+      confirmButtonText: 'Oui, supprimer!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Supprimé!',
+          'Suppression terminée avec succès',
+          'success'
+        )
+        this.coursesService.deleteCourse(id).subscribe((res) => {
+          console.log(res)
+          this.getCourses()
+        })
+      }
     })
+
   }
 
   openEditCourse(course: Course): void {
@@ -40,6 +59,6 @@ export class CoursesListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(res => {
       this.getCourses();
     })
-  } 
+  }
 
 }

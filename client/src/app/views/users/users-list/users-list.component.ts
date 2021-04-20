@@ -30,14 +30,28 @@ export class UsersListComponent implements OnInit {
   }
 
   deleteUser(id): void {
-    this.usersService.deleteUser(id).subscribe((res) => {
-      Swal.fire({
-        icon: "success",
-        title: "Done",
-        text: `Utilisateur supprimé`,
-      });
-      this.getUsers();
-    });
+    Swal.fire({
+      title: 'Vous êtes sûr?',
+      text: "Les données supprimées seront perdus",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Annuler',
+      confirmButtonText: 'Oui, supprimer!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Ignoré!',
+          'Demande ignorée avec succès',
+          'success'
+        )
+        this.usersService.deleteUser(id).subscribe((res) => {
+          this.getUsers();
+        });
+      }
+    })
+
   }
 
   changeUserSubscription(user): void {
