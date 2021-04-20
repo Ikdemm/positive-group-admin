@@ -11,29 +11,22 @@ module.exports = {
             let createdCode = null;
             let newCode = null;
             let code = codeGenerator();
-            let createdOn = new Date();
             switch (req.body.codeType) {
                 case 'activation':
-                    newCode = {
-                        code: code,
-                        createdOn: createdOn
-                    }
-                    createdCode = await ActivationCode.create(newCode)
+                    createdCode = await ActivationCode.create(code)
                     break;
                 case 'course':
                     let courseId = await Course.findOne({ name: req.body.course }, '_id')
                     newCode = {
                         code: code,
-                        course: courseId._id,
-                        createdOn: createdOn
+                        course: courseId._id
                     }
                     createdCode = await CourseCode.create(newCode)
                     break;
                 case 'credit':
                     newCode = {
                         code: code,
-                        value: req.body.value,
-                        createdOn: createdOn
+                        value: req.body.value
                     }
                     createdCode = await CreditCode.create(newCode)
                     break;
