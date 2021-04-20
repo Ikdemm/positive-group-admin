@@ -1,18 +1,60 @@
 import { Component, OnInit } from '@angular/core';
 import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
+import { UsersService } from '../../services/users.service';
+import { CoursesService } from '../../services/courses.service';
+import { ChaptersService } from '../../services/chapters.service';
+import { RequestsService } from '../../services/requests.service';
 
 @Component({
   templateUrl: 'dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
 
+  constructor(
+    private usersService: UsersService,
+    private coursesService: CoursesService,
+    private chaptersService: ChaptersService,
+    private requestsService: RequestsService
+  ) { }
+
+  usersNumber: Number = null;
+  coursesNumber: Number = null;
+  chaptersNumber: Number = null;
+  requestsNumber: Number = null;
+
+  getUsers(): void {
+    this.usersService.getUsers().subscribe((res) => {
+      this.usersNumber = res.length
+    })
+  }
+
+  getCourses(): void {
+    this.coursesService.getCourses().subscribe((res) => {
+      this.coursesNumber = res.length
+    })
+  }
+
+  getChapters(): void {
+    this.chaptersService.getChapters().subscribe((res) => {
+      this.chaptersNumber = res.length
+    })
+  }
+
+  getRequests(): void {
+    this.requestsService.getAllCoursesRequests().subscribe((coursesRequests) => {
+      this.requestsService.getAllActivationRequests().subscribe((activationRequests) => {
+        this.requestsNumber = coursesRequests.length + activationRequests.length
+      })
+    })
+  }
+
   radioModel: string = 'Month';
 
   // lineChart1
   public lineChart1Data: Array<any> = [
     {
-      data: [65, 59, 84, 84, 51, 55, 40],
+      data: [65, 59, 84, 84, 51, 55, this.usersNumber],
       label: 'Series A'
     }
   ];
@@ -70,7 +112,7 @@ export class DashboardComponent implements OnInit {
   // lineChart2
   public lineChart2Data: Array<any> = [
     {
-      data: [1, 18, 9, 17, 34, 22, 11],
+      data: [1, 18, 9, 17, 34, 22, this.coursesNumber],
       label: 'Series A'
     }
   ];
@@ -130,7 +172,7 @@ export class DashboardComponent implements OnInit {
   // lineChart3
   public lineChart3Data: Array<any> = [
     {
-      data: [78, 81, 80, 45, 34, 12, 40],
+      data: [78, 81, 80, 45, 34, 12, this.chaptersNumber],
       label: 'Series A'
     }
   ];
@@ -176,7 +218,7 @@ export class DashboardComponent implements OnInit {
   // barChart1
   public barChart1Data: Array<any> = [
     {
-      data: [78, 81, 80, 45, 34, 12, 40, 78, 81, 80, 45, 34, 12, 40, 12, 40],
+      data: [78, 81, 80, 45, 34, 12, 40, 78, 81, 80, 45, 34, 12, 40, 12, this.requestsNumber],
       label: 'Series A',
       barPercentage: 0.6,
     }
@@ -241,7 +283,7 @@ export class DashboardComponent implements OnInit {
       mode: 'index',
       position: 'nearest',
       callbacks: {
-        labelColor: function(tooltipItem, chart) {
+        labelColor: function (tooltipItem, chart) {
           return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
         }
       }
@@ -254,7 +296,7 @@ export class DashboardComponent implements OnInit {
           drawOnChartArea: false,
         },
         ticks: {
-          callback: function(value: any) {
+          callback: function (value: any) {
             return value.charAt(0);
           }
         }
@@ -378,6 +420,10 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getUsers();
+    this.getCourses();
+    this.getChapters();
+    this.getRequests();
     // generate random values for mainChart
     for (let i = 0; i <= this.mainChartElements; i++) {
       this.mainChartData1.push(this.random(50, 200));

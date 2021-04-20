@@ -19,9 +19,6 @@
         <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com" />
       </a>
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
-        <div class="dropdown-header text-center"><strong>Compte</strong></div>
-        <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span
-            class="badge badge-success">42</span></a>
         <div class="dropdown-header text-center"><strong>Settings</strong></div>
         <a class="dropdown-item" (click)="goToProfile()"><i class="fa fa-user"></i> Profil</a>
         <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Paramètres</a>
@@ -45,9 +42,7 @@
       <!-- Breadcrumb Menu-->
       <li class="breadcrumb-menu d-md-down-none">
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-          <a class="btn" href="#"><i class="icon-speech"></i></a>
           <a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>
-          <a class="btn" href="#"><i class="icon-settings"></i> &nbsp;Paramètres</a>
         </div>
       </li>
     </cui-breadcrumb>

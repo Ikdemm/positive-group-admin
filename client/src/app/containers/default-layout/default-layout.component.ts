@@ -10,6 +10,10 @@ export class DefaultLayoutComponent {
   public sidebarMinimized = false;
   public navItems = navItems;
 
+  getRequests(): void {
+
+  }
+
   toggleMinimize(e) {
     this.sidebarMinimized = e;
   }
