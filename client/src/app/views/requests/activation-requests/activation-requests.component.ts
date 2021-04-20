@@ -20,7 +20,7 @@ export class ActivationRequestsComponent implements OnInit {
 
   constructor(private requestsService: RequestsService) { }
 
-  activationRequests: Array<object>
+  activationRequests: Array<object> = []
 
   acceptRequest(user): void {
     user.accountType = "premium"
