@@ -14,6 +14,7 @@ export class UserDetailsComponent implements OnInit {
   inviteesList: object = {};
   // bonus: Array<Number> = new Array(10);
   bonus = BONUS_INIT;
+  totalBonus: Number = 0;
 
   levels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
@@ -22,12 +23,12 @@ export class UserDetailsComponent implements OnInit {
   getUserInvitees(): void {
     this.usersService.getUserInvitees(this.user._id).subscribe(response => {
       this.inviteesList = response;
-      console.log(this.inviteesList)
       this.calculateBonus()
     })
   }
 
   calculateBonus(): void {
+
     for (let i = 1; i < 11; i++) {
       let bonus = 0
       this.inviteesList[`level${i}Invitees`].map(invitee => {
@@ -36,9 +37,16 @@ export class UserDetailsComponent implements OnInit {
         }
         bonus += invitee.courses * 5
       })
-      console.log(bonus)
       this.bonus[i] = bonus
     }
+
+    let reachedLevel = (this.user['courses'].length >= 5) ? 10 : this.user['courses'].length + 5
+
+    for (let j = 1; j <= reachedLevel; j++) {
+      this.totalBonus += this.bonus[j]
+    }
+
+
   }
 
   ngOnInit(): void {

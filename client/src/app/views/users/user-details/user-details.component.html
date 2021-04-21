@@ -8,6 +8,7 @@
                     <p>{{user.email}}</p><br />
                     <span *ngIf="user.isActivated" class="premium">Premium</span>
                     <span *ngIf="!user.isActivated" class="free">Free</span>
+                    <h5>Bonus Total: {{totalBonus}}</h5>
                 </div>
             </div>
         </div>
