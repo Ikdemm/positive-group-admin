@@ -22,7 +22,6 @@ export class CategoriesService {
   }
 
   createCategory(categoryData: FormData): Observable<any> {
-    console.log(categoryData)
     return this.http.post(DEV_REQUEST_URL + "/api/categories", categoryData);
   }
 

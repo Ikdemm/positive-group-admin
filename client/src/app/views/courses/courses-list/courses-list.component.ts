@@ -17,9 +17,6 @@ export class CoursesListComponent implements OnInit {
 
   constructor(private coursesService: CoursesService, private dialogRef: MatDialog) { }
 
-  ngOnInit(): void {
-    this.getCourses()
-  }
 
   getCourses() {
     this.coursesService.getCourses().subscribe((courses) => {
@@ -45,7 +42,6 @@ export class CoursesListComponent implements OnInit {
           'success'
         )
         this.coursesService.deleteCourse(id).subscribe((res) => {
-          console.log(res)
           this.getCourses()
         })
       }
@@ -61,4 +57,7 @@ export class CoursesListComponent implements OnInit {
     })
   }
 
+  ngOnInit(): void {
+    this.getCourses()
+  }
 }

@@ -1,9 +1,12 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { FormGroup, FormControl } from "@angular/forms";
 import { Course } from "../../../models/course.model";
 import { CoursesService } from "../../../services/courses.service";
 import { CategoriesService } from "../../../services/categories.service";
 import { Category } from "../../../models/category.model";
+
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-add-course",
@@ -25,7 +28,8 @@ export class AddCourseComponent implements OnInit {
 
   constructor(
     private coursesService: CoursesService,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -52,7 +56,21 @@ export class AddCourseComponent implements OnInit {
     this.coursesService
       .createCourse(formData)
       .subscribe((res) => {
-        console.log(res);
+        if (res) {
+          Swal.fire({
+            icon: "success",
+            title: "Succès",
+            text: `Cours créé avec succès`,
+          }).then(() => {
+            this.router.navigate(['/courses/list'])
+          })
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops",
+            text: `Une erreur a eu lieu `,
+          });
+        }
       });
   }
 }

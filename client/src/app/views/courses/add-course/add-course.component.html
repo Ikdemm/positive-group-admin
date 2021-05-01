@@ -3,9 +3,9 @@
   <form [formGroup]="courseForm" (submit)="onSubmit()" enctype="multipart/form-data" class="form-horizontal">
     <div class="card-body">
       <div class="form-group row">
-        <label class="col-md-3 col-form-label" for="text-input">Titre du cours</label>
+        <label class="col-md-3 col-form-label" for="name">Titre du cours</label>
         <div class="col-md-9">
-          <input formControlName="name" type="text" id="text-input" name="text-input" class="form-control"
+          <input formControlName="name" type="text" id="name" name="text-input" class="form-control"
             placeholder="Titre" />
         </div>
       </div>
@@ -23,28 +23,28 @@
       <div class="form-group row">
         <label class="col-md-3 col-form-label" for="textarea-input">Description</label>
         <div class="col-md-9">
-          <textarea formControlName="description" id="textarea-input" name="textarea-input" rows="9"
-            class="form-control" placeholder="Ajouter une déscription pour le cours .."></textarea>
+          <textarea formControlName="description" name="textarea-input" rows="9" class="form-control"
+            placeholder="Ajouter une déscription pour le cours .."></textarea>
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-md-3 col-form-label" for="text-input">Durée du cours</label>
+        <label class="col-md-3 col-form-label" for="duration">Durée du cours</label>
         <div class="col-md-9">
-          <input formControlName="duration" type="text" id="text-input" name="text-input" class="form-control"
+          <input formControlName="duration" type="text" id="duration" name="text-input" class="form-control"
             placeholder="Durée" />
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-md-3 col-form-label" for="text-input">Prix du cours</label>
+        <label class="col-md-3 col-form-label" for="price">Prix du cours</label>
         <div class="col-md-9">
-          <input formControlName="price" type="number" id="text-input" name="text-input" class="form-control"
+          <input formControlName="price" type="number" id="price" name="text-input" class="form-control"
             placeholder="Prix" />
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-md-3 col-form-label" for="file-input">Image du cours</label>
+        <label class="col-md-3 col-form-label" for="image">Image du cours</label>
         <div class="col-md-9">
-          <input type="file" id="file-input" name="file-input" (change)="onImageSelected($event)" />
+          <input type="file" id="file-input" name="image" (change)="onImageSelected($event)" />
         </div>
       </div>
     </div>

@@ -49,8 +49,10 @@ module.exports = {
 
     deleteCourse: async (req, res) => {
         try {
-            const deletedCourse = await repository.delete(req.params.id, Course)
-            res.status(200).send(deletedCourse)
+            const course = await repository.findOneById(req.params.id, Course)
+            await Category.findOneAndUpdate({ courses: { $in: [req.params.id] } }, { '$pull': { courses: [req.params.id] } })
+            await repository.delete(req.params.id, Course)
+            res.status(200).send({ message: "Deleted" })
         }
         catch (e) {
             console.error(e);

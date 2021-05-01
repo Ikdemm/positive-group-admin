@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 import { CategoriesService } from "../../../services/categories.service";
-import { HttpEventType } from '@angular/common/http'
+import { Router } from '@angular/router';
 
 import Swal from "sweetalert2";
 
@@ -20,7 +20,8 @@ export class AddCategoryComponent implements OnInit {
   selectedImage: File = null;
 
   constructor(
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private router: Router
   ) { }
 
   onSubmit() {
@@ -33,14 +34,17 @@ export class AddCategoryComponent implements OnInit {
         if (res) {
           Swal.fire({
             icon: "success",
-            title: "Done",
-            text: `Category added`,
-          });
+            title: "Succès",
+            text: `Categorie crée avec succès`,
+          }).then(() => {
+            this.router.navigate(['/categories/list'])
+          })
+
         } else {
           Swal.fire({
             icon: "error",
             title: "Oops",
-            text: `Something went wrong `,
+            text: `Une erreur a eu lieu `,
           });
         }
       })
