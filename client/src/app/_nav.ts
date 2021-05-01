@@ -4,11 +4,7 @@ export const navItems: INavData[] = [
   {
     name: "Acceuil",
     url: "/dashboard",
-    icon: "icon-speedometer",
-    // badge: {
-    //   variant: 'info',
-    //   text: 'NEW'
-    // }
+    icon: "icon-speedometer"
   },
   {
     title: true,
