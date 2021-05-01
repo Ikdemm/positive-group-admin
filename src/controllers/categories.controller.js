@@ -44,7 +44,7 @@ module.exports = {
                 await filesRepository.saveFileToCloudinary("category", req.file.path, req.body.name)
                 : req.body.image;
             updatedCategory.image = imageUrl;
-            const category = await repository.updateOne(req.params.id, updatedCategory, Category)
+            const category = await repository.updateOne(Category, req.params.id, updatedCategory)
             res.status(200).send(category)
         }
         catch (e) {
