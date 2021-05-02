@@ -12,6 +12,7 @@ module.exports = {
         }
         catch (e) {
             console.error(e);
+            res.status(500).send(e)
         }
     },
 
@@ -29,6 +30,7 @@ module.exports = {
         }
         catch (e) {
             console.error(e);
+            res.status(500).send(e)
         }
     },
 
@@ -44,18 +46,21 @@ module.exports = {
         }
         catch (e) {
             console.error(e);
+            res.status(500).send(e)
         }
     },
 
     deleteCourse: async (req, res) => {
         try {
-            const course = await repository.findOneById(req.params.id, Course)
-            await Category.findOneAndUpdate({ courses: { $in: [req.params.id] } }, { '$pull': { courses: [req.params.id] } })
-            await repository.delete(req.params.id, Course)
+            const courseId = req.params.id;
+            const course = Course.findById(courseId)
+            await Category.findOneAndUpdate({ courses: course._id }, { '$pull': { courses: [course._id] } })
+            await repository.delete(courseId, Course)
             res.status(200).send({ message: "Deleted" })
         }
         catch (e) {
             console.error(e);
+            res.status(500).send(e)
         }
     }
 }

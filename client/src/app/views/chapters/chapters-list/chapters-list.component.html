@@ -5,10 +5,7 @@
                 <div class="card-header">
                     <i class="fa fa-align-justify"></i> Liste des chapitres
                 </div>
-                <div *ngIf="chapters.length == 0" class="card-body">
-                    <p>Pas de chapitres ...</p>
-                </div>
-                <div *ngIf="!chapters.length == 0" class="card-body">
+                <div class="card-body">
 
                     <table *ngIf="chapters" class="table table-striped">
                         <thead>
@@ -22,7 +19,7 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let chapter of chapters">
-                                <td>{{chapter.title}}</td>
+                                <td>{{chapter.name}}</td>
                                 <td>{{chapter.description}}</td>
                                 <td>{{chapter.course}}</td>
                                 <td>{{chapter.video}}</td>

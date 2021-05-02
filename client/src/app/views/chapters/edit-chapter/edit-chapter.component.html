@@ -2,13 +2,13 @@
     <div class="card-header">
         <strong>Modifier</strong> Chapitre
     </div>
-    <form (submit)="onSubmit(title.value, course.value, description.value, video.value)" [formGroup]="editChapterForm"
+    <form (submit)="onSubmit(name.value, course.value, description.value, video.value)" [formGroup]="editChapterForm"
         enctype="multipart/form-data" class="form-horizontal">
         <div class="card-body">
             <div class="form-group">
                 <label class="col-form-label" for="text-input">Titre du chapitre</label>
-                <input [(value)]="chapter.title" type="text" id="text-input" name="text-input" class="form-control"
-                    #title />
+                <input [(value)]="chapter.name" type="text" id="text-input" name="text-input" class="form-control"
+                    #name />
             </div>
             <div class="form-group">
                 <label class="col-form-label" for="select1">Cours du chapitre</label>

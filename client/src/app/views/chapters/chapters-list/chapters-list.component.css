@@ -20,3 +20,7 @@ tr:hover {
 .last-header {
     text-align: right;
 }
+
+td {
+    font-size: 1em;
+}

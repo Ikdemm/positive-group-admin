@@ -1,10 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
+import { Router } from '@angular/router'
 // import { Chapter } from "../../../models/chapter.model";
 import { ChaptersService } from "../../../services/chapters.service";
 import Swal from "sweetalert2";
 import { Course } from "../../../models/course.model";
 import { CoursesService } from "../../../services/courses.service";
+
+
 @Component({
   selector: "app-add-chapter",
   templateUrl: "./add-chapter.component.html",
@@ -14,7 +17,7 @@ export class AddChapterComponent implements OnInit {
   courses: Array<Course>;
 
   chapterForm = new FormGroup({
-    title: new FormControl(""),
+    name: new FormControl(""),
     description: new FormControl(""),
     course: new FormControl(""),
     video: new FormControl(""),
@@ -22,8 +25,9 @@ export class AddChapterComponent implements OnInit {
 
   constructor(
     private chaptersService: ChaptersService,
-    private coursesService: CoursesService
-  ) {}
+    private coursesService: CoursesService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.getCourses();
@@ -40,14 +44,16 @@ export class AddChapterComponent implements OnInit {
       if (res) {
         Swal.fire({
           icon: "success",
-          title: "Done",
-          text: `Chapter added`,
-        });
+          title: "Succès",
+          text: `Chapitre créé avec succès`,
+        }).then(() => {
+          this.router.navigate(['/chapters/list'])
+        })
       } else {
         Swal.fire({
           icon: "error",
           title: "Oops",
-          text: `Something went wrong `,
+          text: `Une erreur a eu lieu`,
         });
       }
     });

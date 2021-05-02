@@ -1,11 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder } from "@angular/forms";
+import { Router } from '@angular/router';
 import { MatDialogRef } from "@angular/material/dialog";
 import { Chapter } from "../../../models/chapter.model";
 import { Course } from "../../../models/course.model";
 import { ChaptersService } from "../../../services/chapters.service";
 import { CoursesService } from "../../../services/courses.service";
 import Swal from "sweetalert2";
+
+
 @Component({
   selector: "app-edit-chapter",
   templateUrl: "./edit-chapter.component.html",
@@ -21,8 +24,9 @@ export class EditChapterComponent implements OnInit {
     private dialogRef: MatDialogRef<EditChapterComponent>,
     private coursesService: CoursesService,
     private chaptersService: ChaptersService,
-    private formBuilder: FormBuilder
-  ) {}
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) { }
 
   createForm(): void {
     this.editChapterForm = this.formBuilder.group({});
@@ -32,10 +36,10 @@ export class EditChapterComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onSubmit(title, course, description, video) {
+  onSubmit(name, course, description, video) {
     this.chapter = {
       _id: this.chapter._id,
-      title: title,
+      name: name,
       course: course,
       description: description,
       video: video,
@@ -43,10 +47,13 @@ export class EditChapterComponent implements OnInit {
     this.chaptersService.editChapter(this.chapter).subscribe((res) => {
       Swal.fire({
         icon: "success",
-        title: "Done",
-        text: `Chapter updated`,
-      });
-      this.closeModal();
+        title: "Succès",
+        text: `Chapitre modifié avec succès`,
+      }).then(() => {
+        this.closeModal();
+        this.router.navigate(['/chapters/list'])
+      })
+
     });
   }
 
