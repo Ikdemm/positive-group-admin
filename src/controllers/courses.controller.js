@@ -2,6 +2,7 @@ const Course = require('../models/course');
 const repository = require("../repositories/base.repository");
 const filesRepository = require("../repositories/files.repository");
 const Category = require('../models/category');
+const baseRepository = require('../repositories/base.repository');
 
 module.exports = {
 
@@ -54,8 +55,8 @@ module.exports = {
         try {
             const courseId = req.params.id;
             console.log(courseId)
-            const course = await Course.findById(courseId)
-            const category = await Category.findOneAndUpdate({ courses: course._id }, { $pullAll: { courses: [course._id] } })
+            const course = await baseRepository.findOneById(courseId, Course)
+            await Category.findOneAndUpdate({ courses: course._id }, { $pullAll: { courses: [course._id] } })
             await repository.delete(courseId, Course)
             res.status(200).send({ message: "Deleted" })
         }

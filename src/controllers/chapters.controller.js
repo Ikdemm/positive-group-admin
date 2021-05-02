@@ -1,6 +1,5 @@
 const Chapter = require("../models/chapter");
 const Course = require("../models/course");
-const baseRepository = require("../repositories/base.repository");
 const repository = require("../repositories/base.repository")
 
 module.exports = {
@@ -35,7 +34,8 @@ module.exports = {
     deleteChapter: async (req, res) => {
         try {
             const chapterId = req.params.id;
-            await Course.findOneAndUpdate({ chapters: `ObjectId(${chapterId})` }, { '$pull': { chapters: [`ObjectId(${chapterId})`] } })
+            const chapter = await repository.findOneById(req.params.id, Chapter)
+            await Course.findOneAndUpdate({ chapters: chapter._id }, { $pullAll: { chapters: [chapter._id] } })
             await repository.delete(chapterId, Chapter)
             res.status(200).send({ message: "Deleted" })
         }
