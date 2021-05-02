@@ -1,6 +1,5 @@
 const User = require("../models/user");
 const repository = require("../repositories/base.repository");
-const BonusTree = require("../models/bonusTree")
 
 module.exports = {
 
