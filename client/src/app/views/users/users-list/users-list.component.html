@@ -38,8 +38,8 @@
                                     </button>
                                     <button (click)="changeUserSubscription(user)" type="button"
                                         class="btn btn-primary action-button">
-                                        <i *ngIf="!user.isActivated" class="fa fa-arrow-up"></i>
-                                        <i *ngIf="user.isActivated" class="fa fa-arrow-down"></i>
+                                        <i *ngIf="user.accountType == 'free'" class="fa fa-arrow-up"></i>
+                                        <i *ngIf="user.accountType == 'premium'" class="fa fa-arrow-down"></i>
                                     </button>
                                 </td>
                             </tr>

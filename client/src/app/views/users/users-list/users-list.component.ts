@@ -25,6 +25,7 @@ export class UsersListComponent implements OnInit {
 
   getUsers(): void {
     this.usersService.getUsers().subscribe((users: Array<User>) => {
+      console.log(users)
       this.users = users
     })
   }
@@ -42,8 +43,8 @@ export class UsersListComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire(
-          'Ignoré!',
-          'Demande ignorée avec succès',
+          'Supprimé!',
+          'Utilisateur supprimé avec succès',
           'success'
         )
         this.usersService.deleteUser(id).subscribe((res) => {
@@ -55,17 +56,20 @@ export class UsersListComponent implements OnInit {
   }
 
   changeUserSubscription(user): void {
-    user.accountType = 'premium';
+    user.accountType = user.accountType == 'premium' ? 'free' : 'premium';
     this.usersService.updateUser(user).subscribe((res) => {
-      if (user.accountType == 'premium') {
+      console.log(res)
+      if (res.accountType == 'premium') {
         Swal.fire({
           icon: "success",
           title: "Activation",
           text: "compte activé avec succès",
-        });
+        }).then(() => {
+          this.getUsers();
+        })
       } else {
         Swal.fire({
-          icon: "error",
+          icon: "success",
           title: "Désactivation",
           text: "compte désactivé avec succès",
         });
