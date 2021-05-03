@@ -6,9 +6,12 @@
                     <img [src]="user.image" alt="">
                     <h1>{{user.firstName}} {{user.lastName}}</h1>
                     <p>{{user.email}}</p><br />
-                    <span *ngIf="user.isActivated" class="premium">Premium</span>
-                    <span *ngIf="!user.isActivated" class="free">Free</span>
-                    <h5>Bonus Total: {{totalBonus}}</h5>
+                    <span *ngIf="user.accountType == 'premium'" class="premium">Premium</span>
+                    <span *ngIf="user.accountType == 'free' || user.accountType == 'requested'" class="free">Free</span>
+                    <div class="total-bonus-box">
+                        <h5 class="total-bonus-text">Bonus Total</h5>
+                        <h3 class="total-bonus-title">{{totalBonus}}</h3>
+                    </div>
                 </div>
             </div>
         </div>
