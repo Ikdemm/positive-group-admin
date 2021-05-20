@@ -18,13 +18,11 @@ module.exports = {
     createChapter: async (req, res) => {
         try {
             const chapter = await repository.save(req.body, Chapter);
-            const updatedCourse = await Course.updateOne(
+            await Course.updateOne(
                 { name: req.body.course },
                 { $addToSet: { chapters: [chapter._id] } }
             );
-            if (updatedCourse) {
-                res.status(201).send(chapter)
-            }
+            res.status(201).send(chapter)
         }
         catch (e) {
             console.error(e);
