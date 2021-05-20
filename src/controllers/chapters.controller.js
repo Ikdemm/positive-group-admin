@@ -11,12 +11,12 @@ module.exports = {
         }
         catch (e) {
             console.error(e);
+            res.status(500).send(e)
         }
     },
 
     createChapter: async (req, res) => {
         try {
-            console.log(req.body)
             const chapter = await repository.save(req.body, Chapter);
             const updatedCourse = await Course.updateOne(
                 { name: req.body.course },
@@ -28,6 +28,7 @@ module.exports = {
         }
         catch (e) {
             console.error(e);
+            res.status(500).send(e)
         }
     },
 
