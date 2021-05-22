@@ -18,7 +18,7 @@ module.exports = {
              * Check if an admin with that email exists
              */
             if (!adminData) {
-                return (400, { message: "ADMIN NOT FOUND" })
+                return ({ status: 400, message: "ADMIN NOT FOUND", accessToken: null, admin: adminData })
             } else {
                 /** 
                  * Compare the input password with the hashed password in the database
@@ -29,9 +29,9 @@ module.exports = {
                      * Create a jwt Token and send it back to the client
                      */
                     const accessToken = jwt.sign(admin, process.env.ACCESS_TOKEN_SECRET)
-                    return ({ status: 200, accessToken: accessToken })
+                    return ({ status: 200, message: "SUCCESS", accessToken: accessToken })
                 }
-                return ({ status: 401, message: "WRONG PASSWORD" })
+                return ({ status: 401, message: "WRONG PASSWORD", accessToken: null })
             }
         }
 
