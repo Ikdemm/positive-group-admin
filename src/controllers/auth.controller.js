@@ -24,7 +24,7 @@ module.exports = {
 
         try {
             const { status, message } = await authRepository.signup(req.body, Admin)
-            res.status(status).json(message)
+            res.status(status).send(message)
         }
         catch (e) {
             res.status(500).send({ error: e })

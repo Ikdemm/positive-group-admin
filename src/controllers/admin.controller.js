@@ -39,7 +39,7 @@ module.exports = {
 
     createAdmin: async (req, res) => {
         try {
-            const user = await repository.save(req.body, User)
+            const user = await repository.save(req.body, Admin)
             res.status(200).send(user)
         }
         catch (e) {

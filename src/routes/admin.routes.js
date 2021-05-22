@@ -6,7 +6,7 @@ router.get("/", authenticateToken, adminController.getAdminData);
 
 router.get("/:email", authenticateToken, adminController.getAdminByEmail);
 
-router.post("/", authenticateToken, adminController.createAdmin);
+router.post("/", adminController.createAdmin);
 
 router.put("/:id", authenticateToken, adminController.updateAdmin);
 
