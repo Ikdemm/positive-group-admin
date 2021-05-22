@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/user.model';
 import { UsersService } from '../../../services/users.service';
 import { BONUS_INIT } from '../../../constants/dev';
+import { BonusTree } from '../../../models/bonusTree';
 
 @Component({
   selector: 'app-user-details',
@@ -11,7 +12,7 @@ import { BONUS_INIT } from '../../../constants/dev';
 export class UserDetailsComponent implements OnInit {
 
   user: User;
-  inviteesList: object = {};
+  inviteesList: BonusTree;
   // bonus: Array<Number> = new Array(10);
   bonus = BONUS_INIT;
   totalBonus: Number = 0;
@@ -21,7 +22,7 @@ export class UserDetailsComponent implements OnInit {
   constructor(private usersService: UsersService) { }
 
   getUserInvitees(): void {
-    this.usersService.getUserInvitees(this.user._id).subscribe(response => {
+    this.usersService.getUserInvitees(this.user._id).subscribe((response: BonusTree) => {
       this.inviteesList = response;
       this.calculateBonus()
     })

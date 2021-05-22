@@ -1,7 +1,13 @@
-enum accountTypeEnum {
-    'free',
-    'pending',
-    'premium',
+enum AccountTypeEnum {
+    free = 'free',
+    requested = 'requested',
+    premium = 'premium',
+}
+
+enum genderEnum {
+    'male',
+    'female',
+    null
 }
 
 export class User {
@@ -13,7 +19,7 @@ export class User {
     job: String;
     bonus: String;
     email: String;
-    accountType: accountTypeEnum;
+    accountType: AccountTypeEnum;
     password: String;
     isActivated: Boolean;
     invitees: Array<String>;
