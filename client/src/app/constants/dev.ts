@@ -1,4 +1,5 @@
-export const DEV_REQUEST_URL = "http://localhost:8000"
+const environment = "production"
+export const DEV_REQUEST_URL = (environment == "production") ? "" : "http://localhost:8000"
 export const BONUS_INIT = {
     1: 0,
     2: 0,
