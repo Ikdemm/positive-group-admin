@@ -1,70 +1,40 @@
 const Admin = require("../models/admin");
 const repository = require("../repositories/base.repository");
+const { catchAsync } = require("../helpers")
 require("dotenv").config();
 
 module.exports = {
 
     // To be edited when we add CRUD for admins
-    getAdminData: async (req, res) => {
-        try {
-            const admins = await repository.find(Admin)
-            res.status(200).send(admins[0])
-        }
-        catch (e) {
-            console.error(e);
-        }
-    },
+    getAdminData: catchAsync(async (req, res) => {
+        const admins = await repository.find(Admin)
+        res.status(200).send(admins[0])
+    }),
 
-    getAllAdmins: async (req, res) => {
-        error
-        try {
-            const admins = await repository.findAll(Admin)
-            res.status(200).send(admins)
-        }
-        catch (e) {
-            console.error(e);
-        }
-    },
+    getAllAdmins: catchAsync(async (req, res) => {
+        const admins = await repository.findAll(Admin)
+        res.status(200).send(admins)
+    }),
 
-    getAdminByEmail: async (req, res) => {
-        try {
-            console.log(req.params.email)
-            const admin = await repository.findOne({ email: req.params.email }, Admin)
-            res.status(200).send(admin)
-        }
-        catch (e) {
-            console.error(e);
-        }
-    },
+    getAdminByEmail: catchAsync(async (req, res) => {
+        console.log(req.params.email)
+        const admin = await repository.findOne({ email: req.params.email }, Admin)
+        res.status(200).send(admin)
+    }),
 
-    createAdmin: async (req, res) => {
-        try {
-            const user = await repository.save(req.body, Admin)
-            res.status(200).send(user)
-        }
-        catch (e) {
-            console.error(e);
-        }
-    },
+    createAdmin: catchAsync(async (req, res) => {
+        const user = await repository.save(req.body, Admin)
+        res.status(200).send(user)
+    }),
 
-    updateAdmin: async (req, res) => {
-        try {
-            const updatedAdmin = await repository.updateOne(req.params.id, req.body, Admin)
-            res.status(200).send(updatedAdmin)
-        }
-        catch (e) {
-            console.error(e);
-        }
-    },
+    updateAdmin: catchAsync(async (req, res) => {
+        const updatedAdmin = await repository.updateOne(req.params.id, req.body, Admin)
+        res.status(200).send(updatedAdmin)
+    }),
 
-    deleteAdmin: async (req, res) => {
-        try {
-            const deletedAmin = await repository.delete(req.params.id, Amin)
-            res.status(200).send(deletedAmin)
-        }
-        catch (e) {
-            console.error(e);
-        }
-    }
+    deleteAdmin: catchAsync(async (req, res) => {
+        const deletedAmin = await repository.delete(req.params.id, Amin)
+        res.status(200).send(deletedAmin)
+    })
 
 }

@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const repository = require("../repositories/base.repository");
-const catchAsync = require("../helpers/catchAsync");
+const { catchAsync } = require("../helpers")
 
 module.exports = {
 
