@@ -12,7 +12,13 @@ router.put("/:id", authenticateToken, usersController.updateUser)
 router.delete("/:id", authenticateToken, usersController.deleteUser)
 
 
-router.get('/:userId/invitees', usersController.getInvitees)
+router.get('/:userId/invitees', authenticateToken, usersController.getInvitees)
+
+
+router.post('/default-inviter/:userId', authenticateToken, usersController.assignAutomaticInviter)
+
+
+router.get('/default-inviter/', authenticateToken, usersController.getAutomaticInviter)
 
 
 module.exports = router;

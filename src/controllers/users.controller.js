@@ -1,39 +1,26 @@
 const User = require("../models/user");
 const repository = require("../repositories/base.repository");
+const catchAsync = require("../helpers/catchAsync");
 
 module.exports = {
 
-    getAllUsers: async (req, res) => {
-        try {
-            const users = await repository.findAll(User)
-            res.status(200).send(users)
-        }
-        catch (e) {
-            console.error(e);
-        }
-    },
+    getAllUsers: catchAsync(async (req, res) => {
+        const users = await repository.findAll(User)
+        console.log(users)
+        res.status(200).send(users)
+    }),
 
-    updateUser: async (req, res) => {
-        try {
-            const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body)
-            res.status(200).send(updatedUser)
-        }
-        catch (e) {
-            console.error(e);
-        }
-    },
+    updateUser: catchAsync(async (req, res) => {
+        const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body)
+        res.status(200).send(updatedUser)
+    }),
 
-    deleteUser: async (req, res) => {
-        try {
-            const deletedUser = await repository.delete(req.params.id, User)
-            res.status(200).send(deletedUser)
-        }
-        catch (e) {
-            console.error(e);
-        }
-    },
+    deleteUser: catchAsync(async (req, res) => {
+        const deletedUser = await repository.delete(req.params.id, User)
+        res.status(200).send(deletedUser)
+    }),
 
-    getInvitees: async (req, res) => {
+    getInvitees: catchAsync(async (req, res) => {
         // Get user id from params
         let userId = req.params.userId;
 
@@ -90,7 +77,17 @@ module.exports = {
             }
         }
 
-        res.send(response)
+        res.status(200).send(response)
 
-    },
+    }),
+
+    assignAutomaticInviter: catchAsync(async (req, res) => {
+        await User.findByIdAndUpdate(req.params.userId, { $set: { isDefaultInviter: true } })
+        res.status(200).send("Updated")
+    }),
+
+    getAutomaticInviter: catchAsync(async (req, res) => {
+        const defaultInviter = await User.findOne({ isDefaultInviter: true });
+        res.status(200).send(defaultInviter)
+    })
 }

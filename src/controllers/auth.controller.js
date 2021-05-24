@@ -11,7 +11,7 @@ module.exports = {
             const { status, message, accessToken, admin } = await authRepository.login(req.body, Admin)
             console.log(status, message, accessToken, admin)
             if (status == 200) res.status(status).send({ accessToken: accessToken, admin: admin })
-            res.status(status).send({ message: message })
+            if (status !== 200) res.status(status).send({ message: message })
         }
         catch (error) {
             console.error(error)
