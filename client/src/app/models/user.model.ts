@@ -27,4 +27,5 @@ export class User {
     image: String;
     phone: Number;
     location: String;
+    isDefaultInviter: Boolean
 }

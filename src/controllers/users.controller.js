@@ -6,7 +6,6 @@ module.exports = {
 
     getAllUsers: catchAsync(async (req, res) => {
         const users = await repository.findAll(User)
-        console.log(users)
         res.status(200).send(users)
     }),
 
@@ -81,13 +80,18 @@ module.exports = {
 
     }),
 
-    assignAutomaticInviter: catchAsync(async (req, res) => {
-        await User.findByIdAndUpdate(req.params.userId, { $set: { isDefaultInviter: true } })
-        res.status(200).send("Updated")
+    assignDefaultInviter: catchAsync(async (req, res) => {
+        const user = await User.findByIdAndUpdate(req.params.userId, { $set: { isDefaultInviter: true } })
+        res.status(200).send({ message: "success" })
     }),
 
-    getAutomaticInviter: catchAsync(async (req, res) => {
+    unassignDefaultInviter: catchAsync(async (req, res) => {
+        const user = await User.findByIdAndUpdate(req.params.userId, { $set: { isDefaultInviter: false } })
+        res.status(200).send({ message: "success" })
+    }),
+
+    getDefaultInviter: catchAsync(async (req, res) => {
         const defaultInviter = await User.findOne({ isDefaultInviter: true });
-        res.status(200).send(defaultInviter)
+        res.status(200).send({ defaultInviter: defaultInviter })
     })
 }
