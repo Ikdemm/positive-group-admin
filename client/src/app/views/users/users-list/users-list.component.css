@@ -9,6 +9,7 @@
     margin-left: 3px;
     border-radius: 0;
     transition: .4s;
+    width: 33px;
 }
 
 .action-button:hover {
