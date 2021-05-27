@@ -34,8 +34,14 @@ tr:hover {
 }
 
 .username:hover {
-    color:rgb(214, 204, 69);
+    color:#fff;
     cursor: pointer;
+    transition: .3s;
+}
+
+.username {
+    padding-left: 1em;
+    transition: .3s;
 }
 
 .main {
@@ -89,5 +95,5 @@ td {
     bottom: 1ex; 
     font-size: 50%;
     letter-spacing: 0;
-  }
+}
 

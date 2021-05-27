@@ -4,6 +4,14 @@
     padding-left: 0 !important;
 }
 
+.section-header {
+    font-size: 22px !important;
+    font-weight: 500 !important;
+    margin: 0 0 20px !important;
+    font-family: 'Montserrat', sans-serif !important;
+    color: #89817e;
+}
+
 .total-bonus-box {
     margin-top: 4em;
     border: 1px solid #fff;
@@ -13,8 +21,12 @@
 
 .total-bonus-title {
     font-weight: 600;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 3em;
+}
+
+.user-infos {
+    display: flex;
+    justify-content: space-between;
 }
 
 .premium {
@@ -38,7 +50,6 @@
     font-size: 40px;
     font-weight: bolder;
     line-height: normal;
-    font-family: Arial;
     text-align: center;
 }
 
@@ -83,13 +94,6 @@
     height: 112px;
     border-radius: 50%;
     -webkit-border-radius: 50%;
-}
-
-.profile-nav .user-heading h1 {
-    margin-top: 5px;
-    font-size: 22px;
-    font-weight: 300;
-    margin-bottom: 1px !important;
 }
 
 .profile-nav .user-heading p {
@@ -173,11 +177,6 @@
     color: #89817e;
 }
 
-.bio-graph-info h1 {
-    font-size: 22px;
-    font-weight: 300;
-    margin: 0 0 20px;
-}
 
 .bio-row {
     width: 50%;
