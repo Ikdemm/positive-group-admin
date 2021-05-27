@@ -18,26 +18,27 @@ module.exports = {
              * Check if an admin with that email exists
              */
             if (!adminData) {
-                return ({ status: 400, message: "ADMIN NOT FOUND", accessToken: null, admin: adminData })
+                return ({ status: 400, message: "ADMIN NOT FOUND", accessToken: null, admin: null })
             } else {
                 /** 
                  * Compare the input password with the hashed password in the database
                  */
-                const admin = { email: adminData.email }
+                const hashData = { email: adminData.email }
                 if (await bcrypt.compare(data.password, adminData.password)) {
                     /** 
                      * Create a jwt Token and send it back to the client
                      */
-                    const accessToken = jwt.sign(admin, process.env.ACCESS_TOKEN_SECRET)
-                    return ({ status: 200, message: "SUCCESS", accessToken: accessToken })
+                    const accessToken = jwt.sign(hashData, process.env.ACCESS_TOKEN_SECRET)
+                    return ({ status: 200, message: "SUCCESS", accessToken: accessToken, admin: adminData })
+                } else {
+
+                    return ({ status: 401, message: "WRONG PASSWORD", accessToken: null, admin: null })
                 }
-                return ({ status: 401, message: "WRONG PASSWORD", accessToken: null })
             }
         }
 
         catch (err) {
             console.error(err)
-            throw err
         }
     },
 

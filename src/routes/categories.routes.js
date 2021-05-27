@@ -6,7 +6,7 @@ const upload = require("../middlewares/multer")
 
 // Retrieving existing Categories
 
-router.get("/", categoriesController.getAllCategories);
+router.get("/", authenticateToken, categoriesController.getAllCategories);
 
 // Creating new categories
 

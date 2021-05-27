@@ -88,4 +88,34 @@ export class UsersListComponent implements OnInit {
     });
   }
 
+  changeDefaultInviter(user: User): void {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Vous êtes sûr?',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Annuler',
+      confirmButtonText: 'Oui, Confirmer!'
+    }).then(() => {
+      this.usersService.changeDefaultInviter(user).subscribe((res) => {
+        console.log(res)
+        if (res.message == "success") {
+          Swal.fire({
+            icon: "success",
+            title: "Succès",
+            text: "Données sauvegardés avec succès",
+          })
+          this.getUsers();
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Erreur",
+            text: "Erreur serveur",
+          });
+        }
+      })
+    })
+  }
+
 }

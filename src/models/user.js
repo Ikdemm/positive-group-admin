@@ -27,7 +27,8 @@ const userSchema = new Schema({
     inviter: { type: String, default: null },
     code: { type: String, required: true },
     courses: { type: Array, default: [] },
-    courseRequests: { type: Array, default: [] }
+    courseRequests: { type: Array, default: [] },
+    isDefaultInviter: { type: Boolean, default: false }
 })
 
 const User = mongoose.model('User', userSchema)

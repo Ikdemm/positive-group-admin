@@ -36,6 +36,11 @@
                                         class="btn btn-danger action-button">
                                         <i class="fa fa-trash"></i>
                                     </button>
+                                    <button (click)="changeDefaultInviter(user)" type="button"
+                                        class="btn btn-warning action-button">
+                                        <i *ngIf="user.isDefaultInviter == false" class="fa fa-check"></i>
+                                        <i *ngIf="user.isDefaultInviter == true" class="fa fa-times"></i>
+                                    </button>
                                     <button (click)="changeUserSubscription(user)" type="button"
                                         class="btn btn-primary action-button">
                                         <i *ngIf="user.accountType == 'free'" class="fa fa-arrow-up"></i>

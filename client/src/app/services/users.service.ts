@@ -33,4 +33,9 @@ export class UsersService {
     return this.http.get(DEV_REQUEST_URL + `/api/users/${id}/invitees`)
   }
 
+  changeDefaultInviter(user: User): Observable<any> {
+    if (!user.isDefaultInviter) return this.http.post(DEV_REQUEST_URL + `/api/users/default-inviter/assign/${user._id}`, {})
+    if (user.isDefaultInviter) return this.http.post(DEV_REQUEST_URL + `/api/users/default-inviter/unassign/${user._id}`, {})
+  }
+
 }

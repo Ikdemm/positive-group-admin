@@ -9,6 +9,7 @@ const authRoutes = require('./auth.routes');
 const requestsRoutes = require('./requests.routes');
 const codesRoutes = require('./codes.routes')
 const adminsRoutes = require('./admin.routes')
+const bonusRoutes = require('./bonus.routes')
 
 const router = express.Router();
 
@@ -44,6 +45,10 @@ const defaultRoutes = [
     {
         path: '/admins',
         route: adminsRoutes
+    },
+    {
+        path: '/bonus',
+        route: bonusRoutes
     }
 ]
 
