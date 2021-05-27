@@ -9,7 +9,7 @@ router.get('/', authenticateToken,
 router.post('/unassign', authenticateToken,
     defaultInviterController.unassignDefaultInviter
 )
-router.post('/assign/:userId', authenticateToken,
+router.put('/assign/:userId', authenticateToken,
     defaultInviterController.assignDefaultInviter
 )
 

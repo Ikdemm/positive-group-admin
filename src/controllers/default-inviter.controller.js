@@ -5,10 +5,11 @@ const defaultInviterService = require("../services/defaut-inviter.service")
 const assignDefaultInviter = catchAsync(async (req, res) => {
     const defaultInviter = await defaultInviterService.getDefaultInviter();
     if (defaultInviter) {
-        res.status(400).send({ message: "Inviter exists" })
+        res.status(201).send({ message: "Inviter exists" })
+    } else {
+        const user = await User.findByIdAndUpdate(req.params.userId, { $set: { isDefaultInviter: true } })
+        res.status(200).send({ message: "success" })
     }
-    const user = await User.findByIdAndUpdate(req.params.userId, { $set: { isDefaultInviter: true } })
-    res.status(200).send({ message: "success" })
 })
 
 const unassignDefaultInviter = catchAsync(async (req, res) => {
@@ -16,7 +17,7 @@ const unassignDefaultInviter = catchAsync(async (req, res) => {
     if (user) {
         res.status(200).send({ message: "success" })
     }
-    res.status(400).send({ message: "No default Inviters assigned" })
+    res.status(400).send({ message: "No default Inviters" })
 
 })
 

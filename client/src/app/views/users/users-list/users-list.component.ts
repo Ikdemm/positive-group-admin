@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/user.model';
 import { UsersService } from '../../../services/users.service';
+import { DefaultInviterService } from '../../../services/default-inviter.service';
 import { UserDetailsComponent } from '../user-details/user-details.component';
 import { MatDialog } from '@angular/material/dialog';
 import Swal from "sweetalert2";
@@ -16,6 +17,7 @@ export class UsersListComponent implements OnInit {
 
   constructor(
     private usersService: UsersService,
+    private defaultInviterService: DefaultInviterService,
     private dialogRef: MatDialog
   ) { }
 
@@ -57,24 +59,33 @@ export class UsersListComponent implements OnInit {
 
   changeUserSubscription(user): void {
     user.accountType = user.accountType == 'premium' ? 'free' : 'premium';
-    this.usersService.updateUser(user).subscribe((res) => {
-      console.log(res)
-      if (res.accountType == 'premium') {
-        Swal.fire({
-          icon: "success",
-          title: "Activation",
-          text: "compte activé avec succès",
-        }).then(() => {
-          this.getUsers();
-        })
-      } else {
-        Swal.fire({
-          icon: "success",
-          title: "Désactivation",
-          text: "compte désactivé avec succès",
-        });
-      }
-
+    Swal.fire({
+      icon: 'warning',
+      title: 'Vous êtes sûr?',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Annuler',
+      confirmButtonText: 'Oui, Confirmer!'
+    }).then(() => {
+      this.usersService.updateUser(user).subscribe((res) => {
+        console.log(res)
+        if (res.accountType == 'premium') {
+          Swal.fire({
+            icon: "success",
+            title: "Activation",
+            text: "compte activé avec succès",
+          }).then(() => {
+            this.getUsers();
+          })
+        } else {
+          Swal.fire({
+            icon: "success",
+            title: "Désactivation",
+            text: "compte désactivé avec succès",
+          });
+        }
+      })
     })
   }
 
@@ -98,23 +109,49 @@ export class UsersListComponent implements OnInit {
       cancelButtonText: 'Annuler',
       confirmButtonText: 'Oui, Confirmer!'
     }).then(() => {
-      this.usersService.changeDefaultInviter(user).subscribe((res) => {
-        console.log(res)
-        if (res.message == "success") {
-          Swal.fire({
-            icon: "success",
-            title: "Succès",
-            text: "Données sauvegardés avec succès",
-          })
-          this.getUsers();
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Erreur",
-            text: "Erreur serveur",
-          });
-        }
-      })
+      if (!user.isDefaultInviter) {
+        this.defaultInviterService.makeDefaultInviter(user._id).subscribe((res) => {
+          if (res.message == "success") {
+            Swal.fire({
+              icon: "success",
+              title: "Succès",
+              text: "Données sauvegardés avec succès",
+            })
+            this.getUsers();
+          } else if (res.message == 'Inviter exists') {
+            Swal.fire({
+              icon: "error",
+              title: "Erreur",
+              text: "Un parrain par défaut existe déjà",
+            })
+            this.getUsers();
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Erreur",
+              text: "Une erreur a eu lieu",
+            });
+          }
+        })
+      } else {
+        this.defaultInviterService.unassignDefaultInviter().subscribe((res) => {
+          if (res.message == "success") {
+            Swal.fire({
+              icon: "success",
+              title: "Succès",
+              text: "Données sauvegardés avec succès",
+            })
+            this.getUsers();
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Erreur",
+              text: "Une erreur a eu lieu",
+            });
+          }
+        })
+      }
+
     })
   }
 
