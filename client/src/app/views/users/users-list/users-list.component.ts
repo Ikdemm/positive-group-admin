@@ -58,18 +58,17 @@ export class UsersListComponent implements OnInit {
   }
 
   changeUserSubscription(user): void {
-    user.accountType = user.accountType == 'premium' ? 'free' : 'premium';
     Swal.fire({
       icon: 'warning',
-      title: 'Vous êtes sûr?',
+      title: 'Activer le compte?',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       cancelButtonText: 'Annuler',
       confirmButtonText: 'Oui, Confirmer!'
     }).then(() => {
+      user.accountType = user.accountType == 'premium' ? 'free' : 'premium';
       this.usersService.updateUser(user).subscribe((res) => {
-        console.log(res)
         if (res.accountType == 'premium') {
           Swal.fire({
             icon: "success",
@@ -102,7 +101,7 @@ export class UsersListComponent implements OnInit {
   changeDefaultInviter(user: User): void {
     Swal.fire({
       icon: 'warning',
-      title: 'Vous êtes sûr?',
+      title: "Assigner l'utilisateur comme parrain?",
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
@@ -115,7 +114,7 @@ export class UsersListComponent implements OnInit {
             Swal.fire({
               icon: "success",
               title: "Succès",
-              text: "Données sauvegardés avec succès",
+              text: "Assigné avec succès",
             })
             this.getUsers();
           } else if (res.message == 'Inviter exists') {
