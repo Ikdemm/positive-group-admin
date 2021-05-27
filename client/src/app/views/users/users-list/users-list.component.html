@@ -10,10 +10,10 @@
                         <thead>
                             <tr class="table-header">
                                 <th>Utilisateur</th>
-                                <th>Etat</th>
                                 <th>Invités</th>
                                 <th>Localisation</th>
-                                <th>Bonus</th>
+                                <th>Téléphone</th>
+                                <th>Occupation</th>
                                 <th text-right>Actions</th>
                             </tr>
                         </thead>
@@ -22,15 +22,18 @@
                                 <td (click)="openUserDetails(user)">
                                     <img [src]="user.image" class="avatar-img" />
                                     <span class="username">{{user.lastName}} {{user.firstName}}</span>
+                                    <span *ngIf="user.accountType === 'free'"
+                                        class="badge badge-secondary">{{user.accountType}}</span>
+                                    <span *ngIf="user.accountType === 'premium'"
+                                        class="badge badge-warning">{{user.accountType}}</span>
+                                    <span *ngIf="user.accountType === 'requested'"
+                                        class="badge badge-info">pending</span>
+                                    <span *ngIf="user.isDefaultInviter" class="badge badge-primary">Parrain</span>
                                 </td>
-                                <td>
-                                    <span *ngIf="user.accountType === 'premium'" class="premium">Premium</span>
-                                    <span *ngIf="user.accountType === 'free'" class="free">Free</span>
-                                    <span *ngIf="user.accountType === 'requested'" class="free">requested</span>
-                                </td>
-                                <td>15</td>
-                                <td>Ariana</td>
-                                <td>{{user.bonus}} <span class=sup>TND</span></td>
+                                <td>{{user.invitees.length}}</td>
+                                <td>{{user.location || '-'}}</td>
+                                <td>{{user.phone || '-'}}</td>
+                                <td>{{user.job || '-'}}</td>
                                 <td class="actions-container">
                                     <button (click)="deleteUser(user._id)" type="button"
                                         class="btn btn-danger action-button">
