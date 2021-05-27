@@ -18,8 +18,13 @@
     transition: .4s;
 }
 
+tr {
+    transition: .4s;
+}
+
 tr:hover {
-    background-color: rgb(235, 235, 235);
+    background-color: rgb(245, 243, 243);
+    transition: .4s;
 }
 
 .table-header {
@@ -29,8 +34,14 @@ tr:hover {
 }
 
 .username:hover {
-    color:rgb(214, 204, 69);
+    color:#fff;
     cursor: pointer;
+    transition: .3s;
+}
+
+.username {
+    padding-left: 1em;
+    transition: .3s;
 }
 
 .main {
@@ -84,5 +95,5 @@ td {
     bottom: 1ex; 
     font-size: 50%;
     letter-spacing: 0;
-  }
+}
 

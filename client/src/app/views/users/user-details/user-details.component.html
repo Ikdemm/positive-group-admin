@@ -6,8 +6,10 @@
                     <img [src]="user.image" alt="">
                     <h1>{{user.firstName}} {{user.lastName}}</h1>
                     <p>{{user.email}}</p><br />
-                    <span *ngIf="user.accountType == 'premium'" class="premium">Premium</span>
-                    <span *ngIf="user.accountType == 'free' || user.accountType == 'requested'" class="free">Free</span>
+                    <span *ngIf="user.accountType === 'free'" class="badge badge-secondary">{{user.accountType}}</span>
+                    <span *ngIf="user.accountType === 'premium'" class="badge badge-warning">{{user.accountType}}</span>
+                    <span *ngIf="user.accountType === 'requested'" class="badge badge-info">pending</span>
+                    <span *ngIf="user.isDefaultInviter" class="badge badge-dark">Parrain</span>
                     <div class="total-bonus-box">
                         <h5 class="total-bonus-text">Bonus Total</h5>
                         <h3 class="total-bonus-title">{{totalBonus}}</h3>
@@ -18,157 +20,36 @@
         <div class="profile-info col-md-8">
             <div class="panel">
                 <div class="panel-body bio-graph-info">
-                    <h1>Informations personnelles</h1>
-                    <div class="row">
-                        <div class="bio-row">
-                            <p><span>Prénom </span>: {{user.firstName}}</p>
+                    <h1 class="section-header">Informations personnelles</h1>
+                    <div class="user-infos">
+                        <div>
+                            <p><i class="fa fa-user"></i> {{user.firstName}} {{user.lastName.toUpperCase()}}</p>
+                            <p><i class="fa fa-compass"></i> {{user.location || 'Inconnue'}}</p>
                         </div>
-                        <div class="bio-row">
-                            <p><span>Nom </span>: {{user.lastName}}</p>
+                        <div>
+                            <p><i class="fa fa-calendar"></i> {{user.birthdate || 'Inconnu'}}</p>
+                            <p><i class="fa fa-suitcase"></i> {{user.job || 'Inconnue'}}</p>
                         </div>
-                        <div class="bio-row">
-                            <p><span>Localisation </span>: {{user.location}}</p>
-                        </div>
-                        <div class="bio-row">
-                            <p><span>Naissance</span>: 13 July 1983</p>
-                        </div>
-                        <div class="bio-row">
-                            <p><span>Occupation </span>: {{user.job}}</p>
-                        </div>
-                        <div class="bio-row">
-                            <p><span>Mobile </span>: {{user.phone}}</p>
+                        <div>
+                            <p><i class="fa fa-phone"></i> {{user.phone || 'Inconnu'}}</p>
+                            <p><i class="fa fa-envelope"></i> {{user.email || 'Inconnu'}}</p>
                         </div>
                     </div>
                 </div>
             </div>
+            <hr>
             <div>
+                <h1 class="section-header">Bonus</h1>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6" *ngFor="let level of bonusTree | keyvalue">
                         <div class="panel">
                             <div class="panel-body">
                                 <div class="bio-chart">
-                                    <h3 class="invitees-number red">{{inviteesList.level1Invitees.length}}</h3>
+                                    <h3 class="invitees-number primary">{{level.value.length}}</h3>
                                 </div>
                                 <div class="bio-desk">
-                                    <h4 class="red">Invités Niveau 1</h4>
-                                    <p>Bonus: + {{bonus['1']}}%</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="bio-chart">
-                                    <h3 class="invitees-number terques">{{inviteesList.level2Invitees.length}}</h3>
-                                </div>
-                                <div class="bio-desk">
-                                    <h4 class="terques">Invités Niveau 2</h4>
-                                    <p>Bonus: + {{bonus['2']}}%</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="bio-chart">
-                                    <h3 class="invitees-number green">{{inviteesList.level3Invitees.length}}</h3>
-                                </div>
-                                <div class="bio-desk">
-                                    <h4 class="green">Invités Niveau 3</h4>
-                                    <p>Bonus: + {{bonus['3']}}%</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="bio-chart">
-                                    <h3 class="invitees-number purple">{{inviteesList.level4Invitees.length}}</h3>
-                                </div>
-                                <div class="bio-desk">
-                                    <h4 class="purple">Invités Niveau 4</h4>
-                                    <p>Bonus: + {{bonus['4']}}%</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="bio-chart">
-                                    <h3 class="invitees-number red">{{inviteesList.level5Invitees.length}}</h3>
-                                </div>
-                                <div class="bio-desk">
-                                    <h4 class="red">Invités Niveau 5</h4>
-                                    <p>Bonus: + {{bonus['5']}}%</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="bio-chart">
-                                    <h3 class="invitees-number terques">{{inviteesList.level6Invitees.length}}</h3>
-                                </div>
-                                <div class="bio-desk">
-                                    <h4 class="terques">Invités Niveau6</h4>
-                                    <p>Bonus: + {{bonus['6']}}%</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="bio-chart">
-                                    <h3 class="invitees-number green">{{inviteesList.level7Invitees.length}}</h3>
-                                </div>
-                                <div class="bio-desk">
-                                    <h4 class="green">Invités Niveau7</h4>
-                                    <p>Bonus: + {{bonus['7']}}%</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="bio-chart">
-                                    <h3 class="invitees-number purple">{{inviteesList.level8Invitees.length}}</h3>
-                                </div>
-                                <div class="bio-desk">
-                                    <h4 class="purple">Invités Niveau 8</h4>
-                                    <p>Bonus: + {{bonus['8']}}%</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="bio-chart">
-                                    <h3 class="invitees-number red">{{inviteesList.level9Invitees.length}}</h3>
-                                </div>
-                                <div class="bio-desk">
-                                    <h4 class="red">Invités Niveau 9</h4>
-                                    <p>Bonus: + {{bonus['9']}}%</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="bio-chart">
-                                    <h3 class="invitees-number terques">{{inviteesList.level10Invitees.length}}</h3>
-                                </div>
-                                <div class="bio-desk">
-                                    <h4 class="terques">Invités Niveau 10</h4>
-                                    <p>Bonus: + {{bonus['10']}}%</p>
+                                    <h4 class="primary">{{level.key}}</h4>
+                                    <p>Bonus: {{level.value.levelBonus}}</p>
                                 </div>
                             </div>
                         </div>

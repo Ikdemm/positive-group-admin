@@ -6,7 +6,7 @@ const userSchema = new Schema({
     lastName: { type: String, trim: true },
     birthDate: { type: Date },
     gender: { type: String, enum: ['male', 'female', null], default: null },
-    job: { type: String, trim: true },
+    job: { type: String, default: null, trim: true },
     email: {
         type: String,
         unique: true,
@@ -20,6 +20,7 @@ const userSchema = new Schema({
         },
     },
     phone: { type: Number },
+    location: { type: String, default: null, trim: true },
     accountType: { type: String, enum: ['free', 'pending', 'premium'], default: 'free' },
     password: { type: String, unique: true },
     isActivated: { type: Boolean, default: false },
@@ -28,7 +29,7 @@ const userSchema = new Schema({
     code: { type: String, required: true },
     courses: { type: Array, default: [] },
     courseRequests: { type: Array, default: [] },
-    isDefaultInviter: { type: Boolean, default: false }
+    isDefaultInviter: { type: Boolean, default: false },
 })
 
 const User = mongoose.model('User', userSchema)

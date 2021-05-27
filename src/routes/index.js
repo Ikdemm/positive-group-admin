@@ -10,6 +10,7 @@ const requestsRoutes = require('./requests.routes');
 const codesRoutes = require('./codes.routes')
 const adminsRoutes = require('./admin.routes')
 const bonusRoutes = require('./bonus.routes')
+const defaultInviterRoutes = require('./default-inviter.routes')
 
 const router = express.Router();
 
@@ -49,6 +50,10 @@ const defaultRoutes = [
     {
         path: '/bonus',
         route: bonusRoutes
+    },
+    {
+        path: '/default-inviter',
+        route: defaultInviterRoutes
     }
 ]
 
