@@ -3,6 +3,7 @@ import { User } from '../../../models/user.model';
 import { UsersService } from '../../../services/users.service';
 import { BONUS_INIT } from '../../../constants/dev';
 import { BonusTree } from '../../../models/bonusTree';
+import { BonusService } from '../../../services/bonus.service';
 
 @Component({
   selector: 'app-user-details',
@@ -12,49 +13,33 @@ import { BonusTree } from '../../../models/bonusTree';
 export class UserDetailsComponent implements OnInit {
 
   user: User;
-  inviteesList: BonusTree;
-  // bonus: Array<Number> = new Array(10);
-  bonus = BONUS_INIT;
+  bonusTree: BonusTree;
   totalBonus: Number = 0;
 
-  levels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  constructor(private usersService: UsersService, private bonusService: BonusService) { }
 
-  constructor(private usersService: UsersService) { }
-
-  getUserInvitees(): void {
-    this.usersService.getUserInvitees(this.user._id).subscribe((response: BonusTree) => {
-      this.inviteesList = response;
-      this.calculateBonus()
+  getBonusTree(): void {
+    this.bonusService.getBonusTree(this.user._id).subscribe((res: BonusTree) => {
+      this.bonusTree = res;
+      for (let level in this.bonusTree) {
+        let levelInvitees = this.bonusTree[level]
+        levelInvitees["levelBonus"] = levelInvitees.reduce((acc, invitee) => {
+          acc += invitee.bonus
+        }, 0)
+      }
     })
   }
 
-  calculateBonus(): void {
-
-    for (let i = 1; i < 11; i++) {
-      let bonus = 0
-      this.inviteesList[`level${i}Invitees`].map(invitee => {
-        if (invitee.accountType == 'premium') {
-          bonus += 5
-        }
-        bonus += invitee.courses * 5
-      })
-      this.bonus[i] = bonus
-    }
-
-    let reachedLevel = (this.user['courses'].length >= 5) ? 10 : this.user['courses'].length + 5
-
-    for (let j = 1; j <= reachedLevel; j++) {
-      this.totalBonus += this.bonus[j]
-    }
-
-
+  getUserBonus(): void {
+    this.bonusService.getUserBonus(this.user._id).subscribe((res) => {
+      console.log(res)
+      this.totalBonus = res.bonus
+    })
   }
 
   ngOnInit(): void {
-    for (let i = 1; i < 11; i++) {
-      this.inviteesList[`level${i}Invitees`] = {}
-    }
-    this.getUserInvitees();
+    this.getBonusTree();
+    this.getUserBonus();
   }
 
 }

@@ -29,21 +29,10 @@
     justify-content: space-between;
 }
 
-.premium {
-    background-color: goldenrod;
-    padding: 4px 10px;
-    border-radius: 2px;
-    color: white;
-    font-weight: 600;
-}
 
-.free {
-    background-color: transparent;
-    padding: 3px 9px;
-    border-radius: 2px;
-    border: white solid 2px;
-    color: white;
-    font-weight: 400;
+h4 {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
 }
 
 .invitees-number {
@@ -53,20 +42,8 @@
     text-align: center;
 }
 
-.terques {
-    color: #4CC5CD;
-}
-
-.red {
-    color: #e26b7f;
-}
-
-.green {
-    color: #97be4b;
-}
-
-.purple {
-    color: #caa3da;
+.primary {
+    color: #173F5F;
 }
 
 .profile-nav, .profile-info{
@@ -207,22 +184,6 @@
     font-weight:400;
 }
 
-.bio-desk h4.terques {
-    color: #4CC5CD;
-}
-
-.bio-desk h4.red {
-    color: #e26b7f;
-}
-
-.bio-desk h4.green {
-    color: #97be4b;
-}
-
-.bio-desk h4.purple {
-    color: #caa3da;
-}
-
 .file-pos {
     margin: 6px 0 10px 0;
 }
@@ -243,7 +204,7 @@
 .summary-head h4 {
     font-weight: 300;
     text-transform: uppercase;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
 .summary-head p {
@@ -312,35 +273,6 @@ ul.summary-list > li:last-child  {
     text-align: center;
     color: #fff;
     font-size: 16px;
-}
-
-.activity.terques span {
-    background: #8dd7d6;
-}
-
-.activity.terques h4 {
-    color: #8dd7d6;
-}
-.activity.purple span {
-    background: #b984dc;
-}
-
-.activity.purple h4 {
-    color: #b984dc;
-}
-.activity.blue span {
-    background: #90b4e6;
-}
-
-.activity.blue h4 {
-    color: #90b4e6;
-}
-.activity.green span {
-    background: #aec785;
-}
-
-.activity.green h4 {
-    color: #aec785;
 }
 
 .activity h4 {
