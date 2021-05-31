@@ -30,14 +30,11 @@ export class AddCodeComponent implements OnInit {
   }
 
   onChangeForm($event): void {
-    console.log($event.target.value)
     this.selectedForm = $event.target.value
-    console.log(this.codeForm.value)
   }
 
   onSubmit(): void {
     this.codesService.generateCode(this.codeForm.value).subscribe((res) => {
-      console.log(res)
       this.generatedCode = res.code
     })
   }

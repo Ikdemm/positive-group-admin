@@ -8,6 +8,10 @@ const upload = require("../middlewares/multer")
 
 router.get("/", coursesController.getAllCourses);
 
+// Retrieving one course by Id
+
+router.get("/:courseId", coursesController.getCourseById);
+
 // Creating new courses
 
 router.post("/", authenticateToken, upload.single('courseImage'), coursesController.createCourse);

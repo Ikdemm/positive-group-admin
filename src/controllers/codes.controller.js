@@ -13,7 +13,7 @@ module.exports = {
         let code = codeGenerator();
         switch (req.body.codeType) {
             case 'activation':
-                createdCode = await ActivationCode.create(code)
+                createdCode = await ActivationCode.create({ code: code })
                 break;
             case 'course':
                 let courseId = await Course.findOne({ name: req.body.course }, '_id')
@@ -31,6 +31,7 @@ module.exports = {
                 createdCode = await CreditCode.create(newCode)
                 break;
         }
+        res.status(200).send(createdCode)
     }),
 
     getActivationCodes: catchAsync(async (req, res) => {

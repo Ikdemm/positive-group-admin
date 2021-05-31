@@ -23,7 +23,6 @@ const userSchema = new Schema({
     location: { type: String, default: null, trim: true },
     accountType: { type: String, enum: ['free', 'pending', 'premium'], default: 'free' },
     password: { type: String, unique: true },
-    isActivated: { type: Boolean, default: false },
     invitees: { type: Array, default: [] },
     inviter: { type: String, default: null },
     code: { type: String, required: true },

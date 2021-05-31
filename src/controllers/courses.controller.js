@@ -2,7 +2,6 @@ const Course = require('../models/course');
 const repository = require("../repositories/base.repository");
 const filesRepository = require("../repositories/files.repository");
 const Category = require('../models/category');
-const baseRepository = require('../repositories/base.repository');
 const { catchAsync } = require("../helpers")
 
 module.exports = {
@@ -10,6 +9,11 @@ module.exports = {
     getAllCourses: catchAsync(async (req, res) => {
         const courses = await repository.findAll(Course)
         res.status(200).send(courses)
+    }),
+
+    getCourseById: catchAsync(async (req, res) => {
+        const course = await repository.findOneById(req.params.courseId, Course)
+        res.status(200).send(course)
     }),
 
     createCourse: catchAsync(async (req, res) => {
@@ -36,9 +40,10 @@ module.exports = {
 
     deleteCourse: catchAsync(async (req, res) => {
         const courseId = req.params.id;
-        const course = await baseRepository.findOneById(courseId, Course)
+        const course = await repository.findOneById(courseId, Course)
         await Category.findOneAndUpdate({ courses: course._id }, { $pullAll: { courses: [course._id] } })
         await repository.delete(courseId, Course)
         res.status(200).send({ message: "Deleted" })
-    })
+    }),
+
 }
