@@ -17,6 +17,10 @@ export class CoursesService {
     return this.http.get(DEV_REQUEST_URL + "/api/courses")
   }
 
+  getCourseById(courseId): Observable<any> {
+    return this.http.get(DEV_REQUEST_URL + "/api/courses/" + courseId)
+  }
+
   createCourse(course: FormData): Observable<any> {
     return this.http.post(DEV_REQUEST_URL + "/api/courses", course);
   }

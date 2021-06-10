@@ -6,6 +6,7 @@ const { catchAsync } = require("../helpers")
 module.exports = {
 
     getAllCoursesRequests: catchAsync(async (req, res) => {
+
         let requestsList = []
 
         // Getting the requesting user
@@ -14,8 +15,9 @@ module.exports = {
         await Promise.all(requestingUsers.map(async (singleUser) => {
 
             await Promise.all(singleUser.courseRequests.map(async (requestedCourse) => {
+
                 let course = await Course.findById(requestedCourse)
-                console.log(course)
+
                 requestsList = requestsList.concat([{
                     user: singleUser,
                     course: course

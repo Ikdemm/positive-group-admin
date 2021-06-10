@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CodesService } from '../../../services/codes.service';
 import Swal from "sweetalert2";
+import { CoursesService } from '../../../services/courses.service';
+import { CourseCode } from '../../../models/courseCode.model';
 
 @Component({
   selector: 'app-courses-codes',
@@ -9,15 +11,18 @@ import Swal from "sweetalert2";
 })
 export class CoursesCodesComponent implements OnInit {
 
-  constructor(private codesService: CodesService) { }
+  constructor(private codesService: CodesService, private coursesService: CoursesService) { }
 
-  coursesCodes: Array<object>
+  coursesCodes: Array<CourseCode>
 
   getCoursesCodes(): void {
-    this.codesService.getCoursesCodes().subscribe((res) => {
+    this.codesService.getCoursesCodes().subscribe((res: Array<CourseCode>) => {
       this.coursesCodes = res
       this.coursesCodes.map(code => {
-        code['createdOn'] = new Date(code['createdOn']).toDateString()
+        this.coursesService.getCourseById(code.course).subscribe((course) => {
+          code.course = course.name
+        })
+        code["creationDate"] = new Date(code.createdOn).toDateString()
       })
     })
   }

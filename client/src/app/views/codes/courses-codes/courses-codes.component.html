@@ -21,12 +21,12 @@
                         <tbody>
                             <tr *ngFor="let code of coursesCodes">
                                 <td>{{code.code}}</td>
+                                <td>{{code.usedBy || 'Non untilisé'}}</td>
                                 <td>{{code.course}}</td>
-                                <td *ngIf="code.usedBy">{{code.usedBy}}</td>
-                                <td *ngIf="!code.usedBy"><i>PERSONNE</i></td>
-                                <td>{{code.createdOn}}</td>
-                                <td *ngIf="code.usedOn">{{code.usedOn}}</td>
-                                <td *ngIf="!code.usedOn">Non untilisé</td>
+                                <!-- <td *ngIf="!code.usedBy"><i>PERSONNE</i></td> -->
+                                <td>{{code.creationDate}}</td>
+                                <td>{{code.usedOn || 'Non untilisé'}}</td>
+                                <!-- <td *ngIf="!code.usedOn">Non untilisé</td> -->
                                 <td class="actions-container">
                                     <button (click)="deleteCode(code._id)" type="button"
                                         class="btn btn-danger action-button">
