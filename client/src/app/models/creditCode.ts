@@ -1,6 +1,6 @@
-export class CourseCode {
+export class CreditCode {
     code: String;
-    course: String;
+    value: Number;
     createdOn: String;
     usedBy: String;
     usedOn: String;

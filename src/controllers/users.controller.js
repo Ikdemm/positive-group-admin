@@ -10,6 +10,11 @@ module.exports = {
         res.status(200).send(users)
     }),
 
+    getUserById: catchAsync(async (req, res) => {
+        const user = await repository.findOneById(req.params.userId, User)
+        res.status(200).send(user)
+    }),
+
     updateUser: catchAsync(async (req, res) => {
         const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body)
         res.status(200).send(updatedUser)

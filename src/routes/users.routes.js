@@ -5,6 +5,9 @@ const authenticateToken = require("../middlewares/authenticateToken");
 // Retrieving existing users
 router.get("/", authenticateToken, usersController.getAllUsers);
 
+// Retrieve a single user by id
+router.get("/:userId", authenticateToken, usersController.getUserById);
+
 // Updating an existing user
 router.put("/:id", authenticateToken, usersController.updateUser)
 

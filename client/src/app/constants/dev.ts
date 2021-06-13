@@ -1,4 +1,4 @@
-const environment: String = "production"
+const environment: String = "development"
 export const DEV_REQUEST_URL = (environment == "production") ? "" : "http://localhost:8000"
 export const BONUS_INIT = {
     1: 0,

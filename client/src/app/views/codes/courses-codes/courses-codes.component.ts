@@ -3,6 +3,7 @@ import { CodesService } from '../../../services/codes.service';
 import Swal from "sweetalert2";
 import { CoursesService } from '../../../services/courses.service';
 import { CourseCode } from '../../../models/courseCode.model';
+import { UsersService } from '../../../services/users.service';
 
 @Component({
   selector: 'app-courses-codes',
@@ -11,7 +12,7 @@ import { CourseCode } from '../../../models/courseCode.model';
 })
 export class CoursesCodesComponent implements OnInit {
 
-  constructor(private codesService: CodesService, private coursesService: CoursesService) { }
+  constructor(private codesService: CodesService, private coursesService: CoursesService, private usersService: UsersService) { }
 
   coursesCodes: Array<CourseCode>
 
@@ -22,7 +23,11 @@ export class CoursesCodesComponent implements OnInit {
         this.coursesService.getCourseById(code.course).subscribe((course) => {
           code.course = course.name
         })
-        code["creationDate"] = new Date(code.createdOn).toDateString()
+        code.usedBy && this.usersService.getUserById(code.usedBy).subscribe((user) => {
+          code.usedBy = user.firstName + " " + user.lastName
+        })
+        // code["creationDate"] = new Date(code.createdOn).toDateString()
+        // code.usedOn && (code["usageDate"] = new Date(code.usedOn).toDateString())
       })
     })
   }
