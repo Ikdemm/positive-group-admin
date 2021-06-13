@@ -37,7 +37,6 @@ export class AddCourseComponent implements OnInit {
       .getCategories()
       .subscribe((categories: Array<Category>) => {
         this.categories = categories;
-        console.log(this.categories)
       });
   }
 

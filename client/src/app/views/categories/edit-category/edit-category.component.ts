@@ -22,7 +22,6 @@ export class EditCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
-    console.log(this.category)
   }
 
   createForm(): void {

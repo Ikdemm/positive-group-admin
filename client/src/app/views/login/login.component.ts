@@ -24,23 +24,17 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     this.authenticationService.login(this.loginForm.value).subscribe((res) => {
-      if (res.message === "WRONG PASSWORD") {
-        Swal.fire({
-          icon: "error",
-          title: "Oops",
-          text: `Mot de passe incorrect`,
-        });
-      } else if (res.message === "ADMIN NOT FOUND!") {
-        Swal.fire({
-          icon: "error",
-          title: "Oops",
-          text: `Erreur d'authentification`,
-        });
-      } else if (res.accessToken) {
+      if (res.accessToken) {
         this.localStorageService.set("email", this.loginForm.value.email)
         this.localStorageService.set("accessToken", res.accessToken);
         this.router.navigate(["/dashboard"]);
       }
+    }, (error) => {
+      Swal.fire({
+        icon: "error",
+        title: "Oops",
+        text: error.error.message,
+      });
     });
   }
 

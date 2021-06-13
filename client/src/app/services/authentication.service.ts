@@ -20,12 +20,7 @@ export class AuthenticationService {
     return this.http.post(DEV_REQUEST_URL + "/api/auth/login", userData);
   }
 
-  // check() {
-  //   return localStorage.getItem("authenticated");
-  // }
-
   forgotPassword(user: String): Observable<any> {
-    console.log(user)
     return this.http.post(DEV_REQUEST_URL + "/api/auth/forgot", user)
   }
 }

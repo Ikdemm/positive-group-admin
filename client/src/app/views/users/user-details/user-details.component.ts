@@ -32,7 +32,6 @@ export class UserDetailsComponent implements OnInit {
 
   getUserBonus(): void {
     this.bonusService.getUserBonus(this.user._id).subscribe((res) => {
-      console.log(res)
       this.totalBonus = res.bonus
     })
   }

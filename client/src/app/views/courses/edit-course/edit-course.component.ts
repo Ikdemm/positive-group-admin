@@ -29,7 +29,6 @@ export class EditCourseComponent implements OnInit {
   ngOnInit(): void {
     this.categoriesService.getCategories().subscribe(categories => {
       this.categories = categories;
-      console.log(this.categories)
     })
     this.createForm();
   }
@@ -50,7 +49,6 @@ export class EditCourseComponent implements OnInit {
     formData.append("duration", duration);
     this.selectedImage && formData.append("courseImage", this.selectedImage, this.selectedImage.name)
     this.coursesService.updateCourse(this.course._id, formData).subscribe(res => {
-      console.log(res);
       this.closeModal();
     })
   }

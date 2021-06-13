@@ -25,7 +25,6 @@ export class CoursesRequestsComponent implements OnInit {
   getCoursesRequests(): void {
     this.requestsService.getAllCoursesRequests().subscribe((requests) => {
       this.coursesRequests = requests;
-      console.log(this.coursesRequests)
     })
   }
 

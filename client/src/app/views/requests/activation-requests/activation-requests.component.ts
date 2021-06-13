@@ -59,7 +59,6 @@ export class ActivationRequestsComponent implements OnInit {
   getRequests(): void {
     this.requestsService.getAllActivationRequests().subscribe((requests) => {
       this.activationRequests = requests;
-      console.log(this.activationRequests)
     })
   }
 
