@@ -24,8 +24,6 @@ module.exports = {
                 }])
             }))
         }))
-
-        console.log(requestsList)
         res.status(200).send(requestsList)
     }),
 

@@ -8,7 +8,6 @@ module.exports = {
 
     login: catchAsync(async (req, res) => {
         const { status, message, accessToken, admin } = await authRepository.login(req.body, Admin)
-        console.log(status, message, accessToken, admin)
         if (status == 200) res.status(status).send({ accessToken: accessToken, admin: admin })
         if (status !== 200) res.status(status).send({ message: message })
 

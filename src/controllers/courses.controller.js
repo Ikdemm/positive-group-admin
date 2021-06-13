@@ -22,7 +22,6 @@ module.exports = {
         newCourse.image = imageUrl;
         const course = await repository.save(newCourse, Course);
         const updatedCategory = await Category.updateOne({ name: req.body.category }, { $addToSet: { courses: [course._id] } })
-        console.log(updatedCategory)
         if (updatedCategory) {
             res.status(201).send(course)
         }

@@ -21,7 +21,6 @@ module.exports = {
                 }
             );
 
-            console.log('file uploaded successfully')
             // remove file from server
             const fs = require('fs')
             fs.unlinkSync(path)

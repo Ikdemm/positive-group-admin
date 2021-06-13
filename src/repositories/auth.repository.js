@@ -99,10 +99,10 @@ module.exports = {
                         throw error
                     } else {
                         console.log('Email sent: ' + info.response);
+                        return ({ status: 200, message: "check your email" })
                     }
                 });
 
-            return ({ status: 200, message: "check your email" })
 
         } catch (error) {
             throw error
