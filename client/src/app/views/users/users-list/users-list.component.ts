@@ -41,7 +41,7 @@ export class UsersListComponent implements OnInit {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       cancelButtonText: 'Annuler',
-      confirmButtonText: 'Oui, supprimer!'
+      confirmButtonText: 'Supprimer!'
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire(
@@ -52,12 +52,26 @@ export class UsersListComponent implements OnInit {
         this.usersService.deleteUser(id).subscribe((res) => {
           this.getUsers();
         });
+      } else if (result.isDismissed) {
+        this.swalWithBootstrapButtons.fire(
+          'Annulé',
+          'Opération annulée',
+          'error'
+        )
       }
     })
 
   }
 
-  changeUserSubscription(user): void {
+  swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+  })
+
+  activateAccount(user): void {
     Swal.fire({
       icon: 'warning',
       title: 'Activer le compte?',
@@ -66,26 +80,84 @@ export class UsersListComponent implements OnInit {
       cancelButtonColor: '#d33',
       cancelButtonText: 'Annuler',
       confirmButtonText: 'Oui, Confirmer!'
-    }).then(() => {
-      user.accountType = user.accountType == 'premium' ? 'free' : 'premium';
-      this.usersService.updateUser(user).subscribe((res) => {
-        if (res.accountType == 'premium') {
-          Swal.fire({
-            icon: "success",
-            title: "Activation",
-            text: "compte activé avec succès",
-          }).then(() => {
-            this.getUsers();
-          })
-        } else {
-          Swal.fire({
-            icon: "success",
-            title: "Désactivation",
-            text: "compte désactivé avec succès",
-          });
-        }
-      })
+    }).then((result) => {
+      if (result.isConfirmed) {
+        user.accountType = 'premium';
+        this.usersService.updateUser(user).subscribe((res) => {
+          if (res) {
+            Swal.fire({
+              icon: "success",
+              title: "Activation",
+              text: "compte activé avec succès",
+            }).then(() => {
+              this.getUsers();
+            })
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Erreur",
+              text: "Une erreur s'est produite",
+            });
+          }
+        })
+      } else if (result.isDismissed) {
+        this.swalWithBootstrapButtons.fire(
+          'Annulé',
+          'Opération annulée',
+          'error'
+        )
+      }
+      
     })
+
+  }
+
+  deactivateAccount(user): void {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Désactiver le compte?',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Annuler',
+      confirmButtonText: 'Confirmer!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        user.accountType = 'free';
+        this.usersService.updateUser(user).subscribe((res) => {
+          if (res) {
+            Swal.fire({
+              icon: "success",
+              title: "Activation",
+              text: "compte désactivé avec succès",
+            }).then(() => {
+              this.getUsers();
+            })
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Erreur",
+              text: "Une erreur s'est produite",
+            });
+          }
+        })
+      } else if (result.isDismissed) {
+        this.swalWithBootstrapButtons.fire(
+          'Annulé',
+          'Opération annulée',
+          'error'
+        )
+      }
+    })
+  }
+
+  changeUserSubscription(user): void {
+    if (user.accountType === 'free') {
+      this.activateAccount(user);
+    }
+    if (user.accountType === "premium") {
+      this.deactivateAccount(user)
+    }
   }
 
   openUserDetails(user: User): void {
@@ -106,49 +178,57 @@ export class UsersListComponent implements OnInit {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       cancelButtonText: 'Annuler',
-      confirmButtonText: 'Oui, Confirmer!'
-    }).then(() => {
-      if (!user.isDefaultInviter) {
-        this.defaultInviterService.makeDefaultInviter(user._id).subscribe((res) => {
-          if (res.message == "success") {
-            Swal.fire({
-              icon: "success",
-              title: "Succès",
-              text: "Assigné avec succès",
-            })
-            this.getUsers();
-          } else if (res.message == 'Inviter exists') {
-            Swal.fire({
-              icon: "error",
-              title: "Erreur",
-              text: "Un parrain par défaut existe déjà",
-            })
-            this.getUsers();
-          } else {
-            Swal.fire({
-              icon: "error",
-              title: "Erreur",
-              text: "Une erreur a eu lieu",
-            });
-          }
-        })
-      } else {
-        this.defaultInviterService.unassignDefaultInviter().subscribe((res) => {
-          if (res.message == "success") {
-            Swal.fire({
-              icon: "success",
-              title: "Succès",
-              text: "Données sauvegardés avec succès",
-            })
-            this.getUsers();
-          } else {
-            Swal.fire({
-              icon: "error",
-              title: "Erreur",
-              text: "Une erreur a eu lieu",
-            });
-          }
-        })
+      confirmButtonText: 'Confirmer!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (!user.isDefaultInviter) {
+          this.defaultInviterService.makeDefaultInviter(user._id).subscribe((res) => {
+            if (res.message == "success") {
+              Swal.fire({
+                icon: "success",
+                title: "Succès",
+                text: "Assigné avec succès",
+              })
+              this.getUsers();
+            } else if (res.message == 'Inviter exists') {
+              Swal.fire({
+                icon: "error",
+                title: "Erreur",
+                text: "Un parrain par défaut existe déjà",
+              })
+              this.getUsers();
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Erreur",
+                text: "Une erreur a eu lieu",
+              });
+            }
+          })
+        } else {
+          this.defaultInviterService.unassignDefaultInviter().subscribe((res) => {
+            if (res.message == "success") {
+              Swal.fire({
+                icon: "success",
+                title: "Succès",
+                text: "Données sauvegardés avec succès",
+              })
+              this.getUsers();
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Erreur",
+                text: "Une erreur a eu lieu",
+              });
+            }
+          })
+        }
+      } else if (result.isDismissed) {
+        this.swalWithBootstrapButtons.fire(
+          'Annulé',
+          'Opération annulée',
+          'error'
+        )
       }
 
     })
