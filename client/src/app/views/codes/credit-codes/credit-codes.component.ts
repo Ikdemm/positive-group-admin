@@ -20,6 +20,7 @@ export class CreditCodesComponent implements OnInit {
       this.creditCodes = res;
       this.creditCodes.map((code) => {
         code["createdOn"] = new Date(code['createdOn']).toDateString()
+        code["usedOn"] && (code["usedOn"] = new Date(code['usedOn']).toDateString())
         code["usedBy"] && this.usersService.getUserById(code["usedBy"]).subscribe((user) => {
           code["usedBy"] = user.firstName + " " + user.lastName
         })      

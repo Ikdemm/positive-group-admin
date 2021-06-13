@@ -14,10 +14,10 @@ export class CoursesCodesComponent implements OnInit {
 
   constructor(private codesService: CodesService, private coursesService: CoursesService, private usersService: UsersService) { }
 
-  coursesCodes: Array<CourseCode>
+  coursesCodes: Array<any>
 
   getCoursesCodes(): void {
-    this.codesService.getCoursesCodes().subscribe((res: Array<CourseCode>) => {
+    this.codesService.getCoursesCodes().subscribe((res) => {
       this.coursesCodes = res
       this.coursesCodes.map(code => {
         this.coursesService.getCourseById(code.course).subscribe((course) => {
@@ -26,8 +26,8 @@ export class CoursesCodesComponent implements OnInit {
         code.usedBy && this.usersService.getUserById(code.usedBy).subscribe((user) => {
           code.usedBy = user.firstName + " " + user.lastName
         })
-        // code["creationDate"] = new Date(code.createdOn).toDateString()
-        // code.usedOn && (code["usageDate"] = new Date(code.usedOn).toDateString())
+        code["createdOn"] = new Date(code['createdOn']).toDateString()
+        code.usedOn && (code["usedOn"] = new Date(code.usedOn).toDateString())
       })
     })
   }
