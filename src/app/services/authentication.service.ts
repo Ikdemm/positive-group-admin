@@ -17,6 +17,8 @@ export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
   login(userData): Observable<any> {
+    userData["origin"] = 0;
+    console.log(userData)
     return this.http.post(DEV_REQUEST_URL + "/api/auth/login", userData);
   }
 
